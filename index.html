@@ -61,14 +61,34 @@
       padding: 2rem;
       text-align: center;
     }
-    .deal {
-      background: #fff0e5;
-      text-align: center;
-      padding: 2rem;
-    }
-    .deal h2 {
-      font-size: 2rem;
-    }
+    .section-title {
+  font-size: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.price {
+  display: block;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #ff69b4;
+  margin-top: 1em;
+}
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -129,15 +149,34 @@
     </div>
   </section>
 
-  <section class="deal">
-    <h2>🎉 Book All 3 For Just £180!</h2>
-    <p>One amazing deal, triple the fun!</p>
-  </section>
+  <section id="pricing" class="section">
+  <div class="container">
+    <h2 class="section-title">Our Prices</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Slushie Machine</h3>
+        <p>Glycerol-free, 20L mix included</p>
+        <span class="price">From £99</span>
+      </div>
+      <div class="card">
+        <h3>Disco Bouncy Castle</h3>
+        <p>Colorful fun with music and lights</p>
+        <span class="price">From £99</span>
+      </div>
+      <div class="card">
+        <h3>Candy Floss Machine</h3>
+        <p>Blue Raspberry & Red Strawberry flavours</p>
+        <span class="price">From £59</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <section class="gallery">
     <img src="https://cdn.discordapp.com/attachments/1185935639749873714/1364350206967287818/1000041258-removebg-preview.png?ex=680959a5&is=68080825&hm=626c60d043cd68bd69c2fe4d21c74885c9cd6d006adcbad5672d7f6b4c1925ce&" alt="Gallery Image 1">
     <img src="https://cdn.discordapp.com/attachments/1185935639749873714/1364350711491727541/1000041261-removebg-preview.png?ex=68095a1e&is=6808089e&hm=b36cbf1f94d99862d5d82b9070791d683bdbb93d1a004a22eed769d31de82550&" alt="Gallery Image 2">
-    <img src="https://cdn.discordapp.com/attachments/1185935639749873714/1364351211301634090/1000041264-removebg-preview.png?ex=680a0355&is=6808b1d5&hm=e81fe631835332818e15fcbd2d6e39693d99355c3683ef0765a4a73a4a95a5a6&" alt="Gallery Image 3">
+    <img src="https://cdn.discordapp.com/attachments/1185935639749873714/1364351211301634090/1000041264-removebg-preview.png?ex=68095a95&is=68080915&hm=7588ba96f1dd7675b8099ea1f7bb7543854917d987d731baa89fb9c60399364b&" alt="Gallery Image 3">
   </section>
 
   <section class="contact" id="contact">
