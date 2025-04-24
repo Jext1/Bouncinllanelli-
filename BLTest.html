@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Bouncin Llanelli</title>
+      <style>
+         html {
+            scroll-behavior: smooth;
+         }
+         body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #fefefe;
+            color: #333;
+         }
+         header {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+         }
+         header svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+         }
+         header .content {
+            position: relative;
+            z-index: 1;
+         }
+         h1 {
+            font-size: 3rem; /* or bigger */
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+         }
+         .title-text {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+         }
+         h1 span {
+            display: inline-block;
+            opacity: 1;
+         }
+         .bounce {
+            animation: bounce-up 0.6s ease;
+         }
+         @keyframes bounce-up {
+            0%   { transform: translateY(0); }
+            30%  { transform: translateY(-25px); }
+            60%  { transform: translateY(10px); }
+            100% { transform: translateY(0); }
+         }
+         .btn {
+            display: inline-block;
+            background: #ff5c8d;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.1s ease-in-out; /* Added smooth transition */
+         }
+         /* Add animation on button click */
+         .btn:active {
+            transform: scale(0.95);  /* Slightly shrink the button */
+         }
+         .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 3rem 1rem;
+            background: #fff6fb;
+         }
+         .service {
+            flex: 1 1 280px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+         }
+         .section-title {
+            font-size: 2em;
+            margin-bottom: 1em;
+            text-align: center;
+         }
+         .grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+         }
+         .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            text-align: center;
+         }
+         .price {
+            display: block;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #ff69b4;
+            margin-top: 1em;
+         }
+         .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 2rem;
+            justify-content: center;
+         }
+         .gallery img {
+            width: 300px;
+            border-radius: 10px;
+         }
+         .contact {
+            padding: 2rem;
+            background: #f5faff;
+            text-align: center;
+         }
+         .contact form {
+            max-width: 400px;
+            margin: auto;
+         }
+         .contact input, .contact textarea {
+            width: 100%;
+            margin: 0.5rem 0;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+         }
+         footer {
+            background: #eee;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <svg viewBox="0 0 1440 320">
+            <path fill="#ff9a9e" fill-opacity="1" d="M0,160L80,170.7C160,181,320,203,480,208C640,213,800,203,960,181.3C1120,160,1280,128,1360,112L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+         </svg>
+         <div class="content">
+            <h1 id="title">
+               <span class="title-text">
+                  <span>B</span><span>o</span><span>u</span><span>n</span><span>c</span><span>i</span><span>n</span>
+                  <span>&nbsp;</span>
+                  <span>L</span><span>l</span><span>a</span><span>n</span><span>e</span><span>l</span><span>l</span><span>i</span>
+               </span>
+            </h1>
+            <p>Slushie, Candy Floss & Bouncy Castle Fun!</p>
+            <a class="btn" href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now!</a>
+            <a class="btn" href="https://www.facebook.com/share/1AhFHBVtc5/" style="background-color: #1877f2; color: white; padding: 10px 15px; border-radius: 25px; text-decoration: none;">Facebook</a>           
+         </div>
+      </header>
+      <section id="pricing" class="section">
+         <div class="container">
+            <h2 class="section-title">Our Prices</h2>
+            <div class="grid">
+               <div class="card">
+                  <img src="1000041258-removebg-preview.png" alt="Bouncy Castle" style="width:100%; border-radius: 0.5rem;">
+                  <h3>Disco Bouncy Castle</h3>
+                  <p>Perfect for kids’ parties</p>
+                  <span class="price">From £99</span>
+                  <a class="btn" href="soon" style="background-color: #ff5c8d; color: white; padding: 10px 15px; border-radius: 25px; text-decoration: none;">Find Out More!</a>               
+               </div>
+               <div class="card">
+                  <img src="1000041264-removebg-preview.png" alt="Slushie Machine" style="width:100%; border-radius: 0.5rem;">
+                  <h3>Slushie Machine</h3>
+                  <p>20L Mix. Cool and refreshing!</p>
+                  <span class="price">From £99</span>
+                  <a class="btn" href="soon" style="background-color: #ff5c8d; color: white; padding: 10px 15px; border-radius: 25px; text-decoration: none;">Find Out More!</a>               
+               </div>
+               <div class="card">
+                  <img src="1000041261-removebg-preview.png" alt="Candy Floss Machine" style="width:100%; border-radius: 0.5rem;">
+                  <h3>Candy Floss Machine</h3>
+                  <p>Two flavours: Blue Raspberry & Red Strawberry</p>
+                  <span class="price">From £59</span>
+                  <a class="btn" href="soon" style="background-color: #ff5c8d; color: white; padding: 10px 15px; border-radius: 25px; text-decoration: none;">Find Out More!</a>               
+               </div>
+            </div>
+         </div>
+      </section>
+      <footer>
+         &copy; 2025 Bouncin Llanelli. All rights reserved.
+      </footer>
+      <script>
+         const letters = document.querySelectorAll("#title span");
+         letters.forEach((letter, i) => {
+            setTimeout(() => {
+               letter.classList.add("bounce");
+               setTimeout(() => {
+                  letter.classList.remove("bounce");
+               }, 1000);
+            }, i * 100);
+         });
+      </script>
+   </body>
+</html>
