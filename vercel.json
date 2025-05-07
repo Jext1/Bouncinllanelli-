@@ -1,6 +1,8 @@
 {
   "rewrites": [
     {
+      "source": "/DiscoBouncyCastle",
+      "destination": "/DiscoBouncyCastle.html"
       "source": "/Slushie",
       "destination": "/Slushie.html"
     },
