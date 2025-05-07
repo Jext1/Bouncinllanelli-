@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/Slushie",
+      "source": "",
       "destination": "/Slushie.html"
     },
     {
