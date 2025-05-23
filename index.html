@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <title>Bouncin Llanelli</title>
    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
    <style>
       html {
          scroll-behavior: smooth;
@@ -160,7 +160,6 @@
                <span class="price">From £99</span>
                <a class="btn" href="https://bouncinllanelli.co.uk/BouncyCastle">Find Out More!</a>            
             </div>
-
             <div class="card">
                <img src="1000041264-removebg-preview.png" alt="Slushie Machine" style="width:100%; border-radius: 0.5rem;">
                <h3 style="color: black;">Slushie Machine</h3>
@@ -168,7 +167,6 @@
                <span class="price">From £99</span>
                <a class="btn" href="https://bouncinllanelli.co.uk/Slushie">Find Out More!</a>            
             </div>
-
             <div class="card">
                <img src="1000041261-removebg-preview.png" alt="Candy Floss Machine" style="width:100%; border-radius: 0.5rem;">
                <h3 style="color: black;">Candy Floss Machine</h3>
@@ -176,7 +174,6 @@
                <span class="price">From £59</span>
                <a class="btn" href="https://bouncinllanelli.co.uk/CandyFloss">Find Out More!</a>            
             </div>
-            
             <div class="card">
                <img src="1000042801-removebg-preview.png" alt="Soft Play Img" style="width:100%; border-radius: 0.5rem;">
                <h3 style="color: black;">Soft Play</h3>
@@ -184,7 +181,6 @@
                <span class="price">From £59</span>
                <a class="btn" href="https://bouncinllanelli.co.uk/SoftPlay">Find Out More!</a>            
             </div>
-
             <div class="card">
                <img src="Untitled_20250427_194251.png" alt="The Thrifty Three!" style="width:100%; border-radius: 0.5rem;">
                <h3 style="color: black;">The Thrifty Three!</h3>
@@ -197,8 +193,78 @@
       </div>
    </section>
 
+   <section id="weather" class="section" style="background:#f5faff; padding: 3rem 1rem; text-align: center;">
+      <h2 class="section-title">South Wales 3-Day Forecast</h2>
+      <div>
+         <select id="townSelect" style="padding: 0.6rem 1rem; font-size: 1rem; border-radius: 25px; border: 1px solid #ccc;">
+            <option value="">Select a town</option>
+         </select>
+         <button onclick="handleTownSelection()" class="btn" style="margin-top:1rem; background: linear-gradient(to right, #74D1FC, #ffffff); color: #073c92; font-weight: bold; border: 2px solid #073c92; border-radius: 25px;">Get Forecast</button>
+      </div>
+      <div id="forecast" style="background: white; padding: 2rem; border-radius: 1rem; max-width: 400px; margin: 2rem auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #333;"></div>
+   </section>
+
    <footer>
       &copy; 2025 Bouncin Llanelli. All rights reserved.
    </footer>
+
+   <script>
+      const towns = [
+         "Cardiff", "Swansea", "Newport", "Bridgend", "Merthyr Tydfil", "Barry",
+         "Llanelli", "Carmarthen", "Ammanford", "Neath", "Port Talbot",
+         "Aberdare", "Tredegar", "Pontypridd", "Llandeilo", "Haverfordwest",
+         "Tenby", "Fishguard", "Pembroke", "Ebbw Vale", "Abergavenny",
+         "Monmouth", "Rhondda", "Cwmbran", "Caerphilly", "Chepstow"
+      ];
+
+      const apiKey = "1cc3db9758826707a61e043d83b65f38"; // Replace with your actual API key
+      const townSelect = document.getElementById("townSelect");
+      const forecastDiv = document.getElementById("forecast");
+
+      towns.forEach(town => {
+         const option = document.createElement("option");
+         option.value = town;
+         option.textContent = town;
+         townSelect.appendChild(option);
+      });
+
+      function handleTownSelection() {
+         const selectedTown = townSelect.value;
+         if (selectedTown) {
+            fetchWeather(selectedTown);
+         } else {
+            forecastDiv.innerHTML = `<p class="error" style="color:red;font-weight:bold;">Please select a town.</p>`;
+         }
+      }
+
+      async function fetchWeather(town) {
+         const url = `https://api.openweathermap.org/data/2.5/forecast?q=${town},GB&units=metric&appid=${apiKey}`;
+         forecastDiv.innerHTML = "Loading...";
+
+         try {
+            const res = await fetch(url);
+            const data = await res.json();
+
+            if (res.status !== 200) {
+               forecastDiv.innerHTML = `<p class="error" style="color:red;font-weight:bold;">Error: ${data.message}</p>`;
+               return;
+            }
+
+            const days = data.list.filter((_, i) => i % 8 === 0).slice(0, 3);
+            forecastDiv.innerHTML = `
+               <h3>${town} Forecast</h3>
+               <ul style="text-align:left; padding-left:1rem;">
+                  ${days.map(day => {
+                     const date = new Date(day.dt * 1000).toLocaleDateString();
+                     return `<li>${date}: ${day.weather[0].main}, ${day.main.temp.toFixed(1)}°C</li>`;
+                  }).join("")}
+               </ul>
+            `;
+         } catch (err) {
+            forecastDiv.innerHTML = `<p class="error" style="color:red;font-weight:bold;">Failed to fetch weather.</p>`;
+            console.error(err);
+         }
+      }
+   </script>
 </body>
 </html>
