@@ -13,6 +13,10 @@
     {
       "source": "/BouncyCastle",
       "destination": "/BouncyCastle.html"
+    },
+    {
+      "source": "/BouncyCastle",
+      "destination": "/SoftPlay.Html"
     }
   ]
 }
