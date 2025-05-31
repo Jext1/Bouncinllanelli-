@@ -13,6 +13,10 @@
       "destination": "/CandyFloss.html"
     },
     {
+      "source": "/Packages",
+      "destination": "/Packages.html"
+    },
+    {
       "source": "/BouncyCastle",
       "destination": "/BouncyCastle.html"
     }
