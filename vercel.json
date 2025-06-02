@@ -17,6 +17,15 @@
       "destination": "/Packages.html"
     },
     {
+      "source": "/SlushieMachines",
+      "destination": "/SlushieMachines.html"
+    },
+    {
+      "source": "/10LSlushie",
+      "destination": "/10LSlushie.html"
+    },
+
+    {
       "source": "/BouncyCastle",
       "destination": "/BouncyCastle.html"
     }
