@@ -33,6 +33,10 @@
       "destination": "/Extras.html"
     },
     {
+      "source": "/710JBL",
+      "destination": "/710JBL.html"
+    },
+    {
       "source": "/BouncyCastle",
       "destination": "/BouncyCastle.html"
     }
