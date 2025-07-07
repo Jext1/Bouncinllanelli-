@@ -29,6 +29,10 @@
       "destination": "/10LSlushie.html"
     },
     {
+      "source": "/FunFoods",
+      "destination": "/FunFoods.html"
+    },
+    {
       "source": "/BouncyCastles",
       "destination": "/BouncyCastles.html"
     },
