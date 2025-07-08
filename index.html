@@ -1,366 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Bouncin Llanelli</title>
-   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-   <style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bouncin Llanelli</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <style>
       html {
-         scroll-behavior: smooth;
+        scroll-behavior: smooth;
       }
+
       body {
-         margin: 0;
-         font-family: 'Segoe UI', sans-serif;
-         background: linear-gradient(to right, #74D1FC, #ffffff);
-         color: #333;
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to right, #74D1FC, #ffffff);
+        color: #333;
       }
+
       header {
-         background: linear-gradient(to right, #74D1FC, #ffffff);
-         text-align: center;
-         padding: 4rem 2rem;
-         position: relative;
+        background: linear-gradient(to right, #74D1FC, #ffffff);
+        text-align: center;
+        padding: 4rem 2rem;
+        position: relative;
       }
+
       header svg {
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         z-index: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
       }
+
       header .content {
-         position: relative;
-         z-index: 1;
+        position: relative;
+        z-index: 1;
       }
+
       .logo {
-         width: 250px;
-         max-width: 90%;
-         display: block;
-         margin: 0 auto;
-         animation: growShrink 2s ease-in-out infinite;
+        width: 250px;
+        max-width: 90%;
+        display: block;
+        margin: 0 auto;
+        animation: growShrink 2s ease-in-out infinite;
       }
+
       @keyframes growShrink {
-         0%, 100% {
-            transform: scale(1);
-         }
-         50% {
-            transform: scale(1.15);
-         }
+
+        0%,
+        100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.15);
+        }
       }
+
       .btn {
-         display: inline-block;
-         background: #073c92;
-         color: white;
-         padding: 0.8rem 1.5rem;
-         border-radius: 25px;
-         text-decoration: none;
-         font-weight: bold;
-         margin: 0.5rem;
-         transition: transform 0.2s ease;
-         -webkit-tap-highlight-color: transparent;
+        display: inline-block;
+        background: #073c92;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0.5rem;
+        transition: transform 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
       }
+
       .btn:active {
-         transform: scale(0.95);
+        transform: scale(0.95);
       }
+
       .section-title {
-         font-size: 2em;
-         margin-bottom: 1em;
-         text-align: center;
+        font-size: 2em;
+        margin-bottom: 1em;
+        text-align: center;
       }
+
       .card {
-  background: linear-gradient(to right, #74D1FC, #ffffff);
-  border-radius: 1rem;
-  overflow: hidden;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  align-items: center;     /* Center content horizontally */
-  aspect-ratio: 1 / 1;
-  min-width: 150px;
-  max-width: 250px;
-  width: 100%;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-  cursor: pointer;
-}
+        background: linear-gradient(to right, #74D1FC, #ffffff);
+        border-radius: 1rem;
+        overflow: hidden;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Center content vertically */
+        align-items: center;
+        /* Center content horizontally */
+        aspect-ratio: 1 / 1;
+        min-width: 150px;
+        max-width: 250px;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
 
-.grid {
-  display: grid;
-  gap: 1rem;
-  padding: 1rem;
+      .grid {
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+        /* Default = 2 columns always */
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-  /* Default = 2 columns always */
-  grid-template-columns: repeat(2, 1fr);
-}
+      @media (min-width: 768px) {
+        .grid {
+          /* On wider screens, go back to responsive auto-fit layout */
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
 
-@media (min-width: 768px) {
-  .grid {
-    /* On wider screens, go back to responsive auto-fit layout */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
       .card:hover {
-         transform: translateY(-5px);
+        transform: translateY(-5px);
       }
+
       .card img {
-  width: 80%; /* Slightly smaller so it doesn’t overflow */
-  height: auto;
-  max-height: 60%;
-  object-fit: contain;
-  margin-bottom: 1rem;
-}
+        width: 80%;
+        /* Slightly smaller so it doesnâ€™t overflow */
+        height: auto;
+        max-height: 60%;
+        object-fit: contain;
+        margin-bottom: 1rem;
+      }
+
       .card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+      }
+
       .card-content h3 {
-         margin: 0.3rem 0;
-         font-size: 1rem;
-         color: #073c92;
+        margin: 0.3rem 0;
+        font-size: 1rem;
+        color: #073c92;
       }
+
       .card-content p {
-         margin: 0.3rem 0;
-         font-size: 0.8rem;
-         color: #333;
+        margin: 0.3rem 0;
+        font-size: 0.8rem;
+        color: #333;
       }
+
       .card-content .price {
-         font-weight: bold;
-         color: #073c92;
-         margin-top: 0.3rem;
-         font-size: 0.9rem;
+        font-weight: bold;
+        color: #073c92;
+        margin-top: 0.3rem;
+        font-size: 0.9rem;
       }
+
       .card-content a {
-         margin-top: 0.5rem;
-         font-size: 0.8rem;
-         display: inline-block;
-         padding: 0.5rem 1rem;
-         background: #073c92;
-         color: white;
-         border-radius: 20px;
-         text-decoration: none;
-         align-self: center;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: #073c92;
+        color: white;
+        border-radius: 20px;
+        text-decoration: none;
+        align-self: center;
       }
+
       .category-btn {
-         width: 100%;
-         max-width: 500px;
-         box-sizing: border-box;
+        width: 100%;
+        max-width: 500px;
+        box-sizing: border-box;
       }
+
       .gallery {
-         display: flex;
-         flex-wrap: wrap;
-         gap: 1rem;
-         padding: 2rem;
-         justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 2rem;
+        justify-content: center;
       }
-      
+
       .gallery img {
-         width: 300px;
-         border-radius: 10px;
+        width: 300px;
+        border-radius: 10px;
       }
+
       .card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
 
-.card {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
+      .card {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
 
-.card:hover {
-  transform: translateY(-5px);
-}
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
       .contact {
-         padding: 2rem;
-         background: #f5faff;
-         text-align: center;
+        padding: 2rem;
+        background: #f5faff;
+        text-align: center;
       }
+
       .contact form {
-         max-width: 400px;
-         margin: auto;
+        max-width: 400px;
+        margin: auto;
       }
-      .contact input, .contact textarea {
-         width: 100%;
-         margin: 0.5rem 0;
-         padding: 0.8rem;
-         border: 1px solid #ccc;
-         border-radius: 8px;
+
+      .contact input,
+      .contact textarea {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
       }
+
       footer {
-         background: #eee;
-         padding: 1rem;
-         text-align: center;
-         font-size: 0.9rem;
+        background: #eee;
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.9rem;
       }
-   </style>
-</head>
-<body>
-   <header>
+
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+
+        60% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+
+        80% {
+          transform: scale(0.9);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes bounceOut {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        20% {
+          transform: scale(1.1);
+        }
+
+        100% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Pop-up Modal -->
+    <div id="popupModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+      <div id="popupContent" style="background:#fff; padding:2rem; border-radius:1rem; text-align:center; max-width:90%; width:400px; position:relative; box-shadow: 0 0 15px rgba(0,0,0,0.2); animation: bounceIn 0.6s;">
+        <button onclick="closeModal()" style="position:absolute; top:10px; right:10px; background:transparent; border:none; font-size:1.2rem; cursor:pointer;">&times;</button>
+        <h2 style="color:#073c92;">🎉 Special Offer!</h2>
+        <p>Softplay20- <strong>£20</strong> off bouncy castle and soft play </br> Doubleup30 - <strong>£30</strong> off when booking 2 castles together </p>
+        <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn" style="margin-top:1rem;">Book Now</a>
+      </div>
+    </div>
+    <header>
       <svg viewBox="0 0 1440 320">
-         <path fill="#3B82F6" fill-opacity="1" d="M0,160L80,170.7C160,181,320,203,480,208C640,213,800,203,960,181.3C1120,160,1280,128,1360,112L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+        <path fill="#3B82F6" fill-opacity="1" d="M0,160L80,170.7C160,181,320,203,480,208C640,213,800,203,960,181.3C1120,160,1280,128,1360,112L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
       </svg>
       <div class="content">
-         <img src="1000041506-removebg-preview.png" alt="Bouncin Llanelli Logo" class="logo" />
-         <a class="btn" href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now!</a>
-         <a class="btn" href="tel:07496177130" style="background-color: #073c92;">Call Us</a>            
-         <a class="btn" href="https://www.facebook.com/profile.php?id=61575195869829" style="background-color: #1877f2;">Facebook</a>            
+        <img src="1000041506-removebg-preview.png" alt="Bouncin Llanelli Logo" class="logo" />
+        <a class="btn" href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now!</a>
+        <a class="btn" href="tel:07496177130" style="background-color: #073c92;">Call Us</a>
+        <a class="btn" href="https://www.facebook.com/profile.php?id=61575195869829" style="background-color: #1877f2;">Facebook</a>
       </div>
-   </header>
-
-   <section id="pricing" class="section">
-  <div class="container">
-    <div class="grid">
-
-      <a href="https://bouncinllanelli.co.uk/BouncyCastles" class="card-link">
-        <div class="card">
-          <img src="1000041258-removebg-preview.png" alt="Bouncy Castle" />
-          <div class="card-content">
-            <h3>Bouncy Castles</h3>
-          </div>
+    </header>
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="grid">
+          <a href="https://bouncinllanelli.co.uk/BouncyCastles" class="card-link">
+            <div class="card">
+              <img src="1000041258-removebg-preview.png" alt="Bouncy Castle" />
+              <div class="card-content">
+                <h3>Bouncy Castles</h3>
+              </div>
+            </div>
+          </a>
+          <a href="https://bouncinllanelli.co.uk/SlushieMachines" class="card-link">
+            <div class="card">
+              <img src="1000043367-removebg-preview.png" alt="Slushie Machine" />
+              <div class="card-content">
+                <h3>Slushy</h3>
+              </div>
+            </div>
+          </a>
+          <a href="https://bouncinllanelli.co.uk/CandyFloss" class="card-link">
+            <div class="card">
+              <img src="1000041261-removebg-preview.png" alt="Candy Floss Machine" />
+              <div class="card-content">
+                <h3>Candy Floss</h3>
+              </div>
+            </div>
+          </a>
+          <a href="https://bouncinllanelli.co.uk/SoftPlay" class="card-link">
+            <div class="card">
+              <img src="1000042801-removebg-preview.png" alt="Soft Play Img" />
+              <div class="card-content">
+                <h3>Soft Play</h3>
+              </div>
+            </div>
+          </a>
+          <a href="https://bouncinllanelli.co.uk/Packages" class="card-link">
+            <div class="card">
+              <img src="Untitled_20250427_194251.png" alt="Packages Img" />
+              <div class="card-content">
+                <h3>Packages</h3>
+              </div>
+            </div>
+          </a>
+          <a href="https://bouncinllanelli.co.uk/Extras" class="card-link">
+            <div class="card">
+              <img src="Untitled_20250706_202026.png" alt="Extras Img" />
+              <div class="card-content">
+                <h3>Extras</h3>
+              </div>
+            </div>
+          </a>
         </div>
-      </a>
-
-      <a href="https://bouncinllanelli.co.uk/SlushieMachines" class="card-link">
-        <div class="card">
-          <img src="1000043367-removebg-preview.png" alt="Slushie Machine" />
-          <div class="card-content">
-            <h3>Slushie Machines</h3>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://bouncinllanelli.co.uk/CandyFloss" class="card-link">
-        <div class="card">
-          <img src="1000041261-removebg-preview.png" alt="Candy Floss Machine" />
-          <div class="card-content">
-            <h3>Candy Floss Machine</h3>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://bouncinllanelli.co.uk/SoftPlay" class="card-link">
-        <div class="card">
-          <img src="1000042801-removebg-preview.png" alt="Soft Play Img" />
-          <div class="card-content">
-            <h3>Soft Play</h3>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://bouncinllanelli.co.uk/Packages" class="card-link">
-        <div class="card">
-          <img src="Untitled_20250427_194251.png" alt="Packages Img" />
-          <div class="card-content">
-            <h3>Packages</h3>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://bouncinllanelli.co.uk/Extras" class="card-link">
-        <div class="card">
-          <img src="Untitled_20250706_202026.png" alt="Extras Img" />
-          <div class="card-content">
-            <h3>Extras</h3>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-      
-      <section style="text-align:center; padding: 2rem 1rem; background:#fff0f5;">
-   <h2 class="section-title">Explore Our Categories</h2>
-   <div style="display:flex; flex-direction:column; align-items:center; gap:1rem; max-width:600px; margin:auto;">
-      <a class="btn category-btn" href="https://bouncinllanelli.co.uk/BouncyCastles" style="background: #FF69B4;">Bouncy Castles</a>
-      <a class="btn category-btn" href="https://bouncinllanelli.co.uk/FunFoods" style="background: #FFB347;">Fun Foods</a>
-      <a class="btn category-btn" href="https://bouncinllanelli.co.uk/Extras" style="background: #7B68EE;">Extras</a>
-      <a class="btn category-btn" href="https://bouncinllanelli.co.uk/SoftPlay" style="background: #32CD32;">Soft Play</a>
-      <a class="btn category-btn" href="https://bouncinllanelli.co.uk/Packages" style="background: #20B2AA;">Packages</a>
-   </div>
-</section>
-
-     <section id="weather" class="section" style="background:#f5faff; padding: 3rem 1rem; text-align: center;">
+      </div>
+    </section>
+    <section style="text-align:center; padding: 2rem 1rem; background:#fff0f5;">
+      <h2 class="section-title">Explore Our Categories</h2>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:1rem; max-width:600px; margin:auto;">
+        <a class="btn category-btn" href="https://bouncinllanelli.co.uk/BouncyCastles" style="background: #FF69B4;">Bouncy Castles</a>
+        <a class="btn category-btn" href="https://bouncinllanelli.co.uk/FunFoods" style="background: #FFB347;">Fun Foods</a>
+        <a class="btn category-btn" href="https://bouncinllanelli.co.uk/Extras" style="background: #7B68EE;">Extras</a>
+        <a class="btn category-btn" href="https://bouncinllanelli.co.uk/SoftPlay" style="background: #32CD32;">Soft Play</a>
+        <a class="btn category-btn" href="https://bouncinllanelli.co.uk/Packages" style="background: #20B2AA;">Packages</a>
+      </div>
+    </section>
+    <section id="weather" class="section" style="background:#f5faff; padding: 3rem 1rem; text-align: center;">
       <h2 class="section-title">South Wales 3-Day Forecast</h2>
       <div>
-         <select id="townSelect" style="padding: 0.6rem 1rem; font-size: 1rem; border-radius: 25px; border: 1px solid #ccc;">
-            <option value="">Select a town</option>
-         </select>
-         <button onclick="handleTownSelection()" class="btn" style="margin-top:1rem; background: linear-gradient(to right, #74D1FC, #ffffff); color: #073c92; font-weight: bold; border: 2px solid #073c92; border-radius: 25px;">Get Forecast</button>
+        <select id="townSelect" style="padding: 0.6rem 1rem; font-size: 1rem; border-radius: 25px; border: 1px solid #ccc;">
+          <option value="">Select a town</option>
+        </select>
+        <button onclick="handleTownSelection()" class="btn" style="margin-top:1rem; background: linear-gradient(to right, #74D1FC, #ffffff); color: #073c92; font-weight: bold; border: 2px solid #073c92; border-radius: 25px;">Get Forecast</button>
       </div>
       <div id="forecast" style="background: white; padding: 2rem; border-radius: 1rem; max-width: 400px; margin: 2rem auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #333;"></div>
-   </section>
-
-   <footer>
-      &copy; 2025 Bouncin Llanelli. All rights reserved. </br> Deposits Are Non Refundable <br>
-   </footer>
-
-   <script>
-      const towns = [
-         "Cardiff", "Swansea", "Newport", "Bridgend", "Merthyr Tydfil", "Barry",
-         "Llanelli", "Carmarthen", "Ammanford", "Neath", "Port Talbot",
-         "Aberdare", "Tredegar", "Pontypridd", "Llandeilo", "Haverfordwest",
-         "Tenby", "Fishguard", "Pembroke", "Ebbw Vale", "Abergavenny",
-         "Monmouth", "Rhondda", "Cwmbran", "Caerphilly", "Chepstow"
-      ];
-
+    </section>
+    <footer> &copy; 2025 Bouncin Llanelli. All rights reserved. </br> Deposits Are Non Refundable <br>
+    </footer>
+    <script>
+      const towns = ["Cardiff", "Swansea", "Newport", "Bridgend", "Merthyr Tydfil", "Barry", "Llanelli", "Carmarthen", "Ammanford", "Neath", "Port Talbot", "Aberdare", "Tredegar", "Pontypridd", "Llandeilo", "Haverfordwest", "Tenby", "Fishguard", "Pembroke", "Ebbw Vale", "Abergavenny", "Monmouth", "Rhondda", "Cwmbran", "Caerphilly", "Chepstow"];
       const apiKey = "1cc3db9758826707a61e043d83b65f38"; // Replace with your actual API key
       const townSelect = document.getElementById("townSelect");
       const forecastDiv = document.getElementById("forecast");
-
       towns.forEach(town => {
-         const option = document.createElement("option");
-         option.value = town;
-         option.textContent = town;
-         townSelect.appendChild(option);
+        const option = document.createElement("option");
+        option.value = town;
+        option.textContent = town;
+        townSelect.appendChild(option);
       });
 
       function handleTownSelection() {
-         const selectedTown = townSelect.value;
-         if (selectedTown) {
-            fetchWeather(selectedTown);
-         } else {
-            forecastDiv.innerHTML = `<p class="error" style="color:red;font-weight:bold;">Please select a town.</p>`;
-         }
+        const selectedTown = townSelect.value;
+        if (selectedTown) {
+          fetchWeather(selectedTown);
+        } else {
+          forecastDiv.innerHTML = `
+					
+				<p class="error" style="color:red;font-weight:bold;">Please select a town.</p>`;
+        }
       }
-
       async function fetchWeather(town) {
-         const url = `https://api.openweathermap.org/data/2.5/forecast?q=${town},GB&units=metric&appid=${apiKey}`;
-         forecastDiv.innerHTML = "Loading...";
-
-         try {
-            const res = await fetch(url);
-            const data = await res.json();
-
-            if (res.status !== 200) {
-               forecastDiv.innerHTML = `<p class="error" style="color:red;font-weight:bold;">Error: ${data.message}</p>`;
-               return;
-            }
-
-            const days = data.list.filter((_, i) => i % 8 === 0).slice(0, 3);
+        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${town},GB&units=metric&appid=${apiKey}`;
+        forecastDiv.innerHTML = "Loading...";
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+          if (res.status !== 200) {
             forecastDiv.innerHTML = `
-               <h3>${town} Forecast</h3>
-               <ul style="text-align:left; padding-left:1rem;">
+					
+				<p class="error" style="color:red;font-weight:bold;">Error: ${data.message}</p>`;
+            return;
+          }
+          const days = data.list.filter((_, i) => i % 8 === 0).slice(0, 3);
+          forecastDiv.innerHTML = `
+               
+					
+				<h3>${town} Forecast</h3>
+				<ul style="text-align:left; padding-left:1rem;">
                   ${days.map(day => {
                      const date = new Date(day.dt * 1000).toLocaleDateString();
-                     return `<li>${date}: ${day.weather[0].main}, ${day.main.temp.toFixed(1)}°C</li>`;
+                     return `
+						
+					<li>${date}: ${day.weather[0].main}, ${day.main.temp.toFixed(1)}Â°C</li>`;
                   }).join("")}
-               </ul>
+               
+					
+				</ul>
             `;
-         } catch (err) {
-            forecastDiv.innerHTML = `<p class="error" style="color:red;font-weight:bold;">Failed to fetch weather.</p>`;
-            console.error(err);
-         }
+        } catch (err) {
+          forecastDiv.innerHTML = `
+					
+				<p class="error" style="color:red;font-weight:bold;">Failed to fetch weather.</p>`;
+          console.error(err);
+        }
       }
-   </script>
-</body>
+      // Show popup after a short delay
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("popupModal").style.display = "flex";
+        }, 0); // 2-second delay
+      });
+      // Close popup function
+      function closeModal() {
+        document.getElementById("popupModal").style.display = "none";
+      }
+
+      function closeModal() {
+        const content = document.getElementById("popupContent");
+        content.style.animation = "bounceOut 0.5s";
+        setTimeout(() => {
+          document.getElementById("popupModal").style.display = "none";
+          content.style.animation = "bounceIn 0.6s"; // reset for next open
+        }, 500);
+      }
+    </script>
+  </body>
 </html>
-      
-      
