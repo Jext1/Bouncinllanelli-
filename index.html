@@ -69,12 +69,6 @@
          margin-bottom: 1em;
          text-align: center;
       }
-      .grid {
-         display: grid;
-         gap: 1rem;
-         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-         padding: 1rem;
-      }
       .card {
   background: linear-gradient(to right, #74D1FC, #ffffff);
   border-radius: 1rem;
@@ -93,19 +87,16 @@
 .grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   padding: 1rem;
+
+  /* Default = 2 columns always */
+  grid-template-columns: repeat(2, 1fr);
 }
 
-@media (max-width: 600px) {
+@media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  }
-}
-
-@media (max-width: 400px) {
-  .grid {
-    grid-template-columns: 1fr;
+    /* On wider screens, go back to responsive auto-fit layout */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
       .card:hover {
