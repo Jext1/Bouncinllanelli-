@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bouncin Llanelli</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         margin: 0;
         font-family: 'Segoe UI', sans-serif;
@@ -59,179 +54,73 @@
         }
       }
 
-      .btn {
-        display: inline-block;
-        background: #073c92;
-        color: white;
-        padding: 0.8rem 1.5rem;
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: bold;
-        margin: 0.5rem;
-        transition: transform 0.2s ease;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .btn:active {
-        transform: scale(0.95);
-      }
-
-      .services {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2rem;
-        padding: 3rem 1rem;
-        background: #fff6fb;
-      }
-
-      .service {
-        flex: 1 1 280px;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
         padding: 2rem;
-        text-align: center;
+        justify-items: center;
       }
 
-      .section-title {
-        font-size: 2em;
-        margin-bottom: 1em;
-        text-align: center;
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       .card {
         background: linear-gradient(to right, #74D1FC, #ffffff);
         border-radius: 1rem;
-        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        /* Center content vertically */
-        align-items: center;
-        /* Center content horizontally */
-        aspect-ratio: 1 / 1;
-        min-width: 150px;
         max-width: 250px;
         width: 100%;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-        cursor: pointer;
-      }
-
-      .grid {
-        display: grid;
-        gap: 1rem;
-        padding: 1rem;
-        /* Default = 2 columns always */
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @media (min-width: 768px) {
-        .grid {
-          /* On wider screens, go back to responsive auto-fit layout */
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-      }
-
-      .card:hover {
-        transform: translateY(-5px);
       }
 
       .card img {
-        width: 80%;
-        /* Slightly smaller so it doesn鈥檛 overflow */
+        width: 100%;
         height: auto;
-        max-height: 60%;
-        object-fit: contain;
-        margin-bottom: 1rem;
+        border-radius: 0.5rem;
       }
 
-      .card-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-      }
-
-      .card-content .price {
-        font-weight: bold;
-        color: #073c92;
-        margin-top: 0.3rem;
+      .card a {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1.5rem;
+        background-color: #073c92;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
         font-size: 0.9rem;
+        font-weight: bold;
       }
 
-      .card-content h3 {
-        margin: 0.3rem 0;
-        font-size: 1rem;
+      .card h3 {
+        margin: 0.5rem 0 0.2rem;
+        font-size: 1.1rem;
         color: #073c92;
       }
 
-      .card-content p {
-        margin: 0.3rem 0;
-        font-size: 0.8rem;
+      .card p {
+        margin: 0;
+        font-size: 0.95rem;
         color: #333;
       }
 
-      .card-content .price {
-        font-weight: bold;
-        color: #073c92;
-        margin-top: 0.3rem;
-        font-size: 0.9rem;
+      .home-btn-container {
+        text-align: center;
+        margin-bottom: 2rem;
       }
 
-      .card-content a {
-        margin-top: 0.5rem;
-        font-size: 0.8rem;
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        background: #073c92;
+      .home-btn-container .btn {
+        background-color: #1877f2;
         color: white;
-        border-radius: 20px;
+        padding: 13px 50px;
         text-decoration: none;
-        align-self: center;
-      }
-
-      .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        padding: 2rem;
-        justify-content: center;
-      }
-
-      .gallery img {
-        width: 300px;
-        border-radius: 10px;
-      }
-
-      .contact {
-        padding: 2rem;
-        background: #f5faff;
-        text-align: center;
-      }
-
-      .contact form {
-        max-width: 400px;
-        margin: auto;
-      }
-
-      .contact input,
-      .contact textarea {
-        width: 100%;
-        margin: 0.5rem 0;
-        padding: 0.8rem;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-      }
-
-      footer {
-        background: #eee;
-        padding: 1rem;
-        text-align: center;
-        font-size: 0.9rem;
+        border-radius: 25px;
+        display: inline-block;
+        font-weight: bold;
       }
     </style>
   </head>
@@ -244,22 +133,24 @@
         <img src="1000041506-removebg-preview.png" alt="Bouncin Llanelli Logo" class="logo" />
       </div>
     </header>
-    <section id="pricing" class="section">
-      <a href="https://bouncinllanelli.co.uk/BouncyCastle" class="card-link">
-        <div class="container">
-          <div class="grid">
-            <div class="card">
-              <img src="1000041258-removebg-preview.png" alt="Disco Bouncy Castle" style="width:100%; border-radius: 0.5rem;">
-            </div>
-            <a href="https://bouncinllanelli.co.uk/BouncyCastleSlide" class="card-link">
-              <div class="card">
-                <img src="1000050265-removebg-preview.png" alt="Unknown" style="width:100%; border-radius: 0.5rem;">
-              </div>
-          </div>
+    <section id="pricing">
+      <div class="grid">
+        <div class="card">
+          <img src="1000041258-removebg-preview.png" alt="Disco Bouncy Castle" />
+          <h3>Disco Bouncy Castle</h3>
+          <p>From £99</p>
+          <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
+        </div>
+        <div class="card">
+          <img src="1000050265-removebg-preview.png" alt="Bouncy Castle with Slide" />
+          <h3>Bouncy Castle with Slide</h3>
+          <p>From £110</p>
+          <a href="https://bouncinllanelli.co.uk/BouncyCastleSlide">More Details</a>
+        </div>
+      </div>
     </section>
-    <div style="text-align: center;">
-      <a class="btn" href="javascript:history.back()" style="background-color: #1877f2; color: white; padding: 13px 50px; text-decoration: none; border-radius: 25px;">Home</a>
-    </div>
+    <div class="home-btn-container">
+      <a class="btn" href="javascript:history.back()">Home</a>
     </div>
   </body>
 </html>
