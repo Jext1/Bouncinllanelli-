@@ -33,6 +33,10 @@
       "destination": "/FunFoods.html"
     },
     {
+      "source": "/BouncyCastleSlide",
+      "destination": "/BouncyCastleSlide.html"
+    },
+    {
       "source": "/BouncyCastles",
       "destination": "/BouncyCastles.html"
     },
