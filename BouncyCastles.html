@@ -43,12 +43,9 @@
       }
 
       @keyframes growShrink {
-
-        0%,
-        100% {
+        0%, 100% {
           transform: scale(1);
         }
-
         50% {
           transform: scale(1.15);
         }
@@ -57,9 +54,7 @@
       .grid {
         display: flex;
         padding: 1rem 0.25rem;
-        /* Smaller horizontal padding */
         gap: 0.5rem;
-        /* Smaller space between cards */
         justify-content: space-between;
         flex-wrap: nowrap;
       }
@@ -71,8 +66,11 @@
         padding: 1rem;
         text-align: center;
         width: 50%;
-        /* Each takes half the screen */
         box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
       .card img {
@@ -124,28 +122,36 @@
   <body>
     <header>
       <svg viewBox="0 0 1440 320">
-        <path fill="#3B82F6" fill-opacity="1" d="M0,160L80,170.7C160,181,320,203,480,208C640,213,800,203,960,181.3C1120,160,1280,128,1360,112L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+        <path fill="#3B82F6" fill-opacity="1"
+          d="M0,160L80,170.7C160,181,320,203,480,208C640,213,800,203,960,181.3C1120,160,1280,128,1360,112L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
+        </path>
       </svg>
       <div class="content">
         <img src="1000041506-removebg-preview.png" alt="Bouncin Llanelli Logo" class="logo" />
       </div>
     </header>
+
     <section id="pricing">
       <div class="grid">
         <div class="card">
           <img src="1000041258-removebg-preview.png" alt="Disco Bouncy Castle" />
           <h3>Disco Bouncy Castle</h3>
           <p>From £100</p>
-          <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
+          <div style="margin-top: auto;">
+            <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
+          </div>
         </div>
         <div class="card">
           <img src="1000050265-removebg-preview.png" alt="Bouncy Castle with Slide" />
           <h3>Bouncy Castle with Slide</h3>
           <p>From £120</p>
-          <a href="https://bouncinllanelli.co.uk/BouncyCastleSlide">More Details</a>
+          <div style="margin-top: auto;">
+            <a href="https://bouncinllanelli.co.uk/BouncyCastleSlide">More Details</a>
+          </div>
         </div>
       </div>
     </section>
+
     <div class="home-btn-container">
       <a class="btn" href="javascript:history.back()">Home</a>
     </div>
