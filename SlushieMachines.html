@@ -55,31 +55,29 @@
       }
 
       .grid {
-        display: flex;
-        padding: 1rem 0.25rem;
-        /* Smaller horizontal padding */
-        gap: 0.5rem;
-        /* Smaller space between cards */
-        justify-content: space-between;
-        flex-wrap: nowrap;
-      }
-
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
       .card {
-        background: linear-gradient(to right, #74D1FC, #ffffff);
-        border-radius: 1rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 1rem;
-        text-align: center;
-        width: 50%;
-        /* Each takes half the screen */
-        box-sizing: border-box;
-      }
+  background: linear-gradient(to right, #74D1FC, #ffffff);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  width: 100%; /* ← Fixes grid sizing */
+  max-width: 350px; /* ← Optional: controls max card width */
+  box-sizing: border-box;
 
-      @media (max-width: 600px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
-      }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -webkit-tap-highlight-color: transparent;
+}
 
       .card img {
   width: 100%;
