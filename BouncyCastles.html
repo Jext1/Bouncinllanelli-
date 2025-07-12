@@ -55,17 +55,13 @@
       }
 
       .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        padding: 2rem;
-        justify-items: center;
-      }
-
-      @media (max-width: 600px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
+        display: flex;
+        padding: 1rem 0.25rem;
+        /* Smaller horizontal padding */
+        gap: 0.5rem;
+        /* Smaller space between cards */
+        justify-content: space-between;
+        flex-wrap: nowrap;
       }
 
       .card {
@@ -74,8 +70,9 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         padding: 1rem;
         text-align: center;
-        max-width: 250px;
-        width: 100%;
+        width: 50%;
+        /* Each takes half the screen */
+        box-sizing: border-box;
       }
 
       .card img {
@@ -144,7 +141,7 @@
         <div class="card">
           <img src="1000050265-removebg-preview.png" alt="Bouncy Castle with Slide" />
           <h3>Bouncy Castle with Slide</h3>
-          <p>From £109</p>
+          <p>From £110</p>
           <a href="https://bouncinllanelli.co.uk/BouncyCastleSlide">More Details</a>
         </div>
       </div>

@@ -1,152 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bouncin Llanelli</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #74D1FC, #ffffff);
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(to right, #74D1FC, #ffffff);
-      text-align: center;
-      padding: 4rem 2rem;
-      position: relative;
-    }
-
-    header svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    header .content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .logo {
-      width: 250px;
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-      animation: growShrink 2s ease-in-out infinite;
-    }
-
-    @keyframes growShrink {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      padding: 2rem;
-      justify-items: center;
-    }
-
-    @media (max-width: 600px) {
-      .grid {
-        grid-template-columns: 1fr;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bouncin Llanelli</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to right, #74D1FC, #ffffff);
+        color: #333;
       }
-    }
 
-    .card {
-      background: linear-gradient(to right, #74D1FC, #ffffff);
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      text-align: center;
-      max-width: 250px;
-      width: 100%;
-    }
+      header {
+        background: linear-gradient(to right, #74D1FC, #ffffff);
+        text-align: center;
+        padding: 4rem 2rem;
+        position: relative;
+      }
 
-    .card img {
-      width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-    }
+      header svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
 
-    .card a {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1.5rem;
-      background-color: #073c92;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      font-weight: bold;
-    }
-    .card h3 {
-  margin: 0.5rem 0 0.2rem;
-  font-size: 1.1rem;
-  color: #073c92;
-}
+      header .content {
+        position: relative;
+        z-index: 1;
+      }
 
-.card p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #333;
-}
+      .logo {
+        width: 250px;
+        max-width: 90%;
+        display: block;
+        margin: 0 auto;
+        animation: growShrink 2s ease-in-out infinite;
+      }
 
-    .home-btn-container {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+      @keyframes growShrink {
 
-    .home-btn-container .btn {
-      background-color: #1877f2;
-      color: white;
-      padding: 13px 50px;
-      text-decoration: none;
-      border-radius: 25px;
-      display: inline-block;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
+        0%,
+        100% {
+          transform: scale(1);
+        }
 
-  <header>
-    <svg viewBox="0 0 1440 320">
-      <path fill="#3B82F6" fill-opacity="1" d="M0,160L80,170.7C160,181,320,203,480,208C640,213,800,203,960,181.3C1120,160,1280,128,1360,112L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
-    </svg>
-    <div class="content">
-      <img src="1000041506-removebg-preview.png" alt="Bouncin Llanelli Logo" class="logo" />
+        50% {
+          transform: scale(1.15);
+        }
+      }
+
+      .grid {
+        display: flex;
+        padding: 1rem 0.25rem;
+        /* Smaller horizontal padding */
+        gap: 0.5rem;
+        /* Smaller space between cards */
+        justify-content: space-between;
+        flex-wrap: nowrap;
+      }
+
+      .card {
+        background: linear-gradient(to right, #74D1FC, #ffffff);
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        text-align: center;
+        width: 50%;
+        /* Each takes half the screen */
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 600px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+      }
+
+      .card a {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1.5rem;
+        background-color: #073c92;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      .card h3 {
+        margin: 0.5rem 0 0.2rem;
+        font-size: 1.1rem;
+        color: #073c92;
+      }
+
+      .card p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #333;
+      }
+
+      .home-btn-container {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .home-btn-container .btn {
+        background-color: #1877f2;
+        color: white;
+        padding: 13px 50px;
+        text-decoration: none;
+        border-radius: 25px;
+        display: inline-block;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <svg viewBox="0 0 1440 320">
+        <path fill="#3B82F6" fill-opacity="1" d="M0,160L80,170.7C160,181,320,203,480,208C640,213,800,203,960,181.3C1120,160,1280,128,1360,112L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+      </svg>
+      <div class="content">
+        <img src="1000041506-removebg-preview.png" alt="Bouncin Llanelli Logo" class="logo" />
+      </div>
+    </header>
+    <section id="pricing">
+      <div class="grid">
+        <div class="card">
+          <img src="1000043280-removebg-preview.png" alt="10LSlush" />
+          <h3>10L Slush</h3>
+          <p>From £75</p>
+          <a href="https://bouncinllanelli.co.uk/10LSlushie">More Details</a>
+        </div>
+        <div class="card">
+          <img src="1000041264-removebg-preview.png" alt="20LSlush" />
+          <h3>20L Slush</h3>
+          <p>From £99</p>
+          <a href="https://bouncinllanelli.co.uk/20LSlushie">More Details</a>
+        </div>
+      </div>
+    </section>
+    <div class="home-btn-container">
+      <a class="btn" href="javascript:history.back()">Home</a>
     </div>
-  </header>
-
-  <section id="pricing">
-  <div class="grid">
-    <div class="card">
-      <img src="1000043280-removebg-preview.png" alt="10LSlush" />
-      <h3>10L Slush</h3>
-      <p>From £75</p>
-      <a href="https://bouncinllanelli.co.uk/10LSlushie">More Details</a>
-    </div>
-    <div class="card">
-      <img src="1000041264-removebg-preview.png" alt="20LSlush" />
-      <h3>20L Slush</h3>
-      <p>From £99</p>
-      <a href="https://bouncinllanelli.co.uk/20LSlushie">More Details</a>
-    </div>
-  </div>
-</section>
-
-  <div class="home-btn-container">
-    <a class="btn" href="javascript:history.back()">Home</a>
-  </div>
-
-</body>
+  </body>
 </html>
