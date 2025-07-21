@@ -46,7 +46,7 @@
     },
     {
       "source": "/Packages",
-      "destination": "/Packages..html"
+      "destination": "/Packages.html"
     },
     {
       "source": "/DiscoBouncyCastle",
