@@ -45,6 +45,10 @@
       "destination": "/GiantTiwster.html"
     },
     {
+      "source": "/Packages",
+      "destination": "/Packges..html"
+    },
+    {
       "source": "/DiscoBouncyCastle",
       "destination": "/BouncyCastle.html"
     }
