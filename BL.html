@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bouncin Llanelli</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #073c92;
+      background: white;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: rgb(7, 60, 146);
+      z-index: 1001;
+    }
+
+    .menu-toggle {
+      font-size: 2rem;
+      color: white;
+      background: none;
+      border: none;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -240px;
+      width: 240px;
+      height: 100%;
+      background: #073c92;
+      color: white;
+      padding: 1rem;
+      transition: left 0.3s ease;
+      z-index: 2000;
+    }
+
+    .side-menu.open {
+      left: 0;
+    }
+
+    .side-menu .close-btn {
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .side-menu a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      font-weight: bold;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hero-section {
+      height: 100vh;
+      background: url('HomePageCastleImg.png') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    
+    .hero-section {
+  height: 100vh;
+  padding-top: 120; /* Add space for top bar */
+  box-sizing: border-box;
+
+}
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      z-index: 1;
+      max-width: 90%;
+      width: 600px;
+      color: #fff;
+      position: relative;
+    }
+
+    .hero-overlay h1 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-overlay p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-buttons a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 0.5rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-primary {
+      background-color: #00bcd4;
+      color: white;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-secondary {
+      border: 2px solid white;
+      color: white;
+      background-color: transparent;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tick-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .tick-item::before {
+      content: "✔ ";
+      color: #00ff00;
+    }
+
+    .main-content {
+      background: white;
+      padding: 2rem 1rem 0 1rem;
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 1.5rem auto;
+      padding: 2rem;
+      background: #f9f9f9;
+      border-radius: 1rem;
+      text-align: center;
+    }
+
+    .main-content .section:first-of-type {
+      margin-top: 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem; /* 👈 adds vertical space below */
+  -webkit-tap-highlight-color: transparent;
+}
+
+    .feature {
+      flex: 1 1 250px;
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-section {
+      background: #d0eaff;
+      border-radius: 1rem;
+      padding: 2rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #073c92;
+      color: white;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.scroll-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}
+
+.scroll-indicator {
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.scroll-dot {
+  width: 4px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 9999px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: move-dot 1.5s infinite;
+}
+.scroll-inline {
+  position: static;
+  transform: none;
+  margin-top: 2rem;
+}
+
+@keyframes move-dot {
+  0% { top: 8px; opacity: 1; }
+  50% { top: 20px; opacity: 0.4; }
+  100% { top: 8px; opacity: 1; }
+}
+
+.scroll-text {
+  font-size: 12px;
+  margin-top: 0.5rem;
+}
+
+.categories a {
+  flex: 0 1 calc(50% - 1rem); /* Two per row with spacing */
+  text-align: center;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 2px solid #073c92;
+  border-radius: 999px;
+  color: #073c92;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-tap-highlight-color: transparent;
+}
+
+    footer {
+      background: #073c92;
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem 0;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    /* Animation Styles */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Keyframes for menu text */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reset all links initially */
+.side-menu a {
+  opacity: 0;
+}
+
+/* Animate links when menu is open */
+.side-menu.open a {
+  animation: fadeSlideIn 0.4s ease forwards;
+}
+
+/* Staggered delays */
+.side-menu.open a:nth-of-type(1) { animation-delay: 0.1s; }
+.side-menu.open a:nth-of-type(2) { animation-delay: 0.2s; }
+.side-menu.open a:nth-of-type(3) { animation-delay: 0.3s; }
+.side-menu.open a:nth-of-type(4) { animation-delay: 0.4s; }
+.side-menu.open a:nth-of-type(5) { animation-delay: 0.5s; }
+.side-menu.open a:nth-of-type(6) { animation-delay: 0.6s; }
+    
+    
+    /* Button press animation */
+.cta-buttons a:active,
+.btn:active,
+.categories a:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-in-out;
+}
+  </style>
+</head>
+
+<body>
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <img src="BouncinLlanelliLogo.png" alt="Logo" class="logo">
+  </div>
+
+  <!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-overlay fade-in">
+    <h1>Make Every Party <span style="color: #00bcd4;">Unforgettable</span></h1>
+    <p>Premium bouncy castle hire across <strong>South Wales</strong>. Safe, clean, and delivered to your door in <strong>Carmarthen</strong>, <strong>Llanelli</strong>, and <strong>Swansea</strong>.</p>
+    <div class="cta-buttons">
+      <a href="/BouncyCastles" class="btn-primary">🏰 View Our Castles</a>
+      <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn-secondary">📞 Contact Us</a>
+    </div>
+    <div class="tick-list">
+  <span class="tick-item">Fully Insured</span>
+  <span class="tick-item">Safety Certified</span>
+  <span class="tick-item">Professional Setup</span>
+</div>
+
+<!-- ✅ Scroll indicator after ticks -->
+<div class="scroll-container scroll-inline">
+  <div class="scroll-indicator">
+    <div class="scroll-dot"></div>
+  </div>
+  <p class="scroll-text">Scroll to explore</p>
+</div>
+</div> <!-- end of .hero-overlay -->
+</section>
+
+  <!-- SIDE MENU -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+    <a href="#">Home</a>
+    <a href="/BouncyCastles">Castles</a>
+    <a href="/FunFoods">Fun Foods</a>
+    <a href="/Extras">Extras</a>
+    <a href="/Packages">Packages</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <section class="section fade-in">
+      <h2 class="section-title">Make Every Party Unforgettable</h2>
+      <p>Premium inflatable castle hire across <strong>South Wales</strong>.</p>
+    </section>
+
+    <section class="features fade-in">
+      <div class="feature">
+        <div class="feature-icon">📦</div>
+        <h3>Choose & Book</h3>
+        <p>Browse our wide selection and reserve your castle online.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚚</div>
+        <h3>Delivery & Setup</h3>
+        <p>We deliver, set up, and ensure everything is secure.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎉</div>
+        <h3>Enjoy Your Event</h3>
+        <p>Have fun! We'll handle pickup after your event.</p>
+      </div>
+    </section>
+
+    <section class="cta-section fade-in">
+      <h2>Ready to Make Your Event Special?</h2>
+      <p>Give your children a day they'll never forget!</p>
+      <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn">Book Now</a>
+    </section>
+
+    <section class="section fade-in">
+      <h2 class="section-title">Explore Our Categories</h2>
+      <div class="categories">
+        <a href="/BouncyCastles">Castles</a>
+        <a href="/SoftPlay">Soft Play</a>
+        <a href="/Packages">Packages</a>
+        <a href="/FunFoods">Fun Foods</a>
+        <a href="/Extras">Extras</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Bouncin Llanelli. All Rights Reserved. <br> Deposits are non-refundable.<br/>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('sideMenu').classList.toggle('open');
+    }
+
+    // Scroll Fade-In Animation
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
