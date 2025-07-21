@@ -1,15 +1,15 @@
 {
   "rewrites": [
     {
-      "source": "/SoftPlay",
+      "source": "/Extras/SoftPlay",
       "destination": "/SoftPlay.html"
     },
     {
-      "source": "/Slushie",
-      "destination": "/Slushie.html"
+      "source": "/FunFood/10LSlush",
+      "destination": "/10LSlushie.html"
     },
     {
-      "source": "/CandyFloss",
+      "source": "/FunFoods/CandyFloss",
       "destination": "/CandyFloss.html"
     },
     {
@@ -17,27 +17,19 @@
       "destination": "/Packages.html"
     },
     {
-      "source": "/SlushieMachines",
-      "destination": "/SlushieMachines.html"
-    },
-    {
-      "source": "/FunRun",
-      "destination": "/FunRun.html"
-    },
-    {
-      "source": "/20LSlushie",
-      "destination": "/20LSlushie.html"
-    },
-    {
-      "source": "/10LSlushie",
-      "destination": "/10LSlushie.html"
-    },
-    {
       "source": "/FunFoods",
       "destination": "/FunFoods.html"
     },
     {
-      "source": "/BouncyCastleSlide",
+      "source": "/BouncyCastles/FunRun",
+      "destination": "/FunRun.html"
+    },
+    {
+      "source": "/FunFoods/20LSlush",
+      "destination": "/20LSlushie.html"
+    },
+    {
+      "source": "/BouncyCastles/BouncyCastleSlide",
       "destination": "/BouncyCastleSlide.html"
     },
     {
@@ -49,15 +41,7 @@
       "destination": "/Extras.html"
     },
     {
-      "source": "/CandyFloss2",
-      "destination": "/CandyFloss2.html"
-    },
-    {
-      "source": "/710JBL",
-      "destination": "/710JBL.html"
-    },
-    {
-      "source": "/BouncyCastle",
+      "source": "/BouncyCastles/DiscpBouncyCastle",
       "destination": "/BouncyCastle.html"
     }
   ]
