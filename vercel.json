@@ -41,6 +41,10 @@
       "destination": "/Extras.html"
     },
     {
+      "source": "/GiantTiwster",
+      "destination": "/GiantTiwster.html"
+    },
+    {
       "source": "/DiscoBouncyCastle",
       "destination": "/BouncyCastle.html"
     }
