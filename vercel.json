@@ -1,15 +1,15 @@
 {
   "rewrites": [
     {
-      "source": "/Extras/SoftPlay",
+      "source": "/SoftPlay",
       "destination": "/SoftPlay.html"
     },
     {
-      "source": "/FunFood/10LSlush",
+      "source": "/10LSlush",
       "destination": "/10LSlushie.html"
     },
     {
-      "source": "/FunFoods/CandyFloss",
+      "source": "/CandyFloss",
       "destination": "/CandyFloss.html"
     },
     {
@@ -21,15 +21,15 @@
       "destination": "/FunFoods.html"
     },
     {
-      "source": "/BouncyCastles/FunRun",
+      "source": "/FunRun",
       "destination": "/FunRun.html"
     },
     {
-      "source": "/FunFoods/20LSlush",
+      "source": "/20LSlush",
       "destination": "/20LSlushie.html"
     },
     {
-      "source": "/BouncyCastles/BouncyCastleSlide",
+      "source": "/BouncyCastleSlide",
       "destination": "/BouncyCastleSlide.html"
     },
     {
@@ -41,7 +41,7 @@
       "destination": "/Extras.html"
     },
     {
-      "source": "/BouncyCastles/DiscpBouncyCastle",
+      "source": "/DiscoBouncyCastle",
       "destination": "/BouncyCastle.html"
     }
   ]
