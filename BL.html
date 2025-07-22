@@ -101,7 +101,7 @@
     
     .hero-section {
   height: 100vh;
-  padding-top: 120; /* Add space for top bar */
+  padding-top: 200px;
   box-sizing: border-box;
 
 }
@@ -363,6 +363,20 @@
   transform: scale(0.95);
   transition: transform 0.1s ease-in-out;
 }
+.gradient-static {
+  background: linear-gradient(270deg, #64e1dc, #fcd34d, #64e1dc);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientSlide 6s ease infinite;
+  font-weight: 700;
+}
+
+@keyframes gradientSlide {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   </style>
 </head>
 
@@ -376,7 +390,7 @@
   <!-- HERO SECTION -->
 <section class="hero-section">
   <div class="hero-overlay fade-in">
-    <h1>Make Every Party <span style="color: #00bcd4;">Unforgettable</span></h1>
+    <h1>Make Every Party <span class="gradient-static">Unforgettable</span></h1>
     <p>Premium bouncy castle hire across <strong>South Wales</strong>. Safe, clean, and delivered to your door in <strong>Carmarthen</strong>, <strong>Llanelli</strong>, and <strong>Swansea</strong>.</p>
     <div class="cta-buttons">
       <a href="/BouncyCastles" class="btn-primary">🏰 View Our Castles</a>
@@ -401,7 +415,7 @@
   <!-- SIDE MENU -->
   <div id="sideMenu" class="side-menu">
     <button class="close-btn" onclick="toggleMenu()">✕</button>
-    <a href="#">Home</a>
+    <a href="https://bouncinllanelli.co.uk/">Home</a>
     <a href="/BouncyCastles">Castles</a>
     <a href="/FunFoods">Fun Foods</a>
     <a href="/Extras">Extras</a>
