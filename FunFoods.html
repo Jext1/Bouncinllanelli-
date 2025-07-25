@@ -1,458 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bouncin Llanelli</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
-      font-family: 'Inter', sans-serif;
-      color: #073c92;
-      background: white;
+      font-family: 'Fredoka One', cursive;
+      background: linear-gradient(180deg, #d0f2ff 0%, #ffffff 100%);
+      color: #0a2e6f;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
     }
+
+    /* Page Bounce In */
+    body.page-enter {opacity: 0; transform: scale(0.9);}
+    body.page-enter-active {
+      opacity: 1; transform: scale(1);
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    /* Remove mobile highlight */
+    button, a { -webkit-tap-highlight-color: transparent; }
 
     .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background-color: rgb(7, 60, 146);
-      z-index: 1001;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* Fixed height */
+  padding: 0 2rem;
+  background: #4ea9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers everything */
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-    .menu-toggle {
-      font-size: 2rem;
-      color: white;
-      background: none;
-      border: none;
-    }
+.menu-toggle {
+  position: absolute; /* Take it out of flex flow */
+  left: 20px; /* Keep it at the left */
+  font-size: 2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-    .logo {
-      height: 50px;
-    }
+.top-bar img {
+  height: 90px;
+  transition: transform 0.3s ease;
+  animation: logoGrow 2s ease-in-out infinite;
+  transform-origin: center;
+  padding-top: 10px;
+}
 
+    /* Side Menu */
     .side-menu {
-      position: fixed;
-      top: 0;
-      left: -240px;
-      width: 240px;
-      height: 100%;
-      background: #073c92;
-      color: white;
-      padding: 1rem;
-      transition: left 0.3s ease;
-      z-index: 2000;
+      position: fixed; top: 0; left: -260px;
+      width: 260px; height: 100%;
+      background: #ff7eb9; color: white; padding: 2rem 1rem;
+      transition: left 0.3s ease; z-index: 2000;
     }
-
-    .side-menu.open {
-      left: 0;
-    }
-
+    .side-menu.open {left: 0;}
     .side-menu .close-btn {
-      background: transparent;
-      border: none;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: 2rem;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      font-size: 2rem; background: none; border: none; color: white; margin-bottom: 2rem; cursor: pointer;
     }
-
     .side-menu a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      font-size: 1.2rem;
-      margin: 1rem 0;
-      font-weight: bold;
-      -webkit-tap-highlight-color: transparent;
+      display: block; text-decoration: none; font-size: 1.4rem; margin: 1rem 0; color: white;
+      transition: transform 0.2s ease;
     }
+    .side-menu a:hover {transform: translateX(5px);}
 
+    /* Hero Section */
     .hero-section {
-      height: 100vh;
-      background: url('1000050821.png') no-repeat center center;
-      background-size: cover;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1rem;
+      min-height: 100vh;
+      background: url('1000050821.png') no-repeat center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 2rem; padding-top: 100px;
+      position: relative; overflow: hidden;
     }
-    
-    .hero-section {
-  height: 100vh;
-  padding-top: 120; /* Add space for top bar */
-  box-sizing: border-box;
-
-}
-
-
-
     .hero-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+      content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.3);
     }
+    .hero-overlay {position: relative; z-index: 1; color: white; animation: float 3s ease-in-out infinite;}
+    @keyframes float {0%,100% {transform: translateY(0);} 50% {transform: translateY(-10px);}}
+    .hero-overlay h1 {font-size: 3rem; color: #ff7eb9; text-shadow: 2px 2px #0a2e6f;}
+    .hero-overlay p {font-size: 1.5rem; margin: 1rem 0;}
 
-    .hero-overlay {
-      z-index: 1;
-      max-width: 90%;
-      width: 600px;
-      color: #fff;
-      position: relative;
-    }
-
-    .hero-overlay h1 {
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-overlay p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
+    /* Fun Buttons */
     .cta-buttons a {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-weight: bold;
-      text-decoration: none;
-      margin: 0.5rem;
-      -webkit-tap-highlight-color: transparent;
+      background: #4ea9ff; color: white; padding: 0.75rem 1.5rem; border-radius: 50px;
+      font-size: 1.2rem; text-decoration: none; margin: 0.5rem; display: inline-block;
+      transition: transform 0.2s ease;
     }
+    .cta-buttons a:hover {transform: scale(1.1) rotate(-2deg);}
 
-    .btn-primary {
-      background-color: #00bcd4;
-      color: white;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-secondary {
-      border: 2px solid white;
-      color: white;
-      background-color: transparent;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .tick-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: white;
-    }
-
-    .tick-item::before {
-      content: "âœ” ";
-      color: #00ff00;
-    }
-
-    .main-content {
-      background: white;
-      padding: 2rem 1rem 0 1rem;
-      flex: 1;
-    }
-
-    .section {
-      max-width: 1000px;
-      margin: 1.5rem auto;
-      padding: 2rem;
-      background: #f9f9f9;
-      border-radius: 1rem;
-      text-align: center;
-    }
-
-    .main-content .section:first-of-type {
-      margin-top: 0;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin-bottom: 2rem; /* ðŸ‘ˆ adds vertical space below */
-  -webkit-tap-highlight-color: transparent;
-}
-
-    .feature {
-      flex: 1 1 250px;
-      background: white;
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .cta-section {
-      background: #d0eaff;
-      border-radius: 1rem;
-      padding: 2rem 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    #pricing {
-  padding-top: 100px;
-}
-
-    .cta-section .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background: #073c92;
-      color: white;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
+    /* Pricing Cards */
+    #pricing {padding-top: 120px;}
     .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.5rem;
-        padding: 2rem 1rem;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
-      .card {
-        background: #ffffff;
-        border-radius: 1.25rem;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease;
-      }
-
-      .card:hover {
-        transform: translateY(-5px);
-      }
-
-      .card img {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-      }
-
-      .card-content {
-        padding: 1.2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-        flex: 1;
-      }
-
-      .card h3 {
-        font-size: 1.2rem;
-        color: #073c92;
-        margin: 0;
-      }
-
-      .card p {
-        margin: 0;
-        font-size: 0.95rem;
-        color: #555;
-        line-height: 1.4;
-      }
-
-      .price {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #073c92;
-      }
-
-      .timestamp {
-        font-size: 0.8rem;
-        color: #888;
-        text-align: right;
-        margin-top: auto;
-      }
-
-      .card a {
-        margin-top: 0.8rem;
-        padding: 0.5rem 1.2rem;
-        background-color: #073c92;
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
-        font-size: 0.9rem;
-        font-weight: bold;
-        align-self: flex-start;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-    .categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.scroll-container {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-  z-index: 1;
-}
-
-.scroll-indicator {
-  width: 24px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 9999px;
-  position: relative;
-  margin: 0 auto;
-}
-
-.scroll-dot {
-  width: 4px;
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 9999px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: move-dot 1.5s infinite;
-}
-.scroll-inline {
-  position: static;
-  transform: none;
-  margin-top: 2rem;
-}
-
-@keyframes move-dot {
-  0% { top: 8px; opacity: 1; }
-  50% { top: 20px; opacity: 0.4; }
-  100% { top: 8px; opacity: 1; }
-}
-
-.scroll-text {
-  font-size: 12px;
-  margin-top: 0.5rem;
-}
-
-.categories a {
-  flex: 0 1 calc(50% - 1rem); /* Two per row with spacing */
-  text-align: center;
-  padding: 0.75rem 1rem;
-  background: white;
-  border: 2px solid #073c92;
-  border-radius: 999px;
-  color: #073c92;
-  text-decoration: none;
-  font-weight: bold;
-  -webkit-tap-highlight-color: transparent;
-}
-
-    footer {
-      background: #073c92;
-      color: #fff;
-      text-align: center;
-      padding: 0.5rem 0;
-      font-size: 0.85rem;
-      line-height: 1.2;
-      margin: 0;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem; padding: 2rem; max-width: 1000px; margin: auto;
     }
-
-    /* Animation Styles */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    .card {
+      background: #ffffff; border-radius: 1.25rem; box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease;
     }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .card:hover {transform: translateY(-5px) scale(1.03);}
+    .card img {width: 100%; height: 220px; object-fit: cover;}
+    .card-content {padding: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1;}
+    .card h3 {font-size: 1.4rem; color: #ff7eb9;}
+    .card p {font-size: 1rem; color: #333;}
+    .price {font-size: 1.4rem; font-weight: bold; color: #0a2e6f;}
+    .timestamp {font-size: 0.8rem; color: #888; text-align: right; margin-top: auto;}
+    .card a {
+      margin-top: 0.8rem; padding: 0.5rem 1.2rem; background: #4ea9ff;
+      color: white; text-decoration: none; border-radius: 25px; font-size: 0.9rem; font-weight: bold;
     }
     
-    /* Keyframes for menu text */
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    .card a.clicked {
+  animation: buttonClick 0.4s ease;
 }
 
-/* Reset all links initially */
-.side-menu a {
-  opacity: 0;
+@keyframes buttonClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
+    
+    .balloon { position: fixed; bottom: 0; width: 50px; height: 70px; border-radius: 50% 50% 45% 55%; opacity: 0.8; z-index: -1; animation: rise 20s linear forwards; }
+    .balloon::after { content: ""; position: absolute; width: 2px; height: 40px; background: #333; bottom: -40px; left: 50%; transform: translateX(-50%); }
+    @keyframes rise { 0% {transform: translateY(0);} 100% {transform: translateY(-120vh); opacity: 0;} }
 
-/* Animate links when menu is open */
-.side-menu.open a {
-  animation: fadeSlideIn 0.4s ease forwards;
-}
+    /* Footer */
+    footer {
+      background: #0a2e6f; color: #fff; text-align: center; padding: 1rem; font-size: 0.85rem;
+    }
 
-/* Staggered delays */
-.side-menu.open a:nth-of-type(1) { animation-delay: 0.1s; }
-.side-menu.open a:nth-of-type(2) { animation-delay: 0.2s; }
-.side-menu.open a:nth-of-type(3) { animation-delay: 0.3s; }
-.side-menu.open a:nth-of-type(4) { animation-delay: 0.4s; }
-.side-menu.open a:nth-of-type(5) { animation-delay: 0.5s; }
-.side-menu.open a:nth-of-type(6) { animation-delay: 0.6s; }
-
-/* Card animation on scroll */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  will-change: transform, opacity;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    /* Fade-in Scroll Animation */
+    .fade-in {opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;}
+    .fade-in.visible {opacity: 1; transform: translateY(0);}
   </style>
 </head>
-
-<body>
+<body class="page-enter">
+	<div class="balloons"></div>
   <!-- TOP BAR -->
   <div class="top-bar">
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -461,7 +154,7 @@
 
   <!-- SIDE MENU -->
   <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
+    <button class="close-btn" onclick="toggleMenu()">×</button>
     <a href="https://bouncinllanelli.co.uk/">Home</a>
     <a href="/BouncyCastles">Castles</a>
     <a href="/FunFoods">Fun Foods</a>
@@ -469,71 +162,96 @@
     <a href="/Packages">Packages</a>
   </div>
 
-     <section id="pricing">
-      <div class="grid">
-
-        <div class="card fade-in">
-          <img src="Card10LSlushMachine.png" alt="DiscoBouncyCastle.img" />
-          <div class="card-content">
-            <h3>10L Twin Slush</h3>
-            <p>Cool off with two tasty flavours — perfect for smaller parties!</p>
-            <p class="price">£75</p>
-            <a href="https://bouncinllanelli.co.uk/10LSlush">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="grid">
+      <div class="card fade-in">
+        <img src="Card10LSlushMachine.png" alt="DiscoBouncyCastle.img" />
+        <div class="card-content">
+          <h3>10L Slush</h3>
+          <p>Cool off with two tasty flavours — perfect for smaller parties!</p>
+          <p class="price">£75</p>
+          <a href="https://bouncinllanelli.co.uk/DiscoBouncyCastle">More Details</a>
+          <div class="timestamp">4 Hours</div>
         </div>
-
-        <div class="card fade-in">
-          <img src="Card20LSlushMachine.png" alt="20LSlush" />
-          <div class="card-content">
-            <h3>20L Twin Slush</h3>
-            <p>Great for bigger events with double the slush fun!</p>
-            <p class="price">£100</p>
-            <a href="https://bouncinllanelli.co.uk/20LSlush">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
-        </div>
-
-        <div class="card fade-in">
-          <img src="CardCandyFloss.png" alt="FunRun" />
-          <div class="card-content">
-            <h3>Candy Floss</h3>
-            <p>Sweet, fluffy fun</p>
-            <p class="price">£60</p>
-            <a href="https://bouncinllanelli.co.uk/CandyFloss">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
-        </div>
-
       </div>
-    </section>
-  
+
+      <div class="card fade-in">
+        <img src="Card20LSlushMachine.png" alt="Slide Castle" />
+        <div class="card-content">
+          <h3>20L Slush</h3>
+          <p>Great for bigger events with double the slush fun!</p>
+          <p class="price">£100</p>
+          <a href="https://bouncinllanelli.co.uk/BouncyCastleSlide">More Details</a>
+          <div class="timestamp">4 Hours</div>
+        </div>
+      </div>
+
+      <div class="card fade-in">
+        <img src="CardCandyFloss.png" alt="Fun Run" />
+        <div class="card-content">
+          <h3>Candy Floss</h3>
+          <p>Sweet, fluffy fun</p>
+          <p class="price">£60</p>
+          <a href="https://bouncinllanelli.co.uk/FunRun">More Details</a>
+          <div class="timestamp">4 Hours</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 Bouncin Llanelli. All Rights Reserved. <br> Deposits are non-refundable.<br/>
+    &copy; 2025 Bouncin Llanelli. All Rights Reserved. <br> Deposits are non-refundable.
   </footer>
 
-  <!-- JavaScript -->
   <script>
-    function toggleMenu() {
-      document.getElementById('sideMenu').classList.toggle('open');
-    }
-
-    // Scroll Fade-In Animation
+    function toggleMenu() {document.getElementById('sideMenu').classList.toggle('open');}
+    // Fade-in effect
     const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}
       });
-    }, {
-      threshold: 0.1
+    },{threshold:0.1});
+    fadeElements.forEach(el=>observer.observe(el));
+
+    // Page Enter Animation
+    window.addEventListener('load', ()=>document.body.classList.add('page-enter-active'));
+    
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      const colors = ['#ff7eb9','#4ea9ff','#ffd166','#90ee90','#ffccff'];
+      balloon.style.background = colors[Math.floor(Math.random()*colors.length)];
+      balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+      balloon.style.animationDuration = (6 + Math.random()*4) + 's';
+      document.body.appendChild(balloon);
+      balloon.addEventListener('animationend', () => balloon.remove());
+    }
+    setInterval(createBalloon, 800);
+    
+    window.addEventListener("orientationchange", () => {
+  document.querySelectorAll('.balloon').forEach(balloon => {
+    // Reapply original percentage-based positions
+    const top = balloon.dataset.top || "20%";
+    const left = balloon.dataset.left || "15%";
+    balloon.style.top = top;
+    balloon.style.left = left;
+  });
+});
+
+// ---- Card Button Click Animation ----
+  document.querySelectorAll('.card a').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault(); // stop instant navigation
+      button.classList.add('clicked');
+      setTimeout(() => {
+        button.classList.remove('clicked');
+        window.location.href = button.href; // navigate after animation
+      }, 400); // must match animation duration
     });
-
-    fadeElements.forEach(el => observer.observe(el));
-  </script>
+  });
+  </script> 
 </body>
-
 </html>

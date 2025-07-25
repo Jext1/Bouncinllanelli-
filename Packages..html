@@ -4,238 +4,99 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bouncin Llanelli</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      font-family: 'Inter', sans-serif;
-      color: #073c92;
-      background: white;
+      font-family: 'Fredoka One', cursive;
+      background: linear-gradient(180deg, #d0f2ff 0%, #ffffff 100%);
+      color: #0a2e6f;
       overflow-x: hidden;
     }
-
-    .wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+    body.page-enter {opacity: 0; transform: scale(0.9);}
+    body.page-enter-active {
+      opacity: 1; transform: scale(1);
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
+    button, a { -webkit-tap-highlight-color: transparent; }
 
     .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background-color: rgb(7, 60, 146);
-      z-index: 1001;
+      position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+      background: #4ea9ff; display: flex; align-items: center; justify-content: center;
+      padding: 0 2rem; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     .menu-toggle {
-      font-size: 2rem;
-      color: white;
-      background: none;
-      border: none;
+      position: absolute; left: 20px; font-size: 2rem; color: white;
+      background: none; border: none; cursor: pointer;
     }
-
-    .logo {
-      height: 50px;
+    .top-bar img {
+      height: 90px; transition: transform 0.3s ease; animation: logoGrow 2s ease-in-out infinite;
+      transform-origin: center; padding-top: 10px;
+    }
+    @keyframes logoGrow {
+      0%,100% {transform: scale(1);} 50% {transform: scale(1.05);}
     }
 
     .side-menu {
-      position: fixed;
-      top: 0;
-      left: -240px;
-      width: 240px;
-      height: 100%;
-      background: #073c92;
-      color: white;
-      padding: 1rem;
-      transition: left 0.3s ease;
+      position: fixed; top: 0; left: -260px; width: 260px; height: 100%;
+      background: #ff7eb9; color: white; padding: 2rem 1rem; transition: left 0.3s ease;
       z-index: 2000;
     }
-
-    .side-menu.open {
-      left: 0;
-    }
-
+    .side-menu.open {left: 0;}
     .side-menu .close-btn {
-      background: transparent;
-      border: none;
-      font-size: 2rem;
-      color: white;
-      margin-bottom: 2rem;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      font-size: 2rem; background: none; border: none; color: white; margin-bottom: 2rem; cursor: pointer;
     }
-
     .side-menu a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      font-size: 1.2rem;
-      margin: 1rem 0;
-      font-weight: bold;
-      -webkit-tap-highlight-color: transparent;
+      display: block; text-decoration: none; font-size: 1.4rem; margin: 1rem 0; color: white;
+      transition: transform 0.2s ease;
     }
+    .side-menu a:hover {transform: translateX(5px);}
 
-    #pricing {
-      padding-top: 100px;
+    #pricing {padding-top: 100px;}
+    .castle-toggle {
+      display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;
     }
+    .castle-toggle button {
+      padding: 0.6rem 2rem; border: none; background: #ff7eb9; color: white;
+      font-size: 1rem; border-radius: 30px; cursor: pointer; transition: background 0.3s;
+    }
+    .castle-toggle button.active, .castle-toggle button:hover {background: #4ea9ff;}
 
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem; padding: 2rem 1rem; max-width: 1000px; margin: 0 auto;
     }
-
     .card {
-      background: #ffffff;
-      border-radius: 1.25rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease;
+      background: white; border-radius: 1.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      overflow: hidden; transition: transform 0.3s ease;
     }
+    .card:hover {transform: translateY(-8px);}
+    .card img {width: 100%; height: 220px; object-fit: cover;}
+    .card-content {padding: 1.5rem; color: #333;}
+    .card h3 {font-size: 1.5rem; color: #0a2e6f;}
+    .card p {font-size: 1rem; margin-top: 0.5rem;}
+    .package-list {list-style: none; margin: 1rem 0;}
+    .package-list li {margin-bottom: 0.3rem;}
+    .price {font-size: 1.3rem; color: #4ea9ff; font-weight: bold;}
+    .timestamp {font-size: 0.9rem; color: #888; text-align: right;}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      flex: 1;
-    }
-
-    .card h3 {
-      font-size: 1.2rem;
-      color: #073c92;
-      margin: 0;
-    }
-
-    .card p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.4;
-    }
-
-    .price {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #073c92;
-    }
-
-    .timestamp {
-      font-size: 0.8rem;
-      color: #888;
-      text-align: right;
-      margin-top: auto;
-    }
-
-    .card a {
-      margin-top: 0.8rem;
-      padding: 0.5rem 1.2rem;
-      background-color: #073c92;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      align-self: flex-start;
-      -webkit-tap-highlight-color: transparent;
-    }
+    .castle-set {display: none;}
+    .castle-set.active {display: block;}
 
     footer {
-      background: #073c92;
-      color: #fff;
-      text-align: center;
-      padding: 0.5rem 0;
-      font-size: 0.85rem;
-      line-height: 1.2;
-      margin: 0;
+      background: #4ea9ff; color: white; text-align: center; padding: 1rem 0;
+      font-size: 0.9rem; margin-top: 2rem;
     }
-    
-    /* Keyframes for menu text */
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Reset all links initially */
-.side-menu a {
-  opacity: 0;
-}
-
-/* Animate links when menu is open */
-.side-menu.open a {
-  animation: fadeSlideIn 0.4s ease forwards;
-}
-
-/* Staggered delays */
-.side-menu.open a:nth-of-type(1) { animation-delay: 0.1s; }
-.side-menu.open a:nth-of-type(2) { animation-delay: 0.2s; }
-.side-menu.open a:nth-of-type(3) { animation-delay: 0.3s; }
-.side-menu.open a:nth-of-type(4) { animation-delay: 0.4s; }
-.side-menu.open a:nth-of-type(5) { animation-delay: 0.5s; }
-.side-menu.open a:nth-of-type(6) { animation-delay: 0.6s; }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
   </style>
 </head>
-<body>
-  <!-- TOP BAR -->
+<body class="page-enter page-enter-active">
   <div class="top-bar">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <img src="BouncinLlanelliLogo.png" alt="Logo" class="logo">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <img src="BouncinLlanelliLogo.png" alt="Logo">
   </div>
 
-  <!-- SIDE MENU -->
   <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
     <a href="https://bouncinllanelli.co.uk/">Home</a>
     <a href="/BouncyCastles">Castles</a>
     <a href="/FunFoods">Fun Foods</a>
@@ -243,105 +104,56 @@
     <a href="/Packages">Packages</a>
   </div>
 
-  <!-- MAIN CONTENT WRAPPER -->
   <main class="wrapper">
     <section id="pricing">
-      <div class="grid">
-        <div class="card fade-in">
-          <img src="CardPackageDeal1.jpg" alt="GiantTiwster.img" />
-          <div class="card-content">
-            <h3>Package Deal 1 🎁</h3>
-            <p>Perfect for kids' parties, events and garden fun!</p>
-            <p class="price">£180</p>
-            <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
+      <div class="castle-toggle">
+        <button id="slideBtn" class="active" onclick="showCastle('slide')">Slide Castle</button>
+        <button id="discoBtn" onclick="showCastle('disco')">Disco Castle</button>
+        <button id="foodsBtn" onclick="showCastle('foods')">Fun Foods</button>
+      </div>
+
+      <!-- Slide Castle Packages -->
+      <div id="slide-castle" class="castle-set active">
+        <div class="grid">
+          <div class="card"><img src="SlideCastleDeal1.png"><div class="card-content"><h3>Package Deal 1 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Slide Castle</li><li>Candy Floss</li></ul><p class="price">£190</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="SlideCastleDeal2.png"><div class="card-content"><h3>Package Deal 2 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Disco Castle</li><li>Candy Floss</li></ul><p class="price">£210</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="SlideCastleDeal3.png"><div class="card-content"><h3>Package Deal 3 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Slide Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£230</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="SlideCastleDeal4.png"><div class="card-content"><h3>Package Deal 4 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Slide Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£250</p><div class="timestamp">4 Hours</div></div></div>
         </div>
-        
-        <div class="card fade-in">
-          <img src="CardPackageDeal2.jpg" alt="GiantTiwster.img" />
-          <div class="card-content">
-            <h3>Package Deal 2 🎁</h3>
-            <p>Perfect for kids' parties, events and garden fun!</p>
-            <p class="price">£200</p>
-            <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
+      </div>
+
+      <!-- Disco Castle Packages -->
+      <div id="disco-castle" class="castle-set">
+        <div class="grid">
+          <div class="card"><img src="CardPackageDeal1.jpg"><div class="card-content"><h3>Package Deal 1 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Disco Castle</li><li>Candy Floss</li></ul><p class="price">£180</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal2.jpg"><div class="card-content"><h3>Package Deal 2 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Disco Castle</li><li>Candy Floss</li></ul><p class="price">£200</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal3.jpg"><div class="card-content"><h3>Package Deal 3 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Disco Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£220</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal4.jpg"><div class="card-content"><h3>Package Deal 4 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Disco Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£240</p><div class="timestamp">4 Hours</div></div></div>
         </div>
-        
-        <div class="card fade-in">
-          <img src="CardPackageDeal3.jpg" alt="GiantTiwster.img" />
-          <div class="card-content">
-            <h3>Package Deal 3 🎁</h3>
-            <p>Perfect for kids' parties, events and garden fun!</p>
-            <p class="price">£220</p>
-            <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
+      </div>
+
+      <!-- Fun Foods Packages -->
+      <div id="foods-castle" class="castle-set">
+        <div class="grid">
+          <div class="card"><img src="CardPackageDeal5.jpg"><div class="card-content"><h3>Package 5</h3><p>Includes:</p><ul class="package-list"><li>10L Slush Machine</li><li>Candy Floss Machine</li></ul><p class="price">£120</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal6.jpg"><div class="card-content"><h3>Package 6</h3><p>Includes:</p><ul class="package-list"><li>20L Slush Machine</li><li>Candy Floss Machine</li></ul><p class="price">£140</p><div class="timestamp">4 Hours</div></div></div>
         </div>
-        
-        <div class="card fade-in">
-          <img src="CardPackageDeal4.jpg" alt="GiantTiwster.img" />
-          <div class="card-content">
-            <h3>Package Deal 4 🎁</h3>
-            <p>Perfect for kids' parties, events and garden fun!</p>
-            <p class="price">£240</p>
-            <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
-        </div>
-        
-        <div class="card fade-in">
-          <img src="CardPackageDeal5.jpg" alt="GiantTiwster.img" />
-          <div class="card-content">
-            <h3>Package Deal 5 🎁</h3>
-            <p>Perfect for kids' parties, events and garden fun!</p>
-            <p class="price">£120</p>
-            <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
-        </div>
-        
-        <div class="card fade-in">
-          <img src="CardPackageDeal6.jpg" alt="GiantTiwster.img" />
-          <div class="card-content">
-            <h3>Package Deal 6 🎁</h3>
-            <p>Perfect for kids' parties, events and garden fun!</p>
-            <p class="price">£140</p>
-            <a href="https://bouncinllanelli.co.uk/BouncyCastle">More Details</a>
-            <div class="timestamp">4 Hours</div>
-          </div>
-        </div>
-        
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 Bouncin Llanelli. All Rights Reserved. <br> Deposits are non-refundable.<br/>
-  </footer>
+  <footer>&copy; 2025 Bouncin Llanelli. All Rights Reserved.<br>Deposits are non-refundable.</footer>
 
-  <!-- JavaScript -->
   <script>
     function toggleMenu() {
       document.getElementById('sideMenu').classList.toggle('open');
     }
-
-    // Scroll Fade-In Animation
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    fadeElements.forEach(el => observer.observe(el));
+    function showCastle(type) {
+      document.querySelectorAll('.castle-set').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.castle-toggle button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(type + '-castle').classList.add('active');
+      document.getElementById(type + 'Btn').classList.add('active');
+    }
   </script>
 </body>
 </html>
