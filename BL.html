@@ -1,482 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bouncin Llanelli</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
-      font-family: 'Inter', sans-serif;
-      color: #073c92;
-      background: white;
+      font-family: 'Fredoka One', cursive;
+      background: linear-gradient(180deg, #d0f2ff 0%, #ffffff 100%);
+      color: #0a2e6f;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
+      position: relative;
     }
+    
+
+    body.page-enter {opacity: 0; transform: scale(0.9);}
+    body.page-enter-active {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
 
     .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background-color: rgb(7, 60, 146);
-      z-index: 1001;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* Fixed height */
+  padding: 0 2rem;
+  background: #4ea9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers everything */
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
+.menu-toggle {
+  position: absolute; /* Take it out of flex flow */
+  left: 20px; /* Keep it at the left */
+  font-size: 2rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.top-bar img {
+  height: 90px;
+  transition: transform 0.3s ease;
+  animation: logoGrow 2s ease-in-out infinite;
+  transform-origin: center;
+  padding-top: 10px;
+}
+   
     .menu-toggle {
       font-size: 2rem;
       color: white;
       background: none;
       border: none;
-    }
-
-    .logo {
-      height: 50px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .side-menu {
-      position: fixed;
-      top: 0;
-      left: -240px;
-      width: 240px;
-      height: 100%;
-      background: #073c92;
-      color: white;
-      padding: 1rem;
-      transition: left 0.3s ease;
-      z-index: 2000;
+      position: fixed; top: 0; left: -260px;
+      width: 260px; height: 100%;
+      background: #ff7eb9; color: white; padding: 2rem 1rem;
+      transition: left 0.3s ease; z-index: 2000;
     }
-
-    .side-menu.open {
-      left: 0;
-    }
-
+    .side-menu.open {left: 0;}
     .side-menu .close-btn {
-      background: transparent;
-      border: none;
       font-size: 2rem;
+      background: none;
+      border: none;
       color: white;
       margin-bottom: 2rem;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
-
     .side-menu a {
-      color: white;
-      text-decoration: none;
       display: block;
-      font-size: 1.2rem;
+      text-decoration: none;
+      font-size: 1.4rem;
       margin: 1rem 0;
-      font-weight: bold;
+      color: white;
+      transition: transform 0.2s ease;
       -webkit-tap-highlight-color: transparent;
     }
+    .side-menu a:hover {transform: translateX(5px);}
 
     .hero-section {
-      height: 100vh;
-      background: url('HomePageCastleImg.png') no-repeat center center;
-      background-size: cover;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1rem;
+      min-height: 100vh;
+      background: url('HomePageCastleImg.png') no-repeat center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 2rem; padding-top: 100px;
+      position: relative; overflow: hidden;
     }
-    
-    .hero-section {
-  height: 100vh;
-  padding-top: 180px;
-  box-sizing: border-box;
-
-}
-
     .hero-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+      content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.3);
     }
-
-    .hero-overlay {
-      z-index: 1;
-      max-width: 90%;
-      width: 600px;
-      color: #fff;
-      position: relative;
-    }
-
-    .hero-overlay h1 {
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-overlay p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
+    .hero-overlay {position: relative; z-index: 1; color: white; animation: float 3s ease-in-out infinite;}
+    @keyframes float {0%,100% { transform: translateY(0);} 50% {transform: translateY(-10px);}}
+    .hero-overlay h1 {font-size: 3rem; color: #ff7eb9; text-shadow: 2px 2px #0a2e6f;}
+    .hero-overlay p {font-size: 1.5rem; margin: 1rem 0;}
 
     .cta-buttons a {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-weight: bold;
-      text-decoration: none;
-      margin: 0.5rem;
-      -webkit-tap-highlight-color: transparent;
+      background: #4ea9ff; color: white; padding: 0.75rem 1.5rem; border-radius: 50px;
+      font-size: 1.2rem; text-decoration: none; display: inline-block; margin: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .cta-buttons a:hover {animation: wobble 0.6s ease;}
+    @keyframes wobble {
+      0%,100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 50% {transform: rotate(-3deg);} 75% {transform: rotate(2deg);}
     }
 
-    .btn-primary {
-      background-color: #00bcd4;
-      color: white;
-      -webkit-tap-highlight-color: transparent;
+    /* Scroll Down Indicator */
+    .scroll-indicator {
+      position: relative;
+      margin-top: 40px;
+      animation: bounceArrow 1.5s infinite;
+      cursor: pointer;
     }
-
-    .btn-secondary {
-      border: 2px solid white;
-      color: white;
-      background-color: transparent;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .tick-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: white;
-    }
-
-    .tick-item::before {
-      content: "✔ ";
-      color: #00ff00;
-    }
-
-    .main-content {
-      background: white;
-      padding: 2rem 1rem 0 1rem;
-      flex: 1;
-    }
-
-    .section {
-      max-width: 1000px;
-      margin: 1.5rem auto;
-      padding: 2rem;
-      background: #f9f9f9;
-      border-radius: 1rem;
-      text-align: center;
-    }
-
-    .main-content .section:first-of-type {
-      margin-top: 0;
-    }
-
-    .section-title {
+    .scroll-indicator::before {
+      content: "▼";
       font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin-bottom: 2rem; /* 👈 adds vertical space below */
-  -webkit-tap-highlight-color: transparent;
-}
-
-    .feature {
-      flex: 1 1 250px;
-      background: white;
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .cta-section {
-      background: #d0eaff;
-      border-radius: 1rem;
-      padding: 2rem 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background: #073c92;
       color: white;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
-      -webkit-tap-highlight-color: transparent;
+      text-shadow: 2px 2px #0a2e6f;
+    }
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
-    .categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
+    .balloon { position: fixed; bottom: 0; width: 50px; height: 70px; border-radius: 50% 50% 45% 55%; opacity: 0.8; z-index: -1; animation: rise 14s linear forwards; }
+    .balloon::after { content: ""; position: absolute; width: 2px; height: 40px; background: #333; bottom: -40px; left: 50%; transform: translateX(-50%); }
+    @keyframes rise { 0% {transform: translateY(0);} 100% {transform: translateY(-120vh); opacity: 0;} }
 
-.scroll-container {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-  z-index: 1;
-}
+    .tick-list { margin-top: 1rem; font-size: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .tick-item::before {content: "✔ "; color: #90ee90;}
 
-.scroll-indicator {
-  width: 24px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 9999px;
-  position: relative;
-  margin: 0 auto;
-}
+    .section {max-width: 1200px; margin: 3rem auto; padding: 2rem; text-align: center;}
+    .categories {display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;}
+    .categories a { background: #ff7eb9; color: white; padding: 1rem 2rem; border-radius: 50px; font-size: 1.2rem; text-decoration: none; transition: transform 0.2s ease; }
+    .categories a:hover {animation: wobble 0.6s ease;}
 
-.scroll-dot {
-  width: 4px;
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 9999px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: move-dot 1.5s infinite;
-}
-.scroll-inline {
-  position: static;
-  transform: none;
-  margin-top: 2rem;
-}
+    .features {display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;}
+    .feature { background: white; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 2rem; flex: 1 1 250px; transition: transform 0.3s ease; }
+    .feature:hover {transform: translateY(-10px);}
+    .feature-icon {font-size: 2.5rem; margin-bottom: 1rem;}
 
-@keyframes move-dot {
-  0% { top: 8px; opacity: 1; }
-  50% { top: 20px; opacity: 0.4; }
-  100% { top: 8px; opacity: 1; }
-}
+    footer {background: #4ea9ff; color: white; text-align: center; padding: 1rem 0; font-size: 0.9rem;}
 
-.scroll-text {
-  font-size: 12px;
-  margin-top: 0.5rem;
-}
-
-.categories a {
-  flex: 0 1 calc(50% - 1rem); /* Two per row with spacing */
-  text-align: center;
-  padding: 0.75rem 1rem;
-  background: white;
-  border: 2px solid #073c92;
-  border-radius: 999px;
-  color: #073c92;
-  text-decoration: none;
-  font-weight: bold;
-  -webkit-tap-highlight-color: transparent;
-}
-
-    footer {
-      background: #073c92;
-      color: #fff;
-      text-align: center;
-      padding: 0.5rem 0;
-      font-size: 0.85rem;
-      line-height: 1.2;
-      margin: 0;
-    }
-
-    /* Animation Styles */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Keyframes for menu text */
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Reset all links initially */
-.side-menu a {
-  opacity: 0;
-}
-
-/* Animate links when menu is open */
-.side-menu.open a {
-  animation: fadeSlideIn 0.4s ease forwards;
-}
-
-/* Staggered delays */
-.side-menu.open a:nth-of-type(1) { animation-delay: 0.1s; }
-.side-menu.open a:nth-of-type(2) { animation-delay: 0.2s; }
-.side-menu.open a:nth-of-type(3) { animation-delay: 0.3s; }
-.side-menu.open a:nth-of-type(4) { animation-delay: 0.4s; }
-.side-menu.open a:nth-of-type(5) { animation-delay: 0.5s; }
-.side-menu.open a:nth-of-type(6) { animation-delay: 0.6s; }
-    
-    
-    /* Button press animation */
-.cta-buttons a:active,
-.btn:active,
-.categories a:active {
-  transform: scale(0.95);
-  transition: transform 0.1s ease-in-out;
-}
-.gradient-static {
-  background: linear-gradient(270deg, #64e1dc, #fcd34d, #64e1dc);
-  background-size: 600% 600%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientSlide 6s ease infinite;
-  font-weight: 700;
-}
-
-@keyframes gradientSlide {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    .fade-in {opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease;}
+    .fade-in.visible {opacity: 1; transform: translateY(0);}
   </style>
 </head>
-
-<body>
-  <!-- TOP BAR -->
+<body class="page-enter">
   <div class="top-bar">
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <img src="BouncinLlanelliLogo.png" alt="Logo" class="logo">
+    <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli Logo">
   </div>
 
-  <!-- HERO SECTION -->
-<section class="hero-section">
-  <div class="hero-overlay fade-in">
-    <h1>Make Every Party <span class="gradient-static">Unforgettable</span></h1>
-    <p>Premium bouncy castle hire across <strong>South Wales</strong>. Safe, clean, and delivered to your door in <strong>Carmarthen</strong>, <strong>Llanelli</strong>, and <strong>Swansea</strong>.</p>
-    <div class="cta-buttons">
-      <a href="/BouncyCastles" class="btn-primary">🏰 View Our Castles</a>
-      <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn-secondary">📞 Contact Us</a>
-    </div>
-    <div class="tick-list">
-  <span class="tick-item">Fully Insured</span>
-  <span class="tick-item">Safety Certified</span>
-  <span class="tick-item">Professional Setup</span>
-</div>
-
-<!-- ✅ Scroll indicator after ticks -->
-<div class="scroll-container scroll-inline">
-  <div class="scroll-indicator">
-    <div class="scroll-dot"></div>
-  </div>
-  <p class="scroll-text">Scroll to explore</p>
-</div>
-</div> <!-- end of .hero-overlay -->
-</section>
-
-  <!-- SIDE MENU -->
   <div id="sideMenu" class="side-menu">
     <button class="close-btn" onclick="toggleMenu()">✕</button>
-    <a href="https://bouncinllanelli.co.uk/">Home</a>
-    <a href="/BouncyCastles">Castles</a>
-    <a href="/FunFoods">Fun Foods</a>
-    <a href="/Extras">Extras</a>
-    <a href="/Packages">Packages</a>
+    <a href="https://bouncinllanelli.co.uk/">Home</a><a href="/BouncyCastles">Castles</a><a href="/FunFoods">Fun Foods</a><a href="/Extras">Extras</a><a href="/Packages">Packages</a>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="main-content">
-    <section class="section fade-in">
-      <h2 class="section-title">Make Every Party Unforgettable</h2>
-      <p>Premium inflatable castle hire across <strong>South Wales</strong>.</p>
-    </section>
-
-    <section class="features fade-in">
-      <div class="feature">
-        <div class="feature-icon">📦</div>
-        <h3>Choose & Book</h3>
-        <p>Browse our wide selection and reserve your castle online.</p>
+  <section class="hero-section">
+    <div class="hero-overlay fade-in">
+      <h1>Bouncin' Llanelli</h1>
+      <p>Making Kids Parties Bouncin</p>
+      <div class="cta-buttons">
+        <a href="#">Contact Us</a><a href="#">Book Now</a>
       </div>
-      <div class="feature">
-        <div class="feature-icon">🚚</div>
-        <h3>Delivery & Setup</h3>
-        <p>We deliver, set up, and ensure everything is secure.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🎉</div>
-        <h3>Enjoy Your Event</h3>
-        <p>Have fun! We'll handle pickup after your event.</p>
-      </div>
-    </section>
+      <!-- New Scroll Indicator -->
+      <div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'});"></div>
+    </div>
+  </section>
 
-    <section class="cta-section fade-in">
-      <h2>Ready to Make Your Event Special?</h2>
-      <p>Give your children a day they'll never forget!</p>
-      <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn">Book Now</a>
-    </section>
+  <section class="section fade-in">
+    <h2>Explore Our Categories</h2>
+    <div class="categories">
+      <a href="/BouncyCastles">Castles</a><a href="/Packages">Packages</a><a href="/FunFoods">Fun Foods</a><a href="/Extras">Extras</a>
+    </div>
+  </section>
 
-    <section class="section fade-in">
-      <h2 class="section-title">Explore Our Categories</h2>
-      <div class="categories">
-        <a href="/BouncyCastles">Castles</a>
-        <a href="/SoftPlay">Soft Play</a>
-        <a href="/Packages">Packages</a>
-        <a href="/FunFoods">Fun Foods</a>
-        <a href="/Extras">Extras</a>
-      </div>
-    </section>
-  </div>
+  <section class="features fade-in">
+    <div class="feature"><div class="feature-icon">📦</div><h3>Choose & Book</h3><p>Pick your favourite castle online easily.</p></div>
+    <div class="feature"><div class="feature-icon">🚚</div><h3>Delivery & Setup</h3><p>We deliver, set up, and handle safety checks.</p></div>
+    <div class="feature"><div class="feature-icon">🎉</div><h3>Enjoy The Fun</h3><p>Let the kids have fun while we handle the rest!</p></div>
+  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 Bouncin Llanelli. All Rights Reserved. <br> Deposits are non-refundable.<br/>
-  </footer>
+  <footer>&copy; 2025 Bouncin Llanelli. All Rights Reserved.</footer>
 
-  <!-- JavaScript -->
   <script>
     function toggleMenu() {
       document.getElementById('sideMenu').classList.toggle('open');
     }
 
-    // Scroll Fade-In Animation
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -485,12 +211,35 @@
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    window.addEventListener('load', () => {
+      document.body.classList.add('page-enter-active');
     });
 
-    fadeElements.forEach(el => observer.observe(el));
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      const colors = ['#ff7eb9','#4ea9ff','#ffd166','#90ee90','#ffccff'];
+      balloon.style.background = colors[Math.floor(Math.random()*colors.length)];
+      balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+      balloon.style.animationDuration = (6 + Math.random()*4) + 's';
+      document.body.appendChild(balloon);
+      balloon.addEventListener('animationend', () => balloon.remove());
+    }
+    setInterval(createBalloon, 800);
+    
+    window.addEventListener("orientationchange", () => {
+  document.querySelectorAll('.balloon').forEach(balloon => {
+    // Reapply original percentage-based positions
+    const top = balloon.dataset.top || "20%";
+    const left = balloon.dataset.left || "15%";
+    balloon.style.top = top;
+    balloon.style.left = left;
+  });
+});
   </script>
+  
 </body>
-
 </html>
