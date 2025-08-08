@@ -115,6 +115,128 @@
       <!-- Slide Castle Packages -->
       <div id="slide-castle" class="castle-set active">
         <div class="grid">
+          <div class="card"><img src="SlideCastleDeal1.png"><div class="card-content"><h3>Slide Package 1 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Slide Castle</li><li>Candy Floss</li></ul><p class="price">£190</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="SlideCastleDeal2.png"><div class="card-content"><h3>Slide Package  2 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Disco Castle</li><li>Candy Floss</li></ul><p class="price">£210</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="SlideCastleDeal3.png"><div class="card-content"><h3>Slide Package  3 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Slide Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£230</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="SlideCastleDeal4.png"><div class="card-content"><h3>Slide Package  4 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Slide Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£250</p><div class="timestamp">4 Hours</div></div></div>
+        </div>
+      </div>
+
+      <!-- Disco Castle Packages -->
+      <div id="disco-castle" class="castle-set">
+        <div class="grid">
+          <div class="card"><img src="CardPackageDeal1.jpg"><div class="card-content"><h3>Disco Package  1 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Disco Castle</li><li>Candy Floss</li></ul><p class="price">£180</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal2.jpg"><div class="card-content"><h3>Disco Package  2 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Disco Castle</li><li>Candy Floss</li></ul><p class="price">£200</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal3.jpg"><div class="card-content"><h3>Disco Package  3 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Disco Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£220</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal4.jpg"><div class="card-content"><h3>Disco Package  4 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Disco Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£240</p><div class="timestamp">4 Hours</div></div></div>
+        </div>
+      </div>
+
+      <!-- Fun Foods Packages -->
+      <div id="foods-castle" class="castle-set">
+        <div class="grid">
+          <div class="card"><img src="CardPackageDeal5.jpg"><div class="card-content"><h3>Fun Food Package 1</h3><p>Includes:</p><ul class="package-list"><li>10L Slush Machine</li><li>Candy Floss Machine</li></ul><p class="price">£120</p><div class="timestamp">4 Hours</div></div></div>
+          <div class="card"><img src="CardPackageDeal6.jpg"><div class="card-content"><h3>Fun Food Package 2</h3><p>Includes:</p><ul class="package-list"><li>20L Slush Machine</li><li>Candy Floss Machine</li></ul><p class="price">£140</p><div class="timestamp">4 Hours</div></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; 2025 Bouncin Llanelli. All Rights Reserved.<br>Deposits are non-refundable.</footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('sideMenu').classList.toggle('open');
+    }
+    function showCastle(type) {
+      document.querySelectorAll('.castle-set').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.castle-toggle button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(type + '-castle').classList.add('active');
+      document.getElementById(type + 'Btn').classList.add('active');
+    }
+  </script>
+</body>
+</html>      0%,100% {transform: scale(1);} 50% {transform: scale(1.05);}
+    }
+
+    .side-menu {
+      position: fixed; top: 0; left: -260px; width: 260px; height: 100%;
+      background: #ff7eb9; color: white; padding: 2rem 1rem; transition: left 0.3s ease;
+      z-index: 2000;
+    }
+    .side-menu.open {left: 0;}
+    .side-menu .close-btn {
+      font-size: 2rem; background: none; border: none; color: white; margin-bottom: 2rem; cursor: pointer;
+    }
+    .side-menu a {
+      display: block; text-decoration: none; font-size: 1.4rem; margin: 1rem 0; color: white;
+      transition: transform 0.2s ease;
+    }
+    .side-menu a:hover {transform: translateX(5px);}
+
+    #pricing {padding-top: 100px;}
+    .castle-toggle {
+      display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;
+    }
+    .castle-toggle button {
+      padding: 0.6rem 2rem; border: none; background: #ff7eb9; color: white;
+      font-size: 1rem; border-radius: 30px; cursor: pointer; transition: background 0.3s;
+    }
+    .castle-toggle button.active, .castle-toggle button:hover {background: #4ea9ff;}
+
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem; padding: 2rem 1rem; max-width: 1000px; margin: 0 auto;
+    }
+    .card {
+      background: white; border-radius: 1.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      overflow: hidden; transition: transform 0.3s ease;
+    }
+    .card:hover {transform: translateY(-8px);}
+    .card img {width: 100%; height: 220px; object-fit: cover;}
+    .card-content {padding: 1.5rem; color: #333;}
+    .card h3 {font-size: 1.5rem; color: #0a2e6f;}
+    .card p {font-size: 1rem; margin-top: 0.5rem;}
+    .package-list {list-style: none; margin: 1rem 0;}
+    .package-list li {margin-bottom: 0.3rem;}
+    .price {font-size: 1.3rem; color: #4ea9ff; font-weight: bold;}
+    .timestamp {font-size: 0.9rem; color: #888; text-align: right;}
+
+    .castle-set {display: none;}
+    .castle-set.active {display: block;}
+
+    footer {
+      background: #4ea9ff; color: white; text-align: center; padding: 1rem 0;
+      font-size: 0.9rem; margin-top: 2rem;
+    }
+  </style>
+</head>
+<body class="page-enter page-enter-active">
+  <div class="top-bar">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <img src="BouncinLlanelliLogo.png" alt="Logo">
+  </div>
+
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+    <a href="https://bouncinllanelli.co.uk/">Home</a>
+    <a href="/BouncyCastles">Castles</a>
+    <a href="/FunFoods">Fun Foods</a>
+    <a href="/Extras">Extras</a>
+    <a href="/Packages">Packages</a>
+  </div>
+
+  <main class="wrapper">
+    <section id="pricing">
+      <div class="castle-toggle">
+        <button id="slideBtn" class="active" onclick="showCastle('slide')">Slide Castle</button>
+        <button id="discoBtn" onclick="showCastle('disco')">Disco Castle</button>
+        <button id="foodsBtn" onclick="showCastle('foods')">Fun Foods</button>
+      </div>
+
+      <!-- Slide Castle Packages -->
+      <div id="slide-castle" class="castle-set active">
+        <div class="grid">
           <div class="card"><img src="SlideCastleDeal1.png"><div class="card-content"><h3>Package Deal 1 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Slide Castle</li><li>Candy Floss</li></ul><p class="price">£190</p><div class="timestamp">4 Hours</div></div></div>
           <div class="card"><img src="SlideCastleDeal2.png"><div class="card-content"><h3>Package Deal 2 🎁</h3><p>Includes:</p><ul class="package-list"><li>20L Slush</li><li>Disco Castle</li><li>Candy Floss</li></ul><p class="price">£210</p><div class="timestamp">4 Hours</div></div></div>
           <div class="card"><img src="SlideCastleDeal3.png"><div class="card-content"><h3>Package Deal 3 🎁</h3><p>Includes:</p><ul class="package-list"><li>10L Slush</li><li>Slide Castle</li><li>Candy Floss</li><li>Soft Play</li></ul><p class="price">£230</p><div class="timestamp">4 Hours</div></div></div>
@@ -157,3 +279,4 @@
   </script>
 </body>
 </html>
+
