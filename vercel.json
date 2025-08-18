@@ -21,6 +21,10 @@
       "destination": "/FunFoods.html"
     },
     {
+      "source": "/DidiCars",
+      "destination": "/DidiCars.html"
+    },
+    {
       "source": "/FunRun",
       "destination": "/FunRun.html"
     },
