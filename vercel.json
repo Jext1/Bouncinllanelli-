@@ -44,12 +44,9 @@
       "source": "/GiantTwister",
       "destination": "/GiantTwister.html"
     },
-    "source": "/HotDog",
-      "destination": "/HotDog.html"
-    },
     {
-      "source": "/Packages",
-      "destination": "/Packages.html"
+      "source": "/HotDog",
+      "destination": "/HotDog.html"
     },
     {
       "source": "/DiscoBouncyCastle",
