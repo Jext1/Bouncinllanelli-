@@ -56,23 +56,4 @@
       "destination": "/BouncyCastle.html"
     }
   ]
-}      "destination": "/BouncyCastles.html"
-    },
-    {
-      "source": "/Extras",
-      "destination": "/Extras.html"
-    },
-    {
-      "source": "/GiantTwister",
-      "destination": "/GiantTwister.html"
-    },
-    {
-      "source": "/Packages",
-      "destination": "/Packages.html"
-    },
-    {
-      "source": "/DiscoBouncyCastle",
-      "destination": "/BouncyCastle.html"
-    }
-  ]
 }
