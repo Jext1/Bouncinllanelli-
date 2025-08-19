@@ -355,6 +355,24 @@
         opacity: 1;
         transform: translateY(0);
       }
+      
+      .facebook-link {
+  display: block;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.facebook-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.facebook-icon:hover {
+  transform: scale(1.1);
+}
+
     </style>
   </head>
   <body class="page-enter">
@@ -363,13 +381,18 @@
       <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli Logo">
     </div>
     <div id="sideMenu" class="side-menu">
-      <button class="close-btn" onclick="toggleMenu()">✕</button>
-      <a href="https://bouncinllanelli.co.uk/">Home</a>
-      <a href="/BouncyCastles">Castles</a>
-      <a href="/FunFoods">Fun Foods</a>
-      <a href="/Extras">Extras</a>
-      <a href="/Packages">Packages</a>
-    </div>
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="https://bouncinllanelli.co.uk/">Home</a>
+  <a href="/BouncyCastles">Castles</a>
+  <a href="/FunFoods">Fun Foods</a>
+  <a href="/Extras">Extras</a>
+  <a href="/Packages">Packages</a>
+
+  <!-- Facebook Button -->
+  <a href="https://www.facebook.com/share/1B8wNkDhVW/" target="_blank" class="facebook-link">
+    <img src="Facebook.png" alt="Facebook" class="facebook-icon">
+  </a>
+</div>
     <section class="hero-section">
       <div class="hero-overlay fade-in">
         <h1>Bouncin' Llanelli</h1>
@@ -450,5 +473,7 @@
         });
       });
     </script>
+    
+    
   </body>
 </html>
