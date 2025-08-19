@@ -119,6 +119,23 @@
     .tick-list {list-style: none; padding-left: 0;}
     .tick-list li {position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;}
     .tick-list li::before {content: ""; position: absolute; left: 0; top: 0; color: #2ecc71; font-weight: bold;}
+    
+    .facebook-link {
+  display: block;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.facebook-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.facebook-icon:hover {
+  transform: scale(1.1);
+}
   </style>
 </head>
 <body>
@@ -127,30 +144,35 @@
   <div id="popup" class="popup">
     <div class="popup-content">
       <h2>Make it an Overnight Hire!</h2>
-      <p>Keep the fun going all night for just <strong>拢25 extra</strong>! 馃帀</p>
+      <p>Keep the fun going all night for just <strong>£25 extra</strong>! </p>
       <button class="popup-close-btn" onclick="closePopup()">Close</button>
     </div>
   </div>
   
   <div class="top-bar">
-    <button class="menu-toggle" onclick="toggleMenu()">鈽�</button>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <img src="BouncinLlanelliLogo.png" alt="Logo" class="logo">
   </div>
 
   <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="toggleMenu()">鉁�</button>
-    <a href="https://bouncinllanelli.co.uk/">Home</a>
-    <a href="/BouncyCastles">Castles</a>
-    <a href="/FunFoods">Fun Foods</a>
-    <a href="/Extras">Extras</a>
-    <a href="/Packages">Packages</a>
-  </div>
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="https://bouncinllanelli.co.uk/">Home</a>
+  <a href="/BouncyCastles">Castles</a>
+  <a href="/FunFoods">Fun Foods</a>
+  <a href="/Extras">Extras</a>
+  <a href="/Packages">Packages</a>
+
+  <!-- Facebook Button -->
+  <a href="https://www.facebook.com/share/1B8wNkDhVW/" target="_blank" class="facebook-link">
+    <img src="Facebook.png" alt="Facebook" class="facebook-icon">
+  </a>
+</div>
 
   <div class="fade-in" style="text-align: center; margin: 120px auto 2rem;">
     <img src="FunRunSquare.png" alt="FunRun" style="width: 300px; height: 300px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem;" />
-    <h2 style="font-size: 1.8rem; font-weight: 700; color: #ff7eb9;">Fun Run 拢150</h2>
+    <h2 style="font-size: 1.8rem; font-weight: 700; color: #ff7eb9;">Fun Run £150</h2>
     <p style="font-size: 1rem; color: #333; margin: 0.5rem auto 1.2rem; max-width: 320px;">
-      Our Disco Fun Run is perfect for energetic kids who love non-stop action! With a built-in front slide, a spacious run-through bounce lane, and disco lights with music, it鈥檚 a show-stopper at parties, school events, and fun days.
+      Our Disco Fun Run is perfect for energetic kids who love non-stop action! With a built-in front slide, a spacious run-through bounce lane, and disco lights with music, it抯 a show-stopper at parties, school events, and fun days.
     </p>
     <div style="display: flex; flex-direction: column; align-items: center; gap: 0.6rem;">
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;">

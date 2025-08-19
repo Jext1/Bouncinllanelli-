@@ -73,6 +73,23 @@
     .tick-list {list-style: none; padding-left: 0;}
     .tick-list li {position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem;}
     .tick-list li::before {content: "✔"; position: absolute; left: 0; top: 0; color: #2ecc71; font-weight: bold;}
+    
+    .facebook-link {
+  display: block;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.facebook-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.facebook-icon:hover {
+  transform: scale(1.1);
+}
   </style>
 </head>
 <body>
@@ -82,13 +99,18 @@
   </div>
 
   <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
-    <a href="https://bouncinllanelli.co.uk/">Home</a>
-    <a href="/BouncyCastles">Castles</a>
-    <a href="/FunFoods">Fun Foods</a>
-    <a href="/Extras">Extras</a>
-    <a href="/Packages">Packages</a>
-  </div>
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="https://bouncinllanelli.co.uk/">Home</a>
+  <a href="/BouncyCastles">Castles</a>
+  <a href="/FunFoods">Fun Foods</a>
+  <a href="/Extras">Extras</a>
+  <a href="/Packages">Packages</a>
+
+  <!-- Facebook Button -->
+  <a href="https://www.facebook.com/share/1B8wNkDhVW/" target="_blank" class="facebook-link">
+    <img src="Facebook.png" alt="Facebook" class="facebook-icon">
+  </a>
+</div>
 
   <div class="fade-in" style="text-align: center; margin: 120px auto 2rem;">
     <img src="HotDogSquare.png" alt="HotDog" style="width: 300px; height: 300px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem;" />
