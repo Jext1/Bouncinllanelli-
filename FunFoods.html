@@ -99,7 +99,7 @@
     .cta-buttons a:hover {transform: scale(1.1) rotate(-2deg);}
 
     /* Pricing Cards */
-    #pricing {padding-top: 120px;}
+    #pricing {padding-top: 10px;}
     .grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem; padding: 2rem; max-width: 1000px; margin: auto;
@@ -129,6 +129,31 @@
   50% { transform: scale(0.9); }
   100% { transform: scale(1); }
 }
+
+#nav-bttns {padding-top: 10px;}
+    
+    /* New Navigation Buttons */
+    .nav-buttons {
+      margin-top: 90px; /* push below top-bar */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .nav-buttons a {
+      background: #ff7eb9;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .nav-buttons a:hover {
+      background: #4ea9ff;
+      transform: scale(1.05);
+    }
     
     .balloon { position: fixed; bottom: 0; width: 50px; height: 70px; border-radius: 50% 50% 45% 55%; opacity: 0.8; z-index: -1; animation: rise 20s linear forwards; }
     .balloon::after { content: ""; position: absolute; width: 2px; height: 40px; background: #333; bottom: -40px; left: 50%; transform: translateX(-50%); }
@@ -138,6 +163,23 @@
     footer {
       background: #0a2e6f; color: #fff; text-align: center; padding: 1rem; font-size: 0.85rem;
     }
+    
+    .facebook-link {
+  display: block;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.facebook-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.facebook-icon:hover {
+  transform: scale(1.1);
+}
 
     /* Fade-in Scroll Animation */
     .fade-in {opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;}
@@ -154,12 +196,26 @@
 
   <!-- SIDE MENU -->
   <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="toggleMenu()">×</button>
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="https://bouncinllanelli.co.uk/">Home</a>
+  <a href="/BouncyCastles">Castles</a>
+  <a href="/FunFoods">Fun Foods</a>
+  <a href="/Extras">Extras</a>
+  <a href="/Packages">Packages</a>
+
+  <!-- Facebook Button -->
+  <a href="https://www.facebook.com/share/1B8wNkDhVW/" target="_blank" class="facebook-link">
+    <img src="Facebook.png" alt="Facebook" class="facebook-icon">
+  </a>
+</div>
+  
+  <section id="nav-bttns">
+  	<!-- Navigation Buttons -->
+  <div class="nav-buttons">
     <a href="https://bouncinllanelli.co.uk/">Home</a>
     <a href="/BouncyCastles">Castles</a>
-    <a href="/FunFoods">Fun Foods</a>
-    <a href="/Extras">Extras</a>
     <a href="/Packages">Packages</a>
+    <a href="/Extras">Extras</a>
   </div>
 
   <!-- PRICING -->
