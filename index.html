@@ -1,479 +1,1956 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bouncin Llanelli</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bouncin Llanelli — Single-File Site</title>
+  <style>
+  :root {
+    --bg: #ffefff;        
+    --panel: #ffffff;     
+    --ink: #222222;       
+    --muted: #666688;     
+    --line: #ffd6f6;      
+    --accent: #2eb3ff;    
+    --accent-alt: #ff6ec7;
+    --header-height: 60px;
+  }
 
-      body {
-        font-family: 'Fredoka One', cursive;
-        background: linear-gradient(180deg, #d0f2ff 0%, #ffffff 100%);
-        color: #0a2e6f;
-        overflow-x: hidden;
-        position: relative;
-      }
+  * { box-sizing: border-box; }
+  html,body { height:100%; }
+  body {
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+  }
+  a { color: inherit; text-decoration: none; }
 
-      body.page-enter {
-        opacity: 0;
-        transform: scale(0.9);
-      }
+  /* Header */
+  .app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 18px;
+    background: #2eb3ff;
+    border-bottom: 2px solid var(--line);
+    height: var(--header-height);
+  }
 
-      body.page-enter-active {
-        opacity: 1;
-        transform: scale(1);
-        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      }
+  .logo img {
+    max-height: 50px;
+    width: auto;
+    display: block;
+  }
 
-      button,
-      a {
-        -webkit-tap-highlight-color: transparent;
-      }
+  .menu-toggle {
+    font-size: 22px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    left: 12px;
+  }
 
-      .top-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 80px;
-        /* Fixed height */
-        padding: 0 2rem;
-        background: #4ea9ff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* Centers everything */
-        z-index: 1000;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      }
+  .brand { color: white; }
 
-      .menu-toggle {
-        position: absolute;
-        /* Take it out of flex flow */
-        left: 20px;
-        /* Keep it at the left */
-        font-size: 2rem;
-        color: white;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
+  /* Layout */
+  .app {
+    display:grid;
+    grid-template-columns:260px 1fr;
+    min-height:calc(100vh - var(--header-height));
+    margin-top: var(--header-height); /* push below header */
+  }
+  .sidebar {
+    background: var(--panel);
+    border-right: 2px solid var(--line);
+    padding: 16px;
+    overflow:auto;
+  }
+  .menu { display:grid; gap:8px }
+  .menu a {
+    padding:10px 12px;
+    border:2px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+    color: var(--accent-alt);
+    font-weight:600;
+    transition: all .2s;
+  }
+  .menu a:hover {
+    background: var(--accent-alt);
+    color:white;
+    border-color: var(--accent-alt);
+  }
+  .menu a.active {
+    color:white;
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow:0 0 8px rgba(46,179,255,.3);
+  }
 
-      .top-bar img {
-        height: 90px;
-        transition: transform 0.3s ease;
-        animation: logoGrow 2s ease-in-out infinite;
-        transform-origin: center;
-        padding-top: 10px;
-      }
+  .content { padding:22px; }
+  .panel {
+    background:#fff;
+    border:2px solid var(--line);
+    border-radius:16px;
+    padding:18px;
+  }
+  .route-title { margin:0 0 14px; font-size:22px; color: var(--accent-alt); }
 
-      .menu-toggle {
-        font-size: 2rem;
-        color: white;
-        background: none;
-        border: none;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-      }
+  .grid { display:grid; gap:16px }
+  .cards { grid-template-columns:repeat(auto-fit,minmax(230px,1fr)) }
+  .card {
+    background:#fff;
+    border:2px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+    display:grid;
+    gap:10px;
+    box-shadow:0 2px 6px rgba(255,110,199,.15);
+  }
+  .card h3 { margin:0; font-size:16px; color:var(--accent-alt); }
+  .card h4 { margin:0; font-size:16px; color: #2eb3ff; }
+  .btn {
+    display:inline-block;
+    padding:10px 12px;
+    border:2px solid var(--accent);
+    border-radius:12px;
+    background: var(--accent);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .btn:hover {
+    background: var(--accent-alt);
+    border-color: var(--accent-alt);
+  }
 
-      .side-menu {
-        position: fixed;
-        top: 0;
-        left: -260px;
-        width: 260px;
-        height: 100%;
-        background: #ff7eb9;
-        color: white;
-        padding: 2rem 1rem;
-        transition: left 0.3s ease;
-        z-index: 2000;
-      }
+  .route { display:none }
+  .route.active { display:block }
+  .muted { color: var(--muted) }
 
-      .side-menu.open {
-        left: 0;
-      }
+  /* Backdrop (mobile only) */
+  .backdrop{
+    display:none;
+    position:fixed;
+    top:var(--header-height);
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.4);
+    z-index:90;
+  }
+  .backdrop.show{display:block;}
 
-      .side-menu .close-btn {
-        font-size: 2rem;
-        background: none;
-        border: none;
-        color: white;
-        margin-bottom: 2rem;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-      }
+  @media (max-width:900px){
+    .app{grid-template-columns:1fr}
+    .sidebar{
+      position:fixed;
+      top:var(--header-height);
+      left:-260px;
+      width:260px;
+      height:calc(100% - var(--header-height));
+      transition:left 0.3s ease;
+      z-index:100;
+    }
+    .sidebar.open{left:0;}
+  }
+</style>
+</head>
+<body>
+  <!-- Header -->
+<header class="app-header">
+  <button class="menu-toggle" id="menu-toggle">☰</button>
+  <div class="logo">
+    <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli" />
+  </div>
+</header>
 
-      .side-menu a {
-        display: block;
-        text-decoration: none;
-        font-size: 1.4rem;
-        margin: 1rem 0;
-        color: white;
-        transition: transform 0.2s ease;
-        -webkit-tap-highlight-color: transparent;
-      }
+  <!-- Backdrop -->
+  <div class="backdrop" id="backdrop"></div>
 
-      .side-menu a:hover {
-        transform: translateX(5px);
-      }
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="menu" id="main-menu">
+        <a href="#/home" data-route="#/home">Home</a>
+        <a href="#/bouncy-castles" data-route="#/bouncy-castles">Bouncy Castles</a>
+        <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
+        <a href="#/extras" data-route="#/extras">Extras</a>
+        <a href="#/packages" data-route="#/packages">Packages</a>
+      </nav>
+    </aside>
 
-      .hero-section {
-        min-height: 100vh;
-        background: url('HomePageCastleImg.png') no-repeat center/cover;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 2rem;
-        padding-top: 100px;
-        position: relative;
-        overflow: hidden;
-      }
+    <!-- Main content -->
+    <main class="content">
 
-      .hero-section::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.3);
-      }
+ <!-- ===== HOME ===== -->
+<section class="route" data-route="#/home" id="route-home">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@600;800&display=swap');
 
-      .hero-overlay {
-        position: relative;
-        z-index: 1;
-        color: white;
-        animation: float 3s ease-in-out infinite;
-      }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Nunito', sans-serif; }
+    body, #route-home { color: #0a2e6f; overflow-x: hidden; background: #f5f5f5; }
 
-      @keyframes float {
+    /* Side Menu */
+    #route-home .side-menu {
+      position: fixed; top: 0; left: -280px; width: 280px; height: 100%;
+      background: rgba(255, 126, 185, 0.95); color: white; padding: 2rem 1.5rem;
+      transition: left 0.3s ease; z-index: 2000; backdrop-filter: blur(5px); border-right: 1px solid #ffb6d6;
+    }
+    #route-home .side-menu.open { left: 0; }
+    #route-home .side-menu .close-btn { font-size: 2rem; background:none; border:none; color:white; margin-bottom:2rem; cursor:pointer; }
+    #route-home .side-menu a { display:block; text-decoration:none; font-size:1.3rem; margin:1.2rem 0; color:white; transition: transform 0.2s ease; }
+    #route-home .side-menu a:hover { transform: translateX(6px); }
 
-        0%,
-        100% {
-          transform: translateY(0);
-        }
+    /* Hero Section */
+    #route-home .hero-section {
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('HomePageCastleImg.png') no-repeat center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 2rem; position: relative; overflow: hidden;
+    }
+    #route-home .hero-overlay { position: relative; z-index: 1; color:white; animation: float 4s ease-in-out infinite; max-width: 90%; }
+    #route-home .hero-overlay h1 { font-family: 'Poppins', sans-serif; font-size: 4rem; color:#ff7eb9; text-shadow: 3px 3px #0a2e6f; margin-bottom: 1rem; }
+    #route-home .hero-overlay p { font-size:1.6rem; margin-bottom: 2rem; }
+    #route-home .cta-buttons a {
+      background:#4ea9ff; color:white; padding:1rem 2rem; border-radius:50px; font-size:1.3rem;
+      text-decoration:none; display:inline-block; margin:0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #route-home .cta-buttons a:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-        50% {
-          transform: translateY(-10px);
-        }
-      }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-      .hero-overlay h1 {
-        font-size: 3rem;
-        color: #ff7eb9;
-        text-shadow: 2px 2px #0a2e6f;
-      }
+    /* Scroll Indicator */
+    #route-home .scroll-indicator { margin-top: 50px; animation: bounceArrow 1.5s infinite; cursor:pointer; font-size:2.2rem; color:white; text-shadow:2px 2px #0a2e6f; }
+    @keyframes bounceArrow { 0%,100%{transform:translateY(0);} 50%{transform:translateY(12px);} }
 
-      .hero-overlay p {
-        font-size: 1.5rem;
-        margin: 1rem 0;
-      }
+    /* Sections */
+    #route-home .section { max-width:1200px; margin:4rem auto; padding:2rem; text-align:center; }
+    #route-home .section h2 { font-family: 'Poppins', sans-serif; color:#0a2e6f; margin-bottom:2rem; font-size:2.5rem; }
 
-      .cta-buttons a {
-        background: #4ea9ff;
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        text-decoration: none;
-        display: inline-block;
-        margin: 0.5rem;
-        transition: transform 0.2s ease;
-      }
+    /* Categories */
+    #route-home .categories { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
+    #route-home .categories a { background:#ff7eb9; color:white; padding:1rem 2rem; border-radius:50px; font-size:1.2rem; text-decoration:none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    #route-home .categories a:hover { transform: translateY(-5px); box-shadow:0 8px 15px rgba(0,0,0,0.2); }
 
-      .cta-buttons a:hover {
-        animation: wobble 0.6s ease;
-      }
+    /* Features */
+    #route-home .features { display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; }
+    #route-home .feature {
+      background:white; border-radius:20px; box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      padding:2rem; flex:1 1 250px; transition:transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    #route-home .feature:hover { transform:translateY(-10px); box-shadow:0 15px 30px rgba(0,0,0,0.2); }
+    #route-home .feature-icon { font-size:3rem; margin-bottom:1rem; }
 
-      @keyframes wobble {
+    /* Footer */
+    #route-home footer { background:#4ea9ff; color:white; text-align:center; padding:1.2rem 0; font-size:0.95rem; margin-top:3rem; }
 
-        0%,
-        100% {
-          transform: rotate(0);
-        }
+    /* Fade-in */
+    #route-home .fade-in { opacity:0; transform:translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    #route-home .fade-in.visible { opacity:1; transform:translateY(0); }
+  </style>
 
-        25% {
-          transform: rotate(3deg);
-        }
+  <!-- Side Menu -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+    <a href="#/home" data-route="#/home">Home</a>
+    <a href="#/bouncy-castles" data-route="#/bouncy-castles">Bouncy Castles</a>
+    <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
+    <a href="#/extras" data-route="#/extras">Extras</a>
+    <a href="#/packages" data-route="#/packages">Packages</a>
+  </div>
 
-        50% {
-          transform: rotate(-3deg);
-        }
-
-        75% {
-          transform: rotate(2deg);
-        }
-      }
-
-      /* Scroll Down Indicator */
-      .scroll-indicator {
-        position: relative;
-        margin-top: 40px;
-        animation: bounceArrow 1.5s infinite;
-        cursor: pointer;
-      }
-
-      .scroll-indicator::before {
-        content: "▼";
-        font-size: 2rem;
-        color: white;
-        text-shadow: 2px 2px #0a2e6f;
-      }
-
-      @keyframes bounceArrow {
-
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(10px);
-        }
-      }
-
-      .balloon {
-        position: fixed;
-        bottom: 0;
-        width: 50px;
-        height: 70px;
-        border-radius: 50% 50% 45% 55%;
-        opacity: 0.8;
-        z-index: -1;
-        animation: rise 14s linear forwards;
-      }
-
-      .balloon::after {
-        content: "";
-        position: absolute;
-        width: 2px;
-        height: 40px;
-        background: #333;
-        bottom: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      @keyframes rise {
-        0% {
-          transform: translateY(0);
-        }
-
-        100% {
-          transform: translateY(-120vh);
-          opacity: 0;
-        }
-      }
-
-      .tick-list {
-        margin-top: 1rem;
-        font-size: 1rem;
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .tick-item::before {
-        content: "✔ ";
-        color: #90ee90;
-      }
-
-      .section {
-        max-width: 1200px;
-        margin: 3rem auto;
-        padding: 2rem;
-        text-align: center;
-      }
-
-      .categories {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-      }
-
-      .categories a {
-        background: #ff7eb9;
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        text-decoration: none;
-        transition: transform 0.2s ease;
-      }
-
-      .categories a:hover {
-        animation: wobble 0.6s ease;
-      }
-
-      .features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-      }
-
-      .feature {
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 2rem;
-        flex: 1 1 250px;
-        transition: transform 0.3s ease;
-      }
-
-      .feature:hover {
-        transform: translateY(-10px);
-      }
-
-      .feature-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-
-      footer {
-        background: #4ea9ff;
-        color: white;
-        text-align: center;
-        padding: 1rem 0;
-        font-size: 0.9rem;
-      }
-
-      .fade-in {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-
-      .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      
-      .facebook-link {
-  display: block;
-  margin-top: 2rem;
-  text-align: left;
-}
-
-.facebook-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-}
-
-.facebook-icon:hover {
-  transform: scale(1.1);
-}
-
-    </style>
-  </head>
-  <body class="page-enter">
-    <div class="top-bar">
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli Logo">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay fade-in">
+      <h1>Bouncin' Llanelli</h1>
+      <p>Making Kids Parties Bouncin'</p>
+      <div class="cta-buttons">
+        <a href="tel:+447496177130">Contact Us</a>
+        <a href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now</a>
+      </div>
+      <div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior:'smooth'});">▼</div>
     </div>
-    <div id="sideMenu" class="side-menu">
-  <button class="close-btn" onclick="toggleMenu()">✕</button>
-  <a href="https://bouncinllanelli.co.uk/">Home</a>
-  <a href="/BouncyCastles">Castles</a>
-  <a href="/FunFoods">Fun Foods</a>
-  <a href="/Extras">Extras</a>
-  <a href="/Packages">Packages</a>
+  </section>
 
-  <!-- Facebook Button -->
-  <a href="https://www.facebook.com/share/1B8wNkDhVW/" target="_blank" class="facebook-link">
-    <img src="Facebook.png" alt="Facebook" class="facebook-icon">
-  </a>
-</div>
-    <section class="hero-section">
-      <div class="hero-overlay fade-in">
-        <h1>Bouncin' Llanelli</h1>
-        <p>Making Kids Parties Bouncin</p>
-        <div class="cta-buttons">
-          <a href="tel:+447496177130">Contact Us</a>
-          <a href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now</a>
+  <!-- Categories Section -->
+  <section class="section fade-in">
+    <h2>Explore Our Categories</h2>
+    <div class="categories">
+      <a href="#/bouncy-castles" data-route="#/bouncy-castles">Castles</a>
+      <a href="#/packages" data-route="#/packages">Packages</a>
+      <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
+      <a href="#/extras" data-route="#/extras">Extras</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features fade-in">
+    <div class="feature">
+      <div class="feature-icon">📦</div>
+      <h3>Choose & Book</h3>
+      <p>Pick your favourite castle online easily.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🚚</div>
+      <h3>Delivery & Setup</h3>
+      <p>We deliver, set up, and handle safety checks.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎉</div>
+      <h3>Enjoy The Fun</h3>
+      <p>Let the kids have fun while we handle the rest!</p>
+    </div>
+  </section>
+
+  <footer>© 2025 Bouncin' Llanelli. All Rights Reserved.</footer>
+
+  <script>
+    function toggleMenu() { document.getElementById('sideMenu').classList.toggle('open'); }
+
+    const fadeElements = document.querySelectorAll('#route-home .fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
+</section>
+
+<!-- ===== BOUNCY CASTLES list ===== -->
+<section class="route" data-route="#/bouncy-castles" id="route-bouncy-castles">
+
+  <!-- Categories navigation -->
+  <div class="categories">
+    <a href="#/home" data-route="#/home">Home</a>
+    <a href="#/packages" data-route="#/packages">Packages</a>
+    <a href="#/extras" data-route="#/extras">Extras</a>
+    <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
+  </div>
+
+  <!-- Bouncy Castle cards -->
+  <div class="grid cards">
+    <div class="card">
+      <img src="CardDiscoCastle.png" alt="Disco Bouncy Castle" style="width:100%;border-radius:12px;"/>
+      <h3>Blue Disco Bouncy Castle</h3>
+      <h4>From £100</h4>
+      <button class="btn" onclick="navigateTo('#/bouncy-castles/disco')">Find out more</button>
+    </div>
+    <div class="card">
+      <img src="CardBuildingBlocks.png" alt="Building Block Castle" style="width:100%;border-radius:12px;"/>
+      <h3>Building Block Bouncy Castle</h3>
+      <h4>From £100</h4>
+      <button class="btn" onclick="navigateTo('#/bouncy-castles/BuildingBlocks')">Find out more</button>
+    </div>
+    <div class="card">
+      <img src="CardPrincessSlideCastle.png" alt="Building Block Castle" style="width:100%;border-radius:12px;"/>
+      <h3>Princess Slide Castle</h3>
+      <h4>From £120</h4>
+      <button class="btn" onclick="navigateTo('#/bouncy-castles/PrincessSlide')">Find out more</button>
+    </div>
+    <div class="card">
+      <img src="CardSlideCastle.png" alt="Slide Castle" style="width:100%;border-radius:12px;"/>
+      <h3>Slide Castle</h3>
+      <h4>From £120</h4>
+      <button class="btn" onclick="navigateTo('#/bouncy-castles/slide')">Find out more</button>
+    </div>
+    <div class="card">
+      <img src="CardDiscoCastle15.png" alt="Rainbow Disco Bouncy Castle" style="width:100%;border-radius:12px;"/>
+      <h3>Rainbow Disco Bouncy Castle</h3>
+      <h4>From £130</h4>
+      <button class="btn" onclick="navigateTo('#/bouncy-castles/Rainbowdisco')">Find out more</button>
+    </div>
+    <div class="card">
+      <img src="CardFunRun.png" alt="Fun Run Castle" style="width:100%;border-radius:12px;"/>
+      <h3>Fun Run</h3>
+      <h4>From £150</h4>
+      <button class="btn" onclick="navigateTo('#/bouncy-castles/fun-run')">Find out more</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CSS ===== -->
+<style>
+/* Center categories and cards */
+.categories {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  flex-wrap: wrap; /* wrap if too many buttons */
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center; /* center each card in its grid cell */
+}
+
+/* ===== Card buttons ===== */
+.cards .btn {
+  display: inline-block;
+  margin: 8px 0 0 0;
+  padding: 12px 24px; 
+  border-radius: 12px;
+  font-weight: bold;
+  color: #fff;
+  background: #00cfff; 
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cards .btn:hover {
+  background: #00a3cc; 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.cards .btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ===== Categories buttons match card buttons ===== */
+.categories a {
+  display: inline-block;
+  margin: 8px; 
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: bold;
+  color: #fff; 
+  background: #00cfff; 
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories a:hover {
+  background: #00a3cc; 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.categories a.active {
+  background: #008fb3; 
+}
+</style>
+      
+<!-- ===== Blue DISCO CASTLE detail ===== -->
+	
+<section class="route" data-route="#/bouncy-castles/disco" id="route-castle-disco">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardDiscoCastle.png" alt="Disco Bouncy Castle" style="max-width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Blue Disco Bouncy Castle £100</h1>
+  <p class="muted">Lights, music, and endless bouncing fun! Great for parties, schools, and all celebrations.</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Disco</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">15 × 11ft</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-castle-disco-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Disco Bouncy Castle</strong> comes with built-in lights and a music system to keep the party going. Perfect for birthdays, schools, and community events.</p>
+  </div>
+
+  <div id="route-castle-disco-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p><strong>Size:</strong> 15×11 ft <br> <strong>Theme:</strong> Disco</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Built-in disco lights</li>
+      <li>✅ Music system included</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+    </ul>
+  </div>
+
+  <div id="route-castle-disco-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="Disco1.png" alt="Disco Castle Image 1" class="carousel-slide active">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<!-- ===== Building Blocks CASTLE detail ===== -->
+<section class="route" data-route="#/bouncy-castles/BuildingBlocks" id="route-castle-BuildingBlocks">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardBuildingBlocks.png" alt="Building Block Bouncy Castle" style="max-width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Building Block Bouncy Castle £100</h1>
+  <p class="muted">Bright, colorful, and perfect for kids who love to build and bounce. A fun block-themed inflatable for all events!</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Building Block</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">15 × 12ft</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+  </button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-castle-BuildingBlocks-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Building Block Bouncy Castle</strong> is designed with colorful brick patterns that kids love. Perfect for birthdays, schools, and community events.</p>
+  </div>
+
+  <div id="route-castle-BuildingBlocks-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p><strong>Size:</strong> 15×12 ft <br> <strong>Theme:</strong> Building Blocks</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Fun and colorful block theme</li>
+      <li>✅ Large bouncing area</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+    </ul>
+  </div>
+
+  <div id="route-castle-BuildingBlocks-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="BuildingBlocks1.png" alt="Building Block Castle Image 1" class="carousel-slide active">
+      <img src="BuildingBlocks2.png" alt="Building Block Castle Image 2" class="carousel-slide">
+      <img src="BuildingBlocks3.png" alt="Building Block Castle Image 3" class="carousel-slide">
+      <img src="BuildingBlocks4.png" alt="Building Block Castle Image 4" class="carousel-slide">
+      <img src="BuildingBlocks5.png" alt="Building Block Castle Image 5" class="carousel-slide">
+      <img src="BuildingBlocks6.png" alt="Building Block Castle Image 6" class="carousel-slide">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<!-- ===== Princess Slide CASTLE detail ===== -->
+<section class="route" data-route="#/bouncy-castles/PrincessSlide" id="route-castle-PrincessSlide">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardPrincessSlideCastle.png" alt="Princess Slide Bouncy Castle" style="max-width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Princess Slide Bouncy Castle £120</h1>
+  <p class="muted">A magical princess-themed castle with an exciting slide. Perfect for birthdays, schools, and special celebrations.</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#ffb6e6; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Princess Theme</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">13 × 18ft</span>
+    <span style="background:#cce5ff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Slide</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+    Book Now
+  </button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-castle-PrincessSlide-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Princess Slide Bouncy Castle</strong> is designed for maximum fun with its built-in slide and bright princess theme. A big hit for birthdays, school fairs, and family parties.</p>
+  </div>
+
+  <div id="route-castle-PrincessSlide-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p><strong>Size:</strong> 13×18 ft <br> <strong>Theme:</strong> Princess</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Built-in slide for extra fun</li>
+      <li>✅ Princess graphics and colours</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+    </ul>
+  </div>
+
+  <div id="route-castle-PrincessSlide-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="PrincessSlide1.png" alt="Princess Slide Castle Image 1" class="carousel-slide active">
+      <img src="PrincessSlide2.png" alt="Princess Slide Castle Image 2" class="carousel-slide">
+      <img src="PrincessSlide3.png" alt="Princess Slide Castle Image 3" class="carousel-slide">
+      <img src="PrincessSlide4.png" alt="Princess Slide Castle Image 4" class="carousel-slide">
+      <img src="PrincessSlide5.png" alt="Princess Slide Castle Image 5" class="carousel-slide">
+      <img src="PrincessSlide6.png" alt="Princess Slide Castle Image 6" class="carousel-slide">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<!-- ===== Rainbow Disco CASTLE detail ===== -->
+	
+<section class="route" data-route="#/bouncy-castles/Rainbowdisco" id="route-castle-rainbowdisco">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardDiscoCastle15.png" alt="Rainbow Disco Bouncy Castle" style="max-width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Rainbow Disco Bouncy Castle £130</h1>
+  <p class="muted">Lights, music, and endless bouncing fun! Great for parties, schools, and all celebrations.</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Disco</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">15 × 15ft</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-castle-rainbowdisco-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Rainbow Disco Bouncy Castle</strong> comes with built-in lights and a music system to keep the party going. Perfect for birthdays, schools, and community events.</p>
+  </div>
+
+  <div id="route-castle-rainbowdisco-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p><strong>Size:</strong> 15×15 ft <br> <strong>Theme:</strong> Disco</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Built-in disco lights</li>
+      <li>✅ Music system included</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+    </ul>
+  </div>
+
+  <div id="route-castle-rainbowdisco-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="RainbowDisco1.png" alt="Rainbow Disco Castle Image 1" class="carousel-slide active">
+      <img src="RainbowDisco2.png" alt="Rainbow Disco Castle Image 2" class="carousel-slide">
+      <img src="RainbowDisco3.png" alt="Rainbow Disco Castle Image 3" class="carousel-slide">
+      <img src="RainbowDisco4.png" alt="Rainbow Disco Castle Image 4" class="carousel-slide">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<!-- ===== SLIDE CASTLE detail ===== -->
+<section class="route" data-route="#/bouncy-castles/slide" id="route-castle-slide">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardSlideCastle.png" alt="Slide Bouncy Castle" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Slide Bouncy Castle £120</h1>
+  <p class="muted">Endless bouncing and sliding fun! Great for birthdays, schools, and community events.</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Slide</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">15 × 17ft</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-castle-slide-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Slide Bouncy Castle</strong> brings extra fun with its built-in slide! Perfect for birthdays, school fairs, and community celebrations.</p>
+  </div>
+
+  <div id="route-castle-slide-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p><strong>Size:</strong> 15 × 17 ft <br> <strong>Theme:</strong> Slide</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Built-in Side slide</li>
+      <li>✅ Large bounce area</li>
+      <li>✅ Bright & colorful design</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+    </ul>
+  </div>
+
+  <div id="route-castle-slide-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="SlideCastle1.png" alt="Slide Castle Image 1" class="carousel-slide active">
+      <img src="SlideCastle2.png" alt="Slide Castle Image 2" class="carousel-slide">
+      <img src="SlideCastle3.png" alt="Slide Castle Image 3" class="carousel-slide">
+      <img src="SlideCastle4.png" alt="Slide Castle Image 4" class="carousel-slide">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<!-- ===== FUN RUN detail ===== -->
+<section class="route" data-route="#/bouncy-castles/fun-run" id="route-fun-run">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardFunRun.png" alt="Fun Run Bouncy Castle" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Fun Run £150</h1>
+  <p class="muted">The ultimate inflatable adventure! With slides, obstacles, and a bounce area, this <strong>Fun Run</strong> keeps kids entertained for hours.</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Slide</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">26.9 × 9.2ft</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-fun-run-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Fun Run</strong> brings together bouncing, climbing, and sliding into one inflatable challenge course. Perfect for large events and non-stop fun!</p>
+  </div>
+
+  <div id="route-fun-run-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p><strong>Size:</strong> 26.9 × 9.2 × 9.8 ft <br> <strong>Theme:</strong> Obstacle / Slide</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Built-in slide</li>
+      <li>✅ Obstacle course features</li>
+      <li>✅ Bright & colorful design</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+    </ul>
+  </div>
+
+  <div id="route-fun-run-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="FunRun1.png" alt="Fun Run Image 1" class="carousel-slide active">
+      <img src="FunRun2.png" alt="Fun Run Image 2" class="carousel-slide">
+      <img src="FunRun3.png" alt="Fun Run Image 3" class="carousel-slide">
+      <img src="FunRun4.png" alt="Fun Run Image 4" class="carousel-slide">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<style>
+  :root { --tab-accent: #ffd633; }
+
+  .tabs { margin-top:2rem; border-bottom:2px solid #ddd; display:flex; gap:1rem; }
+  .tab-btn { background:none; border:none; padding:0.8rem 1rem; font-weight:600; cursor:pointer; }
+  .tab-btn.active { border-bottom:3px solid var(--tab-accent); color:#333; }
+  .tab-content.hidden { display:none !important; }
+
+  .carousel { position: relative; width: 100%; max-width: 650px; margin: 0 auto; border-radius:16px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+  .carousel-slide { display:none; width:100%; height:auto; }
+  .carousel-slide.active { display:block; }
+  .carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:#fff; border:0; width:44px; height:44px; border-radius:50%; cursor:pointer; }
+  .carousel-btn.prev { left:10px; }
+  .carousel-btn.next { right:10px; }
+</style>
+
+<script>
+  // Tabs for all sections
+  (function() {
+    const sections = document.querySelectorAll('.route');
+    sections.forEach(section => {
+      const tabs = section.querySelectorAll('.tab-btn');
+      const tabContents = section.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.add('hidden'));
+          tab.classList.add('active');
+          const contentId = `${section.id}-tab-${tab.dataset.tab}`;
+          const content = document.getElementById(contentId);
+          if(content) content.classList.remove('hidden');
+        });
+      });
+
+      const defaultTab = section.querySelector('.tab-btn[data-tab="desc"]');
+      if(defaultTab) defaultTab.click();
+    });
+  })();
+
+  // Carousel for all sections
+  (function() {
+    const sections = document.querySelectorAll('.route');
+    sections.forEach(section => {
+      const slides = section.querySelectorAll('.carousel-slide');
+      if(!slides.length) return;
+      let current = 0;
+      const prevBtn = section.querySelector('.carousel-btn.prev');
+      const nextBtn = section.querySelector('.carousel-btn.next');
+
+      function show(n) {
+        slides[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+      }
+
+      if(prevBtn) prevBtn.addEventListener('click', () => show(current-1));
+      if(nextBtn) nextBtn.addEventListener('click', () => show(current+1));
+    });
+  })();
+</script>
+
+<!-- ===== FUN FOODS list ===== -->
+<section class="route" data-route="#/fun-foods" id="route-fun-foods">
+
+<!-- Categories navigation -->
+  <div class="categories">
+    <a href="#/home" data-route="#/home">Home</a>
+    <a href="#/packages" data-route="#/packages">Packages</a>
+    <a href="#/bouncy-castles" data-route="#/bouncy-castles">Castles</a>
+    <a href="#/extras" data-route="#/extras">Extras</a>
+  </div>
+
+  <h1 class="route-title">Fun Foods</h1>
+  <div class="grid cards">
+    <!-- 10L Slush -->
+    <div class="card">
+      <img src="Card10LSlushMachine.png" alt="10L Slush Machine" style="width:100%;border-radius:12px;"/>
+      <h3>10L Slush Machine</h3>
+      <h4>From £75</h4>
+      <button class="btn" onclick="navigateTo('#/fun-foods/10LSlushMachine')">Find out more</button>
+    </div>
+    <!-- 20L Slush -->
+    <div class="card">
+      <img src="Card20LSlushMachine.png" alt="20L Slush Machine" style="width:100%;border-radius:12px;"/>
+      <h3>20L Slush Machine</h3>
+      <h4>From £100</h4>
+      <button class="btn" onclick="navigateTo('#/fun-foods/20LSlushMachine')">Find out more</button>
+    </div>
+    <!-- Candy Floss -->
+    <div class="card">
+      <img src="CardCandyFloss.png" alt="Candy Floss" style="width:100%;border-radius:12px;"/>
+      <h3>Candy Floss</h3>
+      <h4>From £60</h4>
+      <button class="btn" onclick="navigateTo('#/fun-foods/CandyFloss')">Find out more</button>
+    </div>
+    <!-- Hot Dog Steamer -->
+    <div class="card">
+      <img src="CardHotDog.png" alt="Hot Dog" style="width:100%;border-radius:12px;"/>
+      <h3>Hot Dog Steamer</h3>
+      <h4>From £40</h4>
+      <button class="btn" onclick="navigateTo('#/fun-foods/HotDogSteamer')">Find out more</button>
+    </div>
+    <style>
+    	.categories {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  flex-wrap: wrap; /* wrap if too many buttons */
+  margin-bottom: 20px;
+}
+
+.categories a {
+  display: inline-block;
+  margin: 8px; 
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: bold;
+  color: #fff; 
+  background: #00cfff; 
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories a:hover {
+  background: #00a3cc; 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.categories a.active {
+  background: #008fb3; 
+}
+</style>
+  </div>
+</section>
+
+<!-- ===== 10L SLUSH detail ===== -->
+<section class="route" data-route="#/fun-foods/10LSlushMachine" id="10LSlushMachine">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="Card10LSlushMachine.png" alt="10L Slush" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">10L Slush £75</h1>
+  <p class="muted">Perfect for smaller parties and events. Serve delicious, ice-cold slush in minutes.</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">10L Slush</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">50 Cups</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="10LSlushMachine-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>10L Slush Machine</strong> brings a fun and refreshing twist to any event. It comes filled with two popular flavours – Strawberry and Blue Raspberry (5L each). Whether it’s a summer fair, birthday party or school celebration, it’s a guaranteed hit! <br> All slush syrups are glycerol-free, safe for kids, and made with high-quality ingredients. Want something different? Additional flavours can be requested at a small extra cost.</br></p>
+  </div>
+
+  <div id="10LSlushMachine-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+        <li>✅ Comes With 50 Cups</li>
+        <li>✅ Comes with 50 Straws</li>
+        <li>✅ Two 5L Flavours Included</li>
+        <li>✅ Glycerol-Free Syrup</li>
+        <li>✅ Kid-Friendly & Safe</li>
+        <li>✅ Optional extra flavours available</li>
+        <li>✅ Easy to use & clean</li>
+        <li>✅ Perfect for parties & events</li>
+    </ul>
+  </div>
+
+  <div id="10LSlushMachine-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="10LSlush1.png" class="carousel-slide active" />
+      <img src="10LSlush2.png" class="carousel-slide" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
+</section>
+
+<!-- ===== 20L SLUSH detail ===== -->
+<section class="route" data-route="#/fun-foods/20LSlushMachine" id="20LSlushMachine">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="Card20LSlushMachine.png" alt="20L Slush" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">20L Slush £100</h1>
+  <p class="muted">Perfect for medium-sized parties and events. Serve ice-cold slush for longer events.</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">20L Slush</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">100 Cups</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="20LSlushMachine-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>20L Slush Machine</strong> brings a fun and refreshing twist to any event. It comes filled with two popular flavours – Strawberry and Blue Raspberry (10L each). Whether it’s a summer fair, birthday party or school celebration, it’s a guaranteed hit! <br> All slush syrups are glycerol-free, safe for kids, and made with high-quality ingredients. Want something different? Additional flavours can be requested at a small extra cost. </br> </p>
+  </div>
+
+  <div id="20LSlushMachine-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+        <li>✅ Comes With 100 Cups</li>
+        <li>✅ Comes with 100 Straws</li>
+        <li>✅ Two 10L Flavours Included</li>
+        <li>✅ Glycerol-Free Syrup</li>
+        <li>✅ Kid-Friendly & Safe</li>
+        <li>✅ Optional extra flavours available</li>
+        <li>✅ Easy to use & clean</li>
+        <li>✅ Perfect for parties & events</li>
+    </ul>
+  </div>
+
+  <div id="20LSlushMachine-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="20LSlush1.png" class="carousel-slide active" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
+</section>
+
+<!-- ===== Candy Floss detail ===== -->
+<section class="route" data-route="#/fun-foods/CandyFloss" id="CandyFloss">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardCandyFloss.png" alt="Candy Floss" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">Candy Floss £60</h1>
+  <p class="muted">A fun treat for parties and events. Comes in two flavours, blue raspberry and strawberry.</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Candy Floss</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="CandyFloss-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Candy Floss Machine</strong> is a sugary crowd-pleaser that's always a hit at fun days, school events, and parties. It includes three tasty flavours: Strawberry, Blueberry, and Pink Vanilla – spun fresh and fluffy for your guests to enjoy!</p>
+  </div>
+
+  <div id="CandyFloss-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Sitcks Included</li>
+      <li>✅ Fun for all ages</li>
+      <li>✅ 5★ food hygiene rating</li>
+      <li>✅ Optional extra flavours available</li>
+      <li>✅ Perfect for fairs, birthdays & schools</li>
+    </ul>
+  </div>
+
+  <div id="CandyFloss-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="CandyFloss1.png" class="carousel-slide active" />
+      <img src="CandyFloss2.png" class="carousel-slide" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
+</section>
+
+<!-- ===== Hot Dog detail ===== -->
+<section class="route" data-route="#/fun-foods/HotDogSteamer" id="HotDogSteamer">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardHotDog.png" alt="Hot Dog" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">Hot Dog Steamer £40</h1>
+  <p class="muted">Perfect for parties or events. Quickly serve hot and delicious hot dogs.</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Fun Foods</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="HotDogSteamer-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Hot Dog Steamer</strong> is a must-have for fun days, school events, and parties – always drawing a hungry crowd! It’s simple to use and keeps hot dogs warm and ready to serve. Please note: hot dogs and buns are not supplied, so you can choose your own favourites to pair with the machine.</p>
+  </div>
+
+  <div id="HotDogSteamer-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+  <li>✅ Fun for all ages</li>
+  <li>✅ 5★ food hygiene rating</li>
+  <li>✅ Perfect for fairs, birthdays & schools</li>
+  <li>✅ A hotdog steamer (so everyone gets theirs hot & tasty!)</li>
+  <li>✅ A toppings bar ready to fill</li>
+  <li>✅ Squeezy ketchup & mustard bottles (because it’s not a hotdog without them!)</li>
+  <li>✅ Handy trays for no-mess eating</li>
+  <li>✅ Fun basket plates</li>
+  <li>✅ A cheerful gingham tablecloth</li>
+  <li>✅ Utensils so you’re all set</li>
+  <li>✅ Diggity dog accessories</li>
+    </ul>
+  </div>
+
+  <div id="HotDogSteamer-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="HotDog1.png" class="carousel-slide active" />
+      <img src="HotDog2.png" class="carousel-slide" />
+      <img src="HotDog3.png" class="carousel-slide" />
+      <img src="HotDog4.png" class="carousel-slide" />
+      <img src="HotDog5.jpg" class="carousel-slide" />
+      <img src="HotDog6.jpg" class="carousel-slide" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
+</section>
+
+<style>
+  :root { --tab-accent: #ffd633; }
+
+  /* Tabs */
+  .tabs {
+    margin-top:2rem;
+    border-bottom:2px solid #ddd;
+    display:flex;
+    gap:1rem;
+  }
+  .tab-btn {
+    background:none;
+    border:none;
+    padding:0.8rem 1rem;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .tab-btn.active {
+    border-bottom:3px solid var(--tab-accent);
+    color:#333;
+  }
+  .tab-content.hidden { display:none !important; }
+
+  /* Carousel */
+  .carousel {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .carousel-slide {
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+  .carousel-slide.active { display: block; }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+</style>
+
+<script>
+  // Tabs for all routes
+  (function() {
+    const sections = document.querySelectorAll('.route');
+    sections.forEach(section => {
+      const tabs = section.querySelectorAll('.tab-btn');
+      const tabContents = section.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.add('hidden'));
+          tab.classList.add('active');
+          const contentId = `${section.id}-tab-${tab.dataset.tab}`;
+          const content = document.getElementById(contentId);
+          if (content) content.classList.remove('hidden');
+        });
+      });
+
+      const defaultTab = section.querySelector('.tab-btn[data-tab="desc"]');
+      if (defaultTab) defaultTab.click();
+    });
+  })();
+
+  // Carousel for all sections
+  (function() {
+    const sections = document.querySelectorAll('.route');
+    sections.forEach(section => {
+      const slides = section.querySelectorAll('.carousel-slide');
+      if (!slides.length) return;
+      let current = 0;
+      const prevBtn = section.querySelector('.carousel-btn.prev');
+      const nextBtn = section.querySelector('.carousel-btn.next');
+
+      function show(n) {
+        slides[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => show(current - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => show(current + 1));
+    });
+  })();
+</script>
+
+<!-- ===== EXTRAS list ===== -->
+<section class="route" data-route="#/extras" id="route-extras">
+
+<!-- Categories navigation -->
+  <div class="categories">
+    <a href="#/home" data-route="#/home">Home</a>
+    <a href="#/packages" data-route="#/packages">Packages</a>
+    <a href="#/bouncy-castles" data-route="#/bouncy-castles">Castles</a>
+    <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
+  </div>
+
+  <h1 class="route-title">Extras</h1>
+  <div class="grid cards">
+    <!-- Soft Play -->
+    <div class="card">
+      <img src="CardSoftPlay.jpg" alt="Soft Play" style="width:100%;border-radius:12px;"/>
+      <h3>Soft Play</h3>
+      <h4>From £80</h4>
+      <button class="btn" onclick="navigateTo('#/extras/soft-play')">Find out more</button>
+    </div>
+    <!-- Didi Cars -->
+    <div class="card">
+      <img src="CardDidiCars.png" alt="Didi Cars" style="width:100%;border-radius:12px;"/>
+      <h3>Didi Cars</h3>
+      <h4>From £30</h4>
+      <button class="btn" onclick="navigateTo('#/extras/didi-cars')">Find out more</button>
+    </div>
+    <!-- Giant Twister -->
+    <div class="card">
+      <img src="CardGiantTwister.jpg" alt="Giant Twister" style="width:100%;border-radius:12px;"/>
+      <h3>Giant Twister</h3>
+      <h4>From £20</h4>
+      <button class="btn" onclick="navigateTo('#/extras/giant-twister')">Find out more</button>
+    </div>
+    
+    <style>
+    	.categories {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  flex-wrap: wrap; /* wrap if too many buttons */
+  margin-bottom: 20px;
+}
+
+.categories a {
+  display: inline-block;
+  margin: 8px; 
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: bold;
+  color: #fff; 
+  background: #00cfff; 
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.categories a:hover {
+  background: #00a3cc; 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.categories a.active {
+  background: #008fb3; 
+}
+</style>
+    
+  </div>
+</section>
+
+<!-- ===== SoftPlay Details ===== -->
+<section class="route" data-route="#/extras/soft-play" id="SoftPlay">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardSoftPlay.jpg" alt="Soft Play" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">Soft Play £80</h1>
+  <p class="muted">A safe and fun soft play area perfect for toddlers and young kids at parties or events.</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Extras</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="SoftPlay-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Soft Play</strong> is perfectly designed for toddlers aged 0-2, our Soft Play set offers a safe, colourful, and stimulating environment for little ones to explore, climb, and crawl. Ideal for birthdays, playgroups, christenings, and indoor gatherings.</p>
+  </div>
+
+  <div id="SoftPlay-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ 17 Soft Play Shapes</li>
+      <li>✅ 500 Ball Pool Balls</li>
+      <li>✅ Modern White & Grey Colour Theme</li>
+      <li>✅ Safe for Crawling, Climbing & Exploring</li>
+      <li>✅ Soft Flooring Provided</li>
+      <li>✅ Perfect for Toddlers' Events</li>
+      <li>✅ Cleaned & Sanitised Before Every Hire</li>
+    </ul>
+  </div>
+
+  <div id="SoftPlay-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="SoftPlay1.png" class="carousel-slide active" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/extras"><- Back to Extras</a></p>
+</section>
+
+<!-- ===== Didi Cars Details ===== -->
+<section class="route" data-route="#/extras/didi-cars" id="DidiCars">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardDidiCars.png" alt="Didi Cars" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">Didi Cars £60</h1>
+  <p class="muted">Mini ride-on cars for kids to zoom around safely and have a blast at parties or events.</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Extras</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="DidiCars-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Didi Cars</strong> are a must-have for fun days, playdates, and parties – always attracting kids who love to zoom around! They’re simple to use, just wiggle the wheel to drive, and provide hours of active, giggly fun. Please note: adult supervision is recommended, and they’re meant for indoor or smooth outdoor surfaces.</p>
+  </div>
+
+  <div id="DidiCars-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+<li>✅ Fun for all ages</li>
+<li>✅ Perfect for fairs, birthdays & playdates</li>
+<li>✅ Recommended for indoor or smooth outdoor use</li>
+<li>✅ Easy wiggle-to-drive action</li>
+<li>✅ Sturdy wheels for safe zooming</li>
+<li>✅ Bright, colorful design kids love</li>
+<li>✅ Lightweight and easy to move</li>
+<li>✅ Encourages active play and coordination</li>
+<li>✅ Durable construction for hours of fun</li>
+<li>✅ Adult supervision recommended</li>
+    </ul>
+  </div>
+
+  <div id="DidiCars-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="DidiCars1.png" class="carousel-slide active" />
+      <img src="DidiCars2.png" class="carousel-slide" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/extras"><- Back to Extras</a></p>
+</section>
+
+<!-- ===== Giant Twister Details ===== -->
+<section class="route" data-route="#/extras/giant-twister" id="GiantTwister">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardGiantTwister.jpg" alt="Giant Twister" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">Giant Twister £50</h1>
+  <p class="muted">A classic party favourite in giant form! Gather your friends and test your balance, flexibility, and laughter levels. Who can stay standing the longest?</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Extras</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="GiantTwister-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Giant Twister</strong> adds a twist of fun to your event! This oversized version of the classic is perfect for parties, school fun days, or as an add-on to your inflatable hire. Players spin the dice and place hands or feet on colourful spots – the last one standing wins!</p>
+  </div>
+
+  <div id="GiantTwister-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+        <li>✅ Includes Giant Colour Mat</li>
+        <li>✅ Foam Dice Included</li>
+        <li>✅ Encourages Active Play</li>
+        <li>✅ Ideal for Small Spaces</li>
+        <li>✅ Perfect Add-On for Any Party</li>
+        <li>✅ Great for Groups</li>
+        <li>✅ Cleaned & Sanitised Before Every Hire</li>
+        <li>✅ Indoor or Outdoor Use</li>
+    </ul>
+  </div>
+
+  <div id="GiantTwister-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="GiantTwister1.png" class="carousel-slide active" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/extras"><- Back to Extras</a></p>
+</section>
+
+<!-- ===== Shared Styles + Script ===== -->
+<style>
+  :root { --tab-accent: #ffd633; }
+
+  /* Tabs */
+  .tabs {
+    margin-top:2rem;
+    border-bottom:2px solid #ddd;
+    display:flex;
+    gap:1rem;
+  }
+  .tab-btn {
+    background:none;
+    border:none;
+    padding:0.8rem 1rem;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .tab-btn.active {
+    border-bottom:3px solid var(--tab-accent);
+    color:#333;
+  }
+  .tab-content.hidden { display:none !important; }
+
+  /* Carousel */
+  .carousel {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .carousel-slide {
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+  .carousel-slide.active { display: block; }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+</style>
+
+<script>
+  // Tabs for all routes
+  (function() {
+    const sections = document.querySelectorAll('.route');
+    sections.forEach(section => {
+      const tabs = section.querySelectorAll('.tab-btn');
+      const tabContents = section.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.add('hidden'));
+          tab.classList.add('active');
+          const contentId = `${section.id}-tab-${tab.dataset.tab}`;
+          const content = document.getElementById(contentId);
+          if (content) content.classList.remove('hidden');
+        });
+      });
+
+      // Set default tab (Description)
+      const defaultTab = section.querySelector('.tab-btn[data-tab="desc"]');
+      if (defaultTab) defaultTab.click();
+    });
+  })();
+
+  // Carousel for all sections
+  (function() {
+    const sections = document.querySelectorAll('.route');
+    sections.forEach(section => {
+      const slides = section.querySelectorAll('.carousel-slide');
+      if (!slides.length) return;
+      let current = 0;
+      const prevBtn = section.querySelector('.carousel-btn.prev');
+      const nextBtn = section.querySelector('.carousel-btn.next');
+
+      function show(n) {
+        slides[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => show(current - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => show(current + 1));
+    });
+  })();
+</script>
+
+<section class="route package-section" data-route="#/packages" id="route-packages">
+  <style>
+    .package-section #pricing {padding-top: 10px;}
+
+    .package-section .castle-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .package-section .castle-toggle button {
+      padding: 0.6rem 2rem;
+      border: none;
+      background: #00bcd4; /* Cyan */
+      color: white;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .package-section .castle-toggle button.active,
+    .package-section .castle-toggle button:hover {
+      background: #607d8b; /* Grey */
+    }
+
+    .package-section .castle-set {display: none;}
+    .package-section .castle-set.active {display: block;}
+
+    /* CARD STYLING */
+    .package-section .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .package-section .card {
+      background: #fff;
+      border: 2px solid #eee;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+    .package-section .card:hover {
+      transform: translateY(-4px);
+    }
+    .package-section .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .package-section .card-content {
+      padding: 16px;
+    }
+    .package-section .card-content h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #00bcd4;
+    }
+    .package-section .card-content p {margin: 4px 0;}
+    .package-section .package-list {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+    .package-section .package-list li {
+      margin-bottom: 4px;
+      list-style: disc;
+    }
+    .package-section .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #607d8b;
+      margin-top: 8px;
+    }
+    .package-section .timestamp {
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+
+  <main class="wrapper">
+  	
+  <!-- Categories navigation -->
+  <div class="categories">
+    <a href="#/home" data-route="#/home">Home</a>
+    <a href="#/bouncy-castles" data-route="#/bouncy-castles">Castles</a>
+    <a href="#/extras" data-route="#/extras">Extras</a>
+    <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
+  </div>
+  
+    <section id="pricing">
+      <!-- Toggle Buttons -->
+      <div class="castle-toggle">
+        <button id="slideBtn" class="active" onclick="showCastle('slide')">Slide Castle</button>
+        <button id="discoBtn" onclick="showCastle('disco')">Disco Castle</button>
+        <button id="foodsBtn" onclick="showCastle('foods')">Fun Foods</button>
+      </div>
+
+      <!-- Slide Castle Packages -->
+      <div id="slide-castle" class="castle-set active">
+        <div class="grid">
+          <div class="card">
+            <img src="SlideCastleDeal1.png" alt="Slide Package 1">
+            <div class="card-content">
+              <h3>Slide Package 1 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Slide Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£190</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="SlideCastleDeal2.png" alt="Slide Package 2">
+            <div class="card-content">
+              <h3>Slide Package 2 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Disco Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£210</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="SlideCastleDeal3.png" alt="Slide Package 3">
+            <div class="card-content">
+              <h3>Slide Package 3 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Slide Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£230</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="SlideCastleDeal4.png" alt="Slide Package 4">
+            <div class="card-content">
+              <h3>Slide Package 4 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Slide Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£250</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
         </div>
-        <!-- New Scroll Indicator -->
-        <div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'});"></div>
       </div>
-    </section>
-    <section class="section fade-in">
-      <h2>Explore Our Categories</h2>
-      <div class="categories">
-        <a href="/BouncyCastles">Castles</a>
-        <a href="/Packages">Packages</a>
-        <a href="/FunFoods">Fun Foods</a>
-        <a href="/Extras">Extras</a>
-      </div>
-    </section>
-    <section class="features fade-in">
-      <div class="feature">
-        <div class="feature-icon">📦</div>
-        <h3>Choose & Book</h3>
-        <p>Pick your favourite castle online easily.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🚚</div>
-        <h3>Delivery & Setup</h3>
-        <p>We deliver, set up, and handle safety checks.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🎉</div>
-        <h3>Enjoy The Fun</h3>
-        <p>Let the kids have fun while we handle the rest!</p>
-      </div>
-    </section>
-    <footer>&copy; 2025 Bouncin Llanelli. All Rights Reserved.</footer>
-    <script>
-      function toggleMenu() {
-        document.getElementById('sideMenu').classList.toggle('open');
-      }
-      const fadeElements = document.querySelectorAll('.fade-in');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.2
-      });
-      fadeElements.forEach(el => observer.observe(el));
-      window.addEventListener('load', () => {
-        document.body.classList.add('page-enter-active');
-      });
 
-      function createBalloon() {
-        const balloon = document.createElement('div');
-        balloon.classList.add('balloon');
-        const colors = ['#ff7eb9', '#4ea9ff', '#ffd166', '#90ee90', '#ffccff'];
-        balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-        balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
-        balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
-        document.body.appendChild(balloon);
-        balloon.addEventListener('animationend', () => balloon.remove());
-      }
-      setInterval(createBalloon, 800);
-      window.addEventListener("orientationchange", () => {
-        document.querySelectorAll('.balloon').forEach(balloon => {
-          // Reapply original percentage-based positions
-          const top = balloon.dataset.top || "20%";
-          const left = balloon.dataset.left || "15%";
-          balloon.style.top = top;
-          balloon.style.left = left;
-        });
-      });
-    </script>
-    
-    
-  </body>
+      <!-- Disco Castle Packages -->
+      <div id="disco-castle" class="castle-set">
+        <div class="grid">
+          <div class="card">
+            <img src="CardPackageDeal1.jpg" alt="Disco Package 1">
+            <div class="card-content">
+              <h3>Disco Package 1 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Disco Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£180</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="CardPackageDeal2.jpg" alt="Disco Package 2">
+            <div class="card-content">
+              <h3>Disco Package 2 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Disco Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£200</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="CardPackageDeal3.jpg" alt="Disco Package 3">
+            <div class="card-content">
+              <h3>Disco Package 3 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Disco Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£220</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="CardPackageDeal4.jpg" alt="Disco Package 4">
+            <div class="card-content">
+              <h3>Disco Package 4 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Disco Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£240</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fun Foods Packages -->
+      <div id="foods-castle" class="castle-set">
+        <div class="grid">
+          <div class="card">
+            <img src="CardPackageDeal5.jpg" alt="Fun Food Package 1">
+            <div class="card-content">
+              <h3>Fun Food Package 1</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush Machine</li>
+                <li>Candy Floss Machine</li>
+              </ul>
+              <p class="price">£120</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="CardPackageDeal6.jpg" alt="Fun Food Package 2">
+            <div class="card-content">
+              <h3>Fun Food Package 2</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush Machine</li>
+                <li>Candy Floss Machine</li>
+              </ul>
+              <p class="price">£140</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function showCastle(type) {
+      document.querySelectorAll('.castle-set').forEach(set => set.classList.remove('active'));
+      document.querySelectorAll('.castle-toggle button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(type + '-castle').classList.add('active');
+      document.getElementById(type + 'Btn').classList.add('active');
+    }
+  </script>
+</section>
+
+      <!-- ===== 404 ===== -->
+      <section class="route" data-route="#/404" id="route-404">
+        <h1 class="route-title">Not found</h1>
+        <div class="panel">
+          <p class="muted">That section wasn’t found. Use the menu to continue.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Router + Menu JS -->
+  <script>
+  // ===== VARIABLES =====
+  const routes = Array.from(document.querySelectorAll('.route'));
+  const menuLinks = Array.from(document.querySelectorAll('#main-menu a'));
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('backdrop');
+
+  // Legacy support for old filenames
+  const legacyLinkMap = new Map([
+    ['BL.html', '#/home'],
+    ['index.html', '#/home'],
+    ['BouncyCastles.html', '#/bouncy-castles'],
+    ['BouncyCastle.html', '#/bouncy-castles/disco'],
+    ['FunFoods.html', '#/fun-foods']
+  ]);
+
+  // ===== NAVIGATION FUNCTIONS =====
+  function navigateTo(hash){
+    if(!hash) hash = '#/home';
+    if(!hash.startsWith('#/')) hash = '#/home';
+
+    if(location.hash !== hash){
+      location.hash = hash;
+    } else {
+      render(hash);
+    }
+  }
+
+  function setActiveMenu(hash){
+    menuLinks.forEach(a => a.classList.toggle('active', a.dataset.route === hash));
+  }
+
+  function showRoute(hash){
+    let found = false;
+    routes.forEach(route => {
+      const active = route.dataset.route === hash;
+      route.classList.toggle('active', active);
+      if(active) found = true;
+    });
+
+    if(!found){
+      routes.forEach(r => r.classList.remove('active'));
+      const notFound = document.querySelector('[data-route="#/404"]');
+      if(notFound) notFound.classList.add('active');
+    }
+  }
+
+  // ===== RENDER FUNCTION =====
+  function render(){
+    let hash = location.hash || '#/home';
+
+    // Handle legacy page query
+    const query = new URLSearchParams(location.search);
+    const pageParam = query.get('page');
+    if(pageParam && legacyLinkMap.has(pageParam)) hash = legacyLinkMap.get(pageParam);
+
+    setActiveMenu(hash);
+    showRoute(hash);
+
+    // Scroll to top whenever switching tabs
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ===== EVENT LISTENERS =====
+  // Handle all anchor clicks (legacy + menu links)
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if(!a) return;
+
+    const href = a.getAttribute('href') || '';
+    const filename = href.split('?')[0].split('#')[0];
+
+    // Legacy support
+    if(legacyLinkMap.has(filename)){
+      e.preventDefault();
+      navigateTo(legacyLinkMap.get(filename));
+    }
+
+    // Close sidebar on mobile after clicking any link
+    if(window.innerWidth <= 900){
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('show');
+    }
+  });
+
+  // Toggle sidebar (hamburger menu)
+  document.getElementById('menu-toggle').addEventListener('click', ()=>{
+    sidebar.classList.toggle('open');
+    backdrop.classList.toggle('show');
+  });
+
+  // Click backdrop to close sidebar on mobile
+  backdrop.addEventListener('click', ()=>{
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('show');
+  });
+
+  // Listen for hash changes (route changes)
+  window.addEventListener('hashchange', render);
+  window.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
 </html>
