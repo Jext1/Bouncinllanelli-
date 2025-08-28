@@ -484,7 +484,7 @@
 
   <div id="route-castle-disco-tab-features" class="tab-content hidden" style="padding:1rem 0;">
     <h3>Features & Specifications</h3>
-    <p><strong>Size:</strong> 15×11 ft <br> <strong>Theme:</strong> Disco</p>
+    <p><strong>Size:</strong> 15×11 ft <br> <strong>Hight:</strong> 9.5ft <br> <strong>Theme:</strong> Disco</p></p>
     <ul style="list-style:none; padding:0; margin:0;">
       <li>✅ Built-in disco lights</li>
       <li>✅ Music system included</li>
@@ -537,7 +537,7 @@
 
   <div id="route-castle-BuildingBlocks-tab-features" class="tab-content hidden" style="padding:1rem 0;">
     <h3>Features & Specifications</h3>
-    <p><strong>Size:</strong> 15×12 ft <br> <strong>Theme:</strong> Building Blocks</p>
+    <p><strong>Size:</strong> 15×12 ft <br> <strong>Hight:</strong> 10.5ft <br> <strong>Theme:</strong> Building Bircks</p>
     <ul style="list-style:none; padding:0; margin:0;">
       <li>✅ Fun and colorful block theme</li>
       <li>✅ Large bouncing area</li>
@@ -596,7 +596,7 @@
 
   <div id="route-castle-PrincessSlide-tab-features" class="tab-content hidden" style="padding:1rem 0;">
     <h3>Features & Specifications</h3>
-    <p><strong>Size:</strong> 13×18 ft <br> <strong>Theme:</strong> Princess</p>
+    <p><strong>Size:</strong> 13×18 ft <br> <strong>Hight:</strong> 9.7ft <br> <strong>Theme:</strong> Princess</p>
     <ul style="list-style:none; padding:0; margin:0;">
       <li>✅ Built-in slide for extra fun</li>
       <li>✅ Princess graphics and colours</li>
@@ -655,7 +655,7 @@
 
   <div id="route-castle-rainbowdisco-tab-features" class="tab-content hidden" style="padding:1rem 0;">
     <h3>Features & Specifications</h3>
-    <p><strong>Size:</strong> 15×15 ft <br> <strong>Theme:</strong> Disco</p>
+    <p><strong>Size:</strong> 15×15 ft <br> <strong>Hight:</strong> 11.8ft <br> <strong>Theme:</strong> Disco</p>
     <ul style="list-style:none; padding:0; margin:0;">
       <li>✅ Built-in disco lights</li>
       <li>✅ Music system included</li>
@@ -711,7 +711,7 @@
 
   <div id="route-castle-slide-tab-features" class="tab-content hidden" style="padding:1rem 0;">
     <h3>Features & Specifications</h3>
-    <p><strong>Size:</strong> 15 × 17 ft <br> <strong>Theme:</strong> Slide</p>
+    <p><strong>Size:</strong> 15 × 17 ft <br> <strong>Hight:</strong> 9.5ft <br> <strong>Theme:</strong> Changeable</p>
     <ul style="list-style:none; padding:0; margin:0;">
       <li>✅ Built-in Side slide</li>
       <li>✅ Large bounce area</li>
@@ -767,7 +767,7 @@
 
   <div id="route-fun-run-tab-features" class="tab-content hidden" style="padding:1rem 0;">
     <h3>Features & Specifications</h3>
-    <p><strong>Size:</strong> 26.9 × 9.2 × 9.8 ft <br> <strong>Theme:</strong> Obstacle / Slide</p>
+    <p><strong>Size:</strong> 26.9 × 9.2 × 9.8 ft <br> <strong>Hight:</strong> 9.8ft <br> <strong>Theme:</strong> Obstacle / Slide</p>
     <ul style="list-style:none; padding:0; margin:0;">
       <li>✅ Built-in slide</li>
       <li>✅ Obstacle course features</li>
@@ -1569,29 +1569,58 @@
 
 <section class="route package-section" data-route="#/packages" id="route-packages">
   <style>
-    .package-section #pricing {padding-top: 10px;}
-
     .package-section .castle-toggle {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-    .package-section .castle-toggle button {
-      padding: 0.6rem 2rem;
-      border: none;
-      background: #00bcd4; /* Cyan */
-      color: white;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .package-section .castle-toggle button.active,
-    .package-section .castle-toggle button:hover {
-      background: #607d8b; /* Grey */
-    }
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.package-section .castle-toggle button {
+  padding: 0.7rem 2.2rem;
+  border: none;
+  background: #00bcd4; /* Cyan */
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.package-section .castle-toggle button:hover {
+  background: #0097a7; /* Darker cyan */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.package-section .castle-toggle button.active {
+  background: #607d8b; /* Grey */
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.package-section .castle-toggle button::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.package-section .castle-toggle button.active::after,
+.package-section .castle-toggle button:hover::after {
+  width: 50%;
+}
 
     .package-section .castle-set {display: none;}
     .package-section .castle-set.active {display: block;}
@@ -1663,22 +1692,25 @@
     <section id="pricing">
       <!-- Toggle Buttons -->
       <div class="castle-toggle">
-        <button id="slideBtn" class="active" onclick="showCastle('slide')">Slide Castle</button>
-        <button id="discoBtn" onclick="showCastle('disco')">Disco Castle</button>
+        <button id="discoBtn" onclick="showCastle('disco')">Blue Disco Castle</button>
+        <button id="BuildingBlockBtn" onclick="showCastle('buildingblock')">Building Block Castle</button>
+        <button id="slideBtn" class="active" onclick="showCastle('pslide')">Purple Slide Castle</button>
+        <button id="princessSlideBtn" onclick="showCastle('princessslide')">Princess Slide Castle</button>
+        <button id="funRunBtn" onclick="showCastle('funrun')">Fun Run</button>
         <button id="foodsBtn" onclick="showCastle('foods')">Fun Foods</button>
       </div>
 
-      <!-- Slide Castle Packages -->
-      <div id="slide-castle" class="castle-set active">
+      <!-- Purple Slide Castle Packages -->
+      <div id="pslide-castle" class="castle-set active">
         <div class="grid">
           <div class="card">
-            <img src="SlideCastleDeal1.png" alt="Slide Package 1">
+            <img src="PurpleSlideDeal1.png" alt="Purple Slide Package 1">
             <div class="card-content">
-              <h3>Slide Package 1 🎁</h3>
+              <h3>Purple Slide Package 1 🎁</h3>
               <p>Includes:</p>
               <ul class="package-list">
                 <li>10L Slush</li>
-                <li>Slide Castle</li>
+                <li>Purple Slide Castle</li>
                 <li>Candy Floss</li>
               </ul>
               <p class="price">£190</p>
@@ -1686,13 +1718,13 @@
             </div>
           </div>
           <div class="card">
-            <img src="SlideCastleDeal2.png" alt="Slide Package 2">
+            <img src="PurpleSlideDeal2.png" alt="Purple Slide Package 2">
             <div class="card-content">
-              <h3>Slide Package 2 🎁</h3>
+              <h3>Purple Slide Package 2 🎁</h3>
               <p>Includes:</p>
               <ul class="package-list">
                 <li>20L Slush</li>
-                <li>Disco Castle</li>
+                <li>Purple Slide Castle</li>
                 <li>Candy Floss</li>
               </ul>
               <p class="price">£210</p>
@@ -1700,13 +1732,13 @@
             </div>
           </div>
           <div class="card">
-            <img src="SlideCastleDeal3.png" alt="Slide Package 3">
+            <img src="PurpleSlideDeal3.png" alt="Purple Slide Package 3">
             <div class="card-content">
-              <h3>Slide Package 3 🎁</h3>
+              <h3>Purple Slide Package 3 🎁</h3>
               <p>Includes:</p>
               <ul class="package-list">
                 <li>10L Slush</li>
-                <li>Slide Castle</li>
+                <li>Purple Slide Castle</li>
                 <li>Candy Floss</li>
                 <li>Soft Play</li>
               </ul>
@@ -1715,17 +1747,81 @@
             </div>
           </div>
           <div class="card">
-            <img src="SlideCastleDeal4.png" alt="Slide Package 4">
+            <img src="PurpleSlideDeal4.png" alt="Purple Slide Package 4">
             <div class="card-content">
-              <h3>Slide Package 4 🎁</h3>
+              <h3>Purple Slide Package 4 🎁</h3>
               <p>Includes:</p>
               <ul class="package-list">
                 <li>20L Slush</li>
-                <li>Slide Castle</li>
+                <li>Purple Slide Castle</li>
                 <li>Candy Floss</li>
                 <li>Soft Play</li>
               </ul>
               <p class="price">£250</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Building Block Castle Packages -->
+      <div id="buildingblock-castle" class="castle-set">
+        <div class="grid">
+          <div class="card">
+            <img src="BuildingBrickDeal1.png" alt="Building Block Package 1">
+            <div class="card-content">
+              <h3>Building Block Package 1 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Building Block Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£180</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="BuildingBrickDeal2.png" alt="Building Block Package 2">
+            <div class="card-content">
+              <h3>Building Block Package 2 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Building Block Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£200</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="BuildingBrickDeal3.png" alt="Building Block Package 3">
+            <div class="card-content">
+              <h3>Building Block Package 3 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Building Block Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£220</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="BuildingBrickDeal4.png" alt="Building Block Package 4">
+            <div class="card-content">
+              <h3>Building Block Package 4 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Building Block Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£240</p>
               <div class="timestamp">4 Hours</div>
             </div>
           </div>
@@ -1736,7 +1832,7 @@
       <div id="disco-castle" class="castle-set">
         <div class="grid">
           <div class="card">
-            <img src="CardPackageDeal1.jpg" alt="Disco Package 1">
+            <img src="BlueDiscoDeal1.png" alt="Disco Package 1">
             <div class="card-content">
               <h3>Disco Package 1 🎁</h3>
               <p>Includes:</p>
@@ -1750,7 +1846,7 @@
             </div>
           </div>
           <div class="card">
-            <img src="CardPackageDeal2.jpg" alt="Disco Package 2">
+            <img src="BlueDiscoDeal2.png" alt="Disco Package 2">
             <div class="card-content">
               <h3>Disco Package 2 🎁</h3>
               <p>Includes:</p>
@@ -1764,7 +1860,7 @@
             </div>
           </div>
           <div class="card">
-            <img src="CardPackageDeal3.jpg" alt="Disco Package 3">
+            <img src="BlueDiscoDeal3.png" alt="Disco Package 3">
             <div class="card-content">
               <h3>Disco Package 3 🎁</h3>
               <p>Includes:</p>
@@ -1779,7 +1875,7 @@
             </div>
           </div>
           <div class="card">
-            <img src="CardPackageDeal4.jpg" alt="Disco Package 4">
+            <img src="BlueDiscoDeal4.png" alt="Disco Package 4">
             <div class="card-content">
               <h3>Disco Package 4 🎁</h3>
               <p>Includes:</p>
@@ -1796,13 +1892,154 @@
         </div>
       </div>
 
+      <!-- Fun Run Packages -->
+      <div id="funrun-castle" class="castle-set">
+        <div class="grid">
+          <div class="card">
+            <img src="FunRunDeal1.png" alt="Fun Run Package 1">
+            <div class="card-content">
+              <h3>Fun Run Package 1 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Fun Run Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£220</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="FunRunDeal2.png" alt="Fun Run Package 2">
+            <div class="card-content">
+              <h3>Fun Run Package 2 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Fun Run Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£240</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="FunRunDeal3.png" alt="Fun Run Package 3">
+            <div class="card-content">
+              <h3>Fun Run Package 3 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Fun Run Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£260</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="FunRunDeal4.png" alt="Fun Run Package 3">
+            <div class="card-content">
+              <h3>Fun Run Package 4 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Fun Run Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£280</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="FunRunDeal5.png" alt="Fun Run Package 3">
+            <div class="card-content">
+              <h3>Fun Run Package 5 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>Fun Run Castle</li>
+                <li>Rainbow Disco Castle</li>
+              </ul>
+              <p class="price">£230</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Princess Slide Castle Packages -->
+      <div id="princessslide-castle" class="castle-set">
+        <div class="grid">
+          <div class="card">
+            <img src="PinkSlideDeal1.png" alt="Princess Slide Package 1">
+            <div class="card-content">
+              <h3>Princess Slide Package 1 👑</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Princess Slide Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£200</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="PinkSlideDeal2.png" alt="Princess Slide Package 2">
+            <div class="card-content">
+              <h3>Princess Slide Package 2 👑</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Princess Slide Castle</li>
+                <li>Candy Floss</li>
+              </ul>
+              <p class="price">£220</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="PinkSlideDeal3.png" alt="Princess Slide Package 3">
+            <div class="card-content">
+              <h3>Princess Slide Package 3 👑</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>10L Slush</li>
+                <li>Princess Slide Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£240</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="PinkSlideDeal4.png" alt="Princess Slide Package 3">
+            <div class="card-content">
+              <h3>Princess Slide Package 4 👑</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>20L Slush</li>
+                <li>Princess Slide Castle</li>
+                <li>Candy Floss</li>
+                <li>Soft Play</li>
+              </ul>
+              <p class="price">£240</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Fun Foods Packages -->
       <div id="foods-castle" class="castle-set">
         <div class="grid">
           <div class="card">
             <img src="CardPackageDeal5.jpg" alt="Fun Food Package 1">
             <div class="card-content">
-              <h3>Fun Food Package 1</h3>
+              <h3>Fun Food Package 1 🍭</h3>
               <p>Includes:</p>
               <ul class="package-list">
                 <li>10L Slush Machine</li>
@@ -1815,7 +2052,7 @@
           <div class="card">
             <img src="CardPackageDeal6.jpg" alt="Fun Food Package 2">
             <div class="card-content">
-              <h3>Fun Food Package 2</h3>
+              <h3>Fun Food Package 2 🍭</h3>
               <p>Includes:</p>
               <ul class="package-list">
                 <li>20L Slush Machine</li>
