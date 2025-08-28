@@ -186,6 +186,7 @@
         <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
         <a href="#/extras" data-route="#/extras">Extras</a>
         <a href="#/packages" data-route="#/packages">Packages</a>
+        <a href="#/more-info" data-route="#/more-info">More Info</a>
       </nav>
     </aside>
 
@@ -219,8 +220,17 @@
       text-align: center; padding: 2rem; position: relative; overflow: hidden;
     }
     #route-home .hero-overlay { position: relative; z-index: 1; color:white; animation: float 4s ease-in-out infinite; max-width: 90%; }
-    #route-home .hero-overlay h1 { font-family: 'Poppins', sans-serif; font-size: 4rem; color:#ff7eb9; text-shadow: 3px 3px #0a2e6f; margin-bottom: 1rem; }
-    #route-home .hero-overlay p { font-size:1.6rem; margin-bottom: 2rem; }
+    #route-home .hero-overlay h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color:#ff7eb9;
+  text-shadow: 3px 3px #0a2e6f;
+  margin-bottom: 1rem;
+}
+#route-home .hero-overlay p {
+  font-size: clamp(1rem, 4vw, 1.6rem);
+  margin-bottom: 2rem;
+}
     #route-home .cta-buttons a {
       background:#4ea9ff; color:white; padding:1rem 2rem; border-radius:50px; font-size:1.3rem;
       text-decoration:none; display:inline-block; margin:0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -257,6 +267,32 @@
     /* Fade-in */
     #route-home .fade-in { opacity:0; transform:translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     #route-home .fade-in.visible { opacity:1; transform:translateY(0); }
+    
+    /* PIPA Badge */
+#route-home .pipa-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+#route-home .pipa-badge img {
+  width: 80px;   /* adjust size here */
+  height: auto;
+  border-radius: 10px; /* optional rounded edges */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* optional shadow */
+}
+    
+    @media (max-width: 600px) {
+  #route-home .cta-buttons a {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0.5rem auto;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+}
   </style>
 
   <!-- Side Menu -->
@@ -270,17 +306,22 @@
   </div>
 
   <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-overlay fade-in">
-      <h1>Bouncin' Llanelli</h1>
-      <p>Making Kids Parties Bouncin'</p>
-      <div class="cta-buttons">
-        <a href="tel:+447496177130">Contact Us</a>
-        <a href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now</a>
-      </div>
-      <div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior:'smooth'});">▼</div>
+<section class="hero-section">
+  <!-- PIPA Badge -->
+  <div class="pipa-badge">
+    <img src="pipa-badge.png" alt="PIPA Safety Tested" />
+  </div>
+
+  <div class="hero-overlay fade-in">
+    <h1>Bouncin' Llanelli</h1>
+    <p>Making Kids Parties Bouncin'</p>
+    <div class="cta-buttons">
+      <a href="tel:+447496177130">Contact Us</a>
+      <a href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now</a>
     </div>
-  </section>
+    <div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior:'smooth'});">▼</div>
+  </div>
+</section>
 
   <!-- Categories Section -->
   <section class="section fade-in">
@@ -2075,6 +2116,44 @@
       document.getElementById(type + 'Btn').classList.add('active');
     }
   </script>
+</section>
+
+<section class="route" data-route="#/more-info" id="route-more-info">
+  <div class="content">
+    
+    <!-- About Us -->
+    <div class="panel">
+      <h2 class="route-title">🎉 About Us</h2>
+      <img src="BouncinLlanelliLogo.png" 
+           alt="Bouncy Castle Fun" 
+           style="width:100%; border-radius:12px; margin-bottom:1px;">
+      <p>
+        We bring the fun straight to your doorstep! Whether it’s a birthday party, community event, or just a reason to bounce,
+        <strong>Bouncin Llanelli</strong> is here to make your day unforgettable with hassle-free inflatable hire and top-notch service.
+      </p>
+    </div>
+
+    <!-- How It Works -->
+    <div class="panel" style="margin-top:20px;">
+      <h2 class="route-title">⚡ How It Works</h2>
+      <ul style="margin-left: 15px; list-style-type: none; padding-left: 0;">
+        <li>✅ <strong>Step 1:</strong> Contact us to confirm your booking details (date, location, and duration).</li>
+        <li>💳 <strong>Step 2:</strong> Secure your booking with just a £20 deposit.</li>
+        <li>🚚 <strong>Step 3:</strong> Sit back while we deliver and set up the equipment at your chosen location.</li>
+        <li>🎈 <strong>Step 4:</strong> When the fun is over, we’ll return to collect everything — stress-free!</li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="panel" style="margin-top:20px;">
+      <h2 class="route-title">📞 Contact Us</h2>
+      <p>Have questions or ready to book? We’re just a message or a phone call away:</p>
+      <p><strong>Email:</strong> <a href="mailto:BouncinLlanelli@gmail.com" style="color: #007bff; text-decoration: underline;">BouncinLlanelli@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+447496177130" style="color: #007bff; text-decoration: underline;">07496 177130</a></p>
+      <p><strong>Facebook:</strong> <a href="https://www.facebook.com/share/1C875JN9h4/" target="_blank" style="color: #007bff; text-decoration: underline;">Bouncin Llanelli</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/message/HQ44EEHYC6E2C1" style="color: #007bff; text-decoration: underline;">07496 177130</a></p>
+    </div>
+  </div>
 </section>
 
       <!-- ===== 404 ===== -->
