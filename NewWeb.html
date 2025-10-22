@@ -1,0 +1,466 @@
+<!-- Save as: NewWeb.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bouncin' Llanelli — New Experience</title>
+
+  <style>
+    :root{
+      --bg: linear-gradient(180deg,#fff0fb 0%, #f0fbff 100%);
+      --card: #fff;
+      --muted: #6b6f7a;
+      --accent: #2eb3ff;
+      --accent-2: #ff6ec7;
+      --radius: 14px;
+      --shadow-sm: 0 6px 18px rgba(12,18,30,.08);
+      --shadow-lg: 0 18px 45px rgba(12,18,30,.12);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#15202b;
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+
+    header{
+      height:68px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 18px;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter:blur(6px);
+      position:sticky;top:0;z-index:100;
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#08304a}
+    .brand img{height:40px;width:auto;display:block}
+
+    .layout{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      min-height:calc(100vh - 68px);
+    }
+
+    /* Sidebar */
+    .sidebar{
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(8px);
+      border-right:1px solid rgba(0,0,0,0.05);
+      padding:18px;
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .tab-btn{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:10px;
+      background:transparent;border:none;
+      font-weight:600;font-size:1rem;color:var(--muted);
+      cursor:pointer;transition:.25s;
+      text-align:left;
+    }
+    .tab-btn:hover{background:rgba(46,179,255,0.08);color:#0b3f66}
+    .tab-btn.active{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;box-shadow:var(--shadow-sm);
+    }
+
+    /* Content area */
+    main{
+      padding:24px;overflow-y:auto;
+    }
+
+    section.tab-content, section.route{
+      display:none;
+      animation:fadeIn .45s ease forwards;
+    }
+    section.tab-content.active, section.route.active{
+      display:block;
+    }
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    h1,h2,h3{margin-top:0}
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:var(--shadow-sm);
+      transition:transform .25s ease, box-shadow .25s;
+      cursor:pointer;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+    .price{color:var(--accent);font-weight:700}
+
+    /* Responsive */
+    @media(max-width:800px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{flex-direction:row;overflow-x:auto;position:sticky;top:68px;border-right:none;border-bottom:1px solid rgba(0,0,0,0.05)}
+      .tab-btn{flex:1;justify-content:center;white-space:nowrap}
+    }
+
+    /* Booking modal */
+    .modal{position:fixed;inset:0;display:grid;place-items:center;background:rgba(6,12,28,.45);z-index:1500;opacity:0;pointer-events:none;transition:opacity .2s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .dialog{background:var(--card);border-radius:14px;padding:18px;box-shadow:var(--shadow-lg);width:90%;max-width:500px}
+    .form-row{display:flex;gap:10px;margin-bottom:10px}
+    .form-row input, .form-row select{flex:1;padding:10px;border-radius:10px;border:1px solid #eef2f6}
+    .btn-cta{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;border:none;padding:10px 14px;border-radius:12px;
+      font-weight:700;cursor:pointer;
+    }
+    .ghost-btn{border:2px solid rgba(11,63,102,.06);padding:10px 14px;border-radius:12px;background:transparent;cursor:pointer}
+
+    /* Hero + Poem */
+    .hero{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      background:linear-gradient(135deg,#f9e6ff 0%, #e0f6ff 100%);
+      border-radius:20px;
+      padding:40px 30px;
+      box-shadow:var(--shadow-lg);
+      margin-bottom:24px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-text{max-width:480px;z-index:1;}
+    .hero h1{
+      font-size:2.2rem;
+      margin-bottom:10px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero .tagline{
+      font-size:1.15rem;
+      color:#0b3f66;
+      margin-bottom:18px;
+    }
+    .hero-img{
+      width:320px;
+      border-radius:18px;
+      animation:float 4s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .poem-card{
+      background:var(--card);
+      border-radius:16px;
+      padding:24px;
+      box-shadow:var(--shadow-sm);
+      font-size:1.1rem;
+      line-height:1.7;
+      text-align:center;
+      margin-top:12px;
+      transition:transform .3s ease;
+    }
+    .poem-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .features .feature{text-align:center;padding:20px;}
+    .features .emoji{font-size:2rem;margin-bottom:8px;}
+    
+    .card h3,
+.card p,
+.card .price {
+  padding: 8px 10px 0 10px;
+  margin: 0;
+}
+
+.card .price {
+  padding-bottom: 10px;
+  display: block;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli Logo">
+      Bouncin' Llanelli
+    </div>
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <button class="tab-btn active" data-tab="home">🪶 home</button>
+      <button class="tab-btn" data-tab="castles">🏰 Castles</button>
+      <button class="tab-btn" data-tab="funfoods">🍧 Fun Foods</button>
+      <button class="tab-btn" data-tab="extras">🎈 Extras</button>
+      <button class="tab-btn" data-tab="packages">🎁 Packages</button>
+    </nav>
+
+    <main>
+      <!-- HOME -->
+      <section id="tab-home" class="tab-content active">
+        <div class="hero">
+          <div class="hero-text">
+            <h1>Where Every Bounce Sparks a Smile 🎈</h1>
+            <p class="tagline">Bringing joy, laughter, and color to every Carmarthenshire celebration!</p>
+            <button class="btn-cta" onclick="openBooking()" style="margin-bottom:24px;">
+  Book Your Fun Day
+</button>
+          </div>
+          <img src="HomePageCastleImg.jpg" alt="Kids jumping on castle" class="hero-img">
+        </div>
+
+        <div class="poem-card">
+          <p>
+            Where laughter lifts and castles rise,<br>
+            Beneath bright Carmarthenshire skies.<br>
+            With colors dancing, music loud,<br>
+            We bring the joy that stirs a crowd!<br><br>
+            From tots to teens, we’ll make it shine —<br>
+            Every party, every time.<br>
+            So bounce, giggle, and have your fun,<br>
+            Bouncin’ Llanelli — second to none! 🎉
+          </p>
+        </div>
+        
+        <h2 style="margin-top:40px;text-align:center;">How It Works</h2>
+  <div class="grid features">
+    <div class="card feature">
+      <div class="emoji">🛡️</div>
+      <h3>Choose & Book</h3>
+      <p>Pick your favourite castle online easily.</p>
+    </div>
+    <div class="card feature">
+      <div class="emoji">🚚</div>
+      <h3>Delivery & Setup</h3>
+      <p>We deliver, set up, and handle safety checks.</p>
+    </div>
+    <div class="card feature">
+      <div class="emoji">🎉</div>
+      <h3>Enjoy The Fun</h3>
+      <p>Let the kids have fun while we handle the rest!</p>
+    </div>
+  </div>
+      </section>
+
+      <!-- CASTLES -->
+      <section id="tab-castles" class="tab-content">
+  <h2>Bouncy Castles</h2>
+  <div class="grid">
+    <div class="card" onclick="showCastleDetail('disco')">
+      <img src="CardDiscoCastle.png" alt="Disco Castle" style="width:100%;border-radius:10px">
+      <h3>Blue Disco Castle</h3>
+      <div class="price">£100</div>
+    </div>
+
+    <div class="card" onclick="showCastleDetail('buildingblock')">
+      <img src="CardBuildingBlocks.png" alt="Building Blocks Castle" style="width:100%;border-radius:10px">
+      <h3>Building Block Castle</h3>
+      <div class="price">£100</div>
+    </div>
+
+    <div class="card" onclick="showCastleDetail('funrun')">
+      <img src="CardFunRun.png" alt="Fun Run" style="width:100%;border-radius:10px">
+      <h3>Fun Run</h3>
+      <div class="price">£150</div>
+    </div>
+  </div>
+</section>
+
+      <!-- FUN FOODS -->
+      <section id="tab-funfoods" class="tab-content">
+        <h2>Fun Foods</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="Card20LSlushMachine.png" alt="20L Slush Machine" style="width:100%;border-radius:10px">
+            <h3>20L Slush Machine</h3>
+            <div class="price">£100</div>
+          </div>
+          <div class="card">
+            <img src="Card10LSlushMachine.png" alt="Slush Machine" style="width:100%;border-radius:10px">
+            <h3>10L Slush Machine</h3>
+            <div class="price">£75</div>
+          </div>
+          <div class="card">
+            <img src="CardCandyFloss.png" alt="Candy Floss" style="width:100%;border-radius:10px">
+            <h3>Candy Floss Machine</h3>
+            <div class="price">£60</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTRAS -->
+      <section id="tab-extras" class="tab-content">
+        <h2>Extras</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="CardSoftPlay.jpg" alt="Soft Play" style="width:100%;border-radius:10px">
+            <h3>Soft Play</h3>
+            <div class="price">£80</div>
+          </div>
+          <div class="card">
+            <img src="CardDidiCars.png" alt="DidiCars" style="width:100%;border-radius:10px">
+            <h3>Didi Cars</h3>
+            <div class="price">£30</div>
+          </div>
+          <div class="card">
+            <img src="CardGiantTwister.jpg" alt="GiantTwister" style="width:100%;border-radius:10px">
+            <h3>Giant Twister</h3>
+            <div class="price">£20</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PACKAGES -->
+      <section id="tab-packages" class="tab-content">
+        <h2>Party Packages</h2>
+        <div class="card">
+          <h3>Ultimate Party Combo</h3>
+          <p>Blue Disco Castle + Slush Machine + Candy Floss</p>
+          <div class="price">£200</div>
+        </div>
+        <div class="card">
+          <h3>Mini Party Bundle</h3>
+          <p>Building Block Castle + Candy Floss</p>
+          <div class="price">£150</div>
+        </div>
+      </section>
+
+      <!-- DISCO CASTLE DETAIL -->
+<section class="route" id="route-castle-disco" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <img src="CardDiscoCastle.png" alt="Disco Bouncy Castle"
+      style="max-width:100%; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 style="margin-bottom:8px;">Blue Disco Bouncy Castle</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£100</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Our <strong>Disco Bouncy Castle</strong> comes with built-in lights and a music system to keep the party going. Perfect for birthdays, schools, and community events.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+      <li>✅ Built-in disco lights</li>
+      <li>✅ Music system included</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
+  </div>
+</section>
+
+<!-- BUILDING BLOCK CASTLE DETAIL -->
+<section class="route" id="route-castle-buildingblock" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <img src="CardBuildingBlocks.png" alt="Building Blocks Castle"
+      style="max-width:100%; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 style="margin-bottom:8px;">Building Blocks Bouncy Castle</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£100</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Our <strong>Building Block Bouncy Castle</strong> is designed with colorful brick patterns that kids love. Perfect for birthdays, schools, and community events.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+      <li>✅ Fun and colorful block theme</li>
+      <li>✅ Large bouncing area</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
+  </div>
+</section>
+
+<!-- Fun Run CASTLE DETAIL -->
+<section class="route" id="route-castle-funrun" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <img src="CardFunRun.png" alt="Fun Run Castle"
+      style="max-width:100%; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 style="margin-bottom:8px;">Fun Run</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£150</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    The ultimate inflatable adventure! With slides, obstacles, and a bounce area, this <strong>Fun Run</strong> keeps kids entertained for hours.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+      <li>✅ Built-in slide</li>
+      <li>✅ Obstacle course features</li>
+      <li>✅ Bright & colorful design</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
+  </div>
+</section>
+
+  <!-- Booking Modal -->
+  <div class="modal" id="bookingModal">
+    <div class="dialog">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Quick Booking</h3>
+        <button onclick="closeBooking()">✕</button>
+      </div>
+      <form onsubmit="submitBooking(event)" style="margin-top:12px">
+        <div class="form-row">
+          <input required placeholder="Your name" id="bk-name" />
+          <input required placeholder="Phone or WhatsApp" id="bk-phone" />
+        </div>
+        <div class="form-row">
+          <select id="bk-item">
+            <option>Blue Disco Castle — £100</option>
+            <option>Building Block Castle — £100</option>
+            <option>Fun Run — £150</option>
+            <option>Ultimate Combo — £200</option>
+          </select>
+          <input type="date" id="bk-date" required />
+        </div>
+        <div style="text-align:right">
+          <button type="button" class="ghost-btn" onclick="closeBooking()">Cancel</button>
+          <button type="submit" class="btn-cta">Request Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer style="text-align:center;padding:20px;color:var(--muted)">
+    © <strong>Bouncin' Llanelli</strong> • Fun, safe, PIPA-tested inflatables.
+  </footer>
+
+  <script>
+    // Tab switcher
+    document.querySelectorAll('.tab-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('.tab-content, .route').forEach(sec=>sec.classList.remove('active'));
+        document.getElementById('tab-'+tab).classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+    });
+
+    // Show details
+    function showCastleDetail(id){
+      document.querySelectorAll('.tab-content, .route').forEach(sec=>sec.classList.remove('active'));
+      document.getElementById('route-castle-'+id).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function backToCastles(){
+      document.querySelectorAll('.tab-content, .route').forEach(sec=>sec.classList.remove('active'));
+      document.getElementById('tab-castles').classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // Booking modal
+    function openBooking(){document.getElementById('bookingModal').classList.add('open');}
+    function closeBooking(){document.getElementById('bookingModal').classList.remove('open');}
+    function submitBooking(e){
+      e.preventDefault();
+      closeBooking();
+      alert('Thanks! We received your booking request and will contact you shortly.');
+    }
+  </script>
+</body>
+</html>
