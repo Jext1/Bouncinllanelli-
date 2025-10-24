@@ -779,29 +779,87 @@ button:active {
   </footer>
 
   <script>
-    // Tab switcher
-    document.querySelectorAll('.tab-btn').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        const tab = btn.dataset.tab;
-        document.querySelectorAll('.tab-content, .route').forEach(sec=>sec.classList.remove('active'));
-        document.getElementById('tab-'+tab).classList.add('active');
-        window.scrollTo({top:0,behavior:'smooth'});
-      });
-    });
+  // Helper: activate a tab or route
+  function activateSection(id) {
+    document.querySelectorAll('.tab-content, .route').forEach(sec => sec.classList.remove('active'));
+    const el = document.getElementById(id);
+    if(el) el.classList.add('active');
 
-    // Show details
-    function showCastleDetail(id){
-      document.querySelectorAll('.tab-content, .route').forEach(sec=>sec.classList.remove('active'));
-      document.getElementById('route-castle-'+id).classList.add('active');
-      window.scrollTo({top:0,behavior:'smooth'});
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if(btn.dataset.tab === id.replace('tab-', '')) btn.classList.add('active');
+    });
+  }
+
+  // Tab switcher
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      activateSection('tab-' + tab);
+      history.pushState({page: tab}, '', '/' + (tab === 'home' ? '' : tab));
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // Castle detail
+  function showCastleDetail(id){
+    activateSection('route-castle-' + id);
+    history.pushState({castle: id}, '', '/castles/' + id);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function backToCastles(){
+    activateSection('tab-castles');
+    history.pushState({page: 'castles'}, '', '/castles');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // Handle browser back/forward
+  window.addEventListener('popstate', (event) => {
+    const state = event.state;
+    if(!state) {
+      // default home
+      activateSection('tab-home');
+      history.replaceState({page:'home'}, '', '/');
+    } else if(state.page) {
+      activateSection('tab-' + state.page);
+    } else if(state.castle) {
+      activateSection('route-castle-' + state.castle);
     }
-    function backToCastles(){
-      document.querySelectorAll('.tab-content, .route').forEach(sec=>sec.classList.remove('active'));
-      document.getElementById('tab-castles').classList.add('active');
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
+  });
+
+  // On page load, read the URL
+  function loadFromURL() {
+  let path = window.location.pathname;
+
+  // If running locally (file://), force home
+  if(path.startsWith("/storage") || path === "/") {
+    activateSection('tab-home');
+    history.replaceState({page:'home'}, '', '/');
+    return;
+  }
+
+  // Remove leading/trailing slash
+  path = path.replace(/^\/|\/$/g,'');
+
+  if(!path || path === '') {
+    activateSection('tab-home');
+    history.replaceState({page:'home'}, '', '/');
+  } else if(path.startsWith('castles/')) {
+    const castle = path.split('/')[1];
+    showCastleDetail(castle);
+    history.replaceState({castle: castle}, '', window.location.pathname);
+  } else if(path === 'castles') {
+    activateSection('tab-castles');
+    history.replaceState({page:'castles'}, '', '/castles');
+  } else {
+    activateSection('tab-' + path);
+    history.replaceState({page:path}, '', '/' + path);
+  }
+}
+
+  loadFromURL();
 
     // Booking modal
     function openBooking(){document.getElementById('bookingModal').classList.add('open');}
