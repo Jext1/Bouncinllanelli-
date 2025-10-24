@@ -120,18 +120,92 @@
     }
 
     /* Booking modal */
-    .modal{position:fixed;inset:0;display:grid;place-items:center;background:rgba(6,12,28,.45);z-index:1500;opacity:0;pointer-events:none;transition:opacity .2s}
-    .modal.open{opacity:1;pointer-events:auto}
-    .dialog{background:var(--card);border-radius:14px;padding:18px;box-shadow:var(--shadow-lg);width:90%;max-width:500px}
-    .form-row{display:flex;gap:10px;margin-bottom:10px}
-    .form-row input, .form-row select{flex:1;padding:10px;border-radius:10px;border:1px solid #eef2f6}
-    .btn-cta{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;border:none;padding:10px 14px;border-radius:12px;
-      font-weight:700;cursor:pointer;
-    }
-    .ghost-btn{border:2px solid rgba(11,63,102,.06);padding:10px 14px;border-radius:12px;background:transparent;cursor:pointer}
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 12, 28, 0.45);
+  z-index: 1500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  padding: 16px;
+}
 
+.modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dialog {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #eef2f6;
+  box-sizing: border-box;
+}
+
+.btn-cta {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ghost-btn {
+  border: 2px solid rgba(11, 63, 102, 0.06);
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .dialog {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .btn-cta,
+  .ghost-btn {
+    width: 48%;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+}
     /* Hero + Poem */
     .hero{
       display:flex;
@@ -303,7 +377,7 @@ button:active {
   Book Your Fun Day
 </button>
           </div>
-          <img src="HomePageCastleImg.jpg" alt="Kids jumping on castle" class="hero-img">
+          <img src="BouncinLlanelliLogo.png" alt="Kids jumping on castle" class="hero-img">
         </div>
 
         <div class="poem-card">
@@ -458,14 +532,14 @@ button:active {
     Our <strong>Disco Bouncy Castle</strong> comes with built-in lights and a music system to keep the party going. Perfect for birthdays, schools, and community events.
   </p>
   <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
-      <li>âœ… Built-in disco lights</li>
-      <li>âœ… Music system included</li>
-      <li>âœ… Mesh sides for visibility and safety</li>
-      <li>âœ… Cleaned & sanitized before every hire</li>
+      <li>✅ Built-in disco lights</li>
+      <li>✅ Music system included</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
   </ul>
   <div style="display:flex; gap:10px;">
     <button class="btn-cta" onclick="openBooking()">Book Now</button>
-    <button class="ghost-btn" onclick="backToCastles()">â† Back</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
   </div>
 </section>
 
@@ -473,7 +547,7 @@ button:active {
 <section class="route" id="route-castle-buildingblock" style="padding:24px;">
   <div style="text-align:center; margin-bottom:1.5rem;">
     <div class="carousel">
-  <button class="carousel-btn prev">â€¹</button>
+  <button class="carousel-btn prev">‹</button>
   <div class="carousel-track">
     <img src="CardBuildingBlocks.png" alt="Building Blocks Castle 1">
     <img src="BuildingBlocks1.png" alt="Building Blocks Castle 2">
@@ -483,7 +557,7 @@ button:active {
     <img src="BuildingBlocks5.png" alt="Building Blocks Castle 5">
     <img src="BuildingBlocks6.png" alt="Building Blocks Castle 6">
   </div>
-  <button class="carousel-btn next">â€º</button>
+  <button class="carousel-btn next">›</button>
 </div>
   </div>
   <h1 style="margin-bottom:8px;">Building Blocks Bouncy Castle</h1>
@@ -492,15 +566,15 @@ button:active {
     Our <strong>Building Block Bouncy Castle</strong> is designed with colorful brick patterns that kids love. Perfect for birthdays, schools, and community events.
   </p>
   <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
-      <li>âœ… Fun and colorful block theme</li>
-      <li>âœ… Large bouncing area</li>
-      <li>âœ… Mesh sides for visibility and safety</li>
-      <li>âœ… Cleaned & sanitized before every hire</li>
-      <li>âœ… Fully PIPA-tested for safety</li>
+      <li>✅ Fun and colorful block theme</li>
+      <li>✅ Large bouncing area</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
   </ul>
   <div style="display:flex; gap:10px;">
     <button class="btn-cta" onclick="openBooking()">Book Now</button>
-    <button class="ghost-btn" onclick="backToCastles()">â† Back</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
   </div>
 </section>
 
@@ -508,7 +582,7 @@ button:active {
 <section class="route" id="route-castle-funrun" style="padding:24px;">
   <div style="text-align:center; margin-bottom:1.5rem;">
     <div class="carousel">
-  <button class="carousel-btn prev">â€¹</button>
+  <button class="carousel-btn prev">‹</button>
   <div class="carousel-track">
     <img src="CardFunRun.png" alt="Fun Run Castle 1">
     <img src="FunRun1.png" alt="Fun Run Castle 2">
@@ -516,7 +590,7 @@ button:active {
     <img src="FunRun3.png" alt="Fun Run Castle 4">
     <img src="FunRun4.png" alt="Fun Run Castle 5">
   </div>
-  <button class="carousel-btn next">â€º</button>
+  <button class="carousel-btn next">›</button>
   </div>
   </div>
   <h1 style="margin-bottom:8px;">Fun Run</h1>
@@ -525,15 +599,15 @@ button:active {
     The ultimate inflatable adventure! With slides, obstacles, and a bounce area, this <strong>Fun Run</strong> keeps kids entertained for hours.
   </p>
   <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
-      <li>âœ… Built-in slide</li>
-      <li>âœ… Obstacle course features</li>
-      <li>âœ… Bright & colorful design</li>
-      <li>âœ… Cleaned & sanitized before every hire</li>
-      <li>âœ… Fully PIPA-tested for safety</li>
+      <li>✅ Built-in slide</li>
+      <li>✅ Obstacle course features</li>
+      <li>✅ Bright & colorful design</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
   </ul>
   <div style="display:flex; gap:10px;">
     <button class="btn-cta" onclick="openBooking()">Book Now</button>
-    <button class="ghost-btn" onclick="backToCastles()">â† Back</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
   </div>
 </section>
 
@@ -541,7 +615,7 @@ button:active {
 <section class="route" id="route-castle-dinoslide" style="padding:24px;">
   <div style="text-align:center; margin-bottom:1.5rem;">
     <div class="carousel">
-  <button class="carousel-btn prev">â€¹</button>
+  <button class="carousel-btn prev">‹</button>
   <div class="carousel-track">
     <img src="DinoSlideCastle.jpg" alt="Dino Castle 1">
     <img src="DinoSlide1.png" alt="Dino Slide Castle Image 1">
@@ -550,7 +624,7 @@ button:active {
       <img src="DinoSlide4.png" alt="Dino Slide Castle Image 4">
       <img src="DinoSlide5.png" alt="Dino Slide Castle Image 5">
   </div>
-  <button class="carousel-btn next">â€º</button>
+  <button class="carousel-btn next">›</button>
   </div>
   </div>
   <h1 style="margin-bottom:8px;">Dinosaur Slide</h1>
@@ -559,15 +633,15 @@ button:active {
     A roaring dinosaur-themed castle with an exciting slide, for extra fun. Perfect for birthdays, schools, and special celebrations.
   </p>
   <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
-      <li>âœ… Built-in slide for extra fun</li>
-      <li>âœ… Dinosaur graphics and colours</li>
-      <li>âœ… Mesh sides for visibility and safety</li>
-      <li>âœ… Cleaned & sanitized before every hire</li>
-      <li>âœ… Fully PIPA-tested for safety</li>
+      <li>✅ Built-in slide for extra fun</li>
+      <li>✅ Dinosaur graphics and colours</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
   </ul>
   <div style="display:flex; gap:10px;">
     <button class="btn-cta" onclick="openBooking()">Book Now</button>
-    <button class="ghost-btn" onclick="backToCastles()">â† Back</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
   </div>
 </section>
 
@@ -575,7 +649,7 @@ button:active {
 <section class="route" id="route-castle-purpleslide" style="padding:24px;">
   <div style="text-align:center; margin-bottom:1.5rem;">
     <div class="carousel">
-  <button class="carousel-btn prev">â€¹</button>
+  <button class="carousel-btn prev">‹</button>
   <div class="carousel-track">
     <img src="CardSlideCastle.png" alt="Purple Slide Castle 1">
     <img src="SlideCastle1.png" alt="Slide Castle Image 1">
@@ -583,7 +657,7 @@ button:active {
       <img src="SlideCastle3.png" alt="Slide Castle Image 3">
       <img src="SlideCastle4.png" alt="Slide Castle Image 4">
   </div>
-  <button class="carousel-btn next">â€º</button>
+  <button class="carousel-btn next">›</button>
   </div>
   </div>
   <h1 style="margin-bottom:8px;">Customizable Slide Bouncy Castle</h1>
@@ -592,14 +666,14 @@ button:active {
     Endless bouncing and sliding fun! Great for birthdays, schools, and community events.
   </p>
   <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
-      <li>âœ… Built-in Side slide</li>
-      <li>âœ… Large bounce area</li>
-      <li>âœ… Bright & colorful design</li>
-      <li>âœ… Cleaned & sanitized before every hire</li>
+      <li>✅ Built-in Side slide</li>
+      <li>✅ Large bounce area</li>
+      <li>✅ Bright & colorful design</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
   </ul>
   <div style="display:flex; gap:10px;">
     <button class="btn-cta" onclick="openBooking()">Book Now</button>
-    <button class="ghost-btn" onclick="backToCastles()">â† Back</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
   </div>
 </section>
 
@@ -607,7 +681,7 @@ button:active {
 <section class="route" id="route-castle-princessslide" style="padding:24px;">
   <div style="text-align:center; margin-bottom:1.5rem;">
     <div class="carousel">
-  <button class="carousel-btn prev">â€¹</button>
+  <button class="carousel-btn prev">‹</button>
   <div class="carousel-track">
     <img src="CardPrincessSlideCastle.png" alt="Princess Slide Castle 1">
     <img src="PrincessSlide1.png" alt="Princess Slide Castle Image 1">
@@ -617,7 +691,7 @@ button:active {
       <img src="PrincessSlide5.png" alt="Princess Slide Castle Image 5">
       <img src="PrincessSlide6.png" alt="Princess Slide Castle Image 6">
   </div>
-  <button class="carousel-btn next">â€º</button>
+  <button class="carousel-btn next">›</button>
   </div>
   </div>
   <h1 style="margin-bottom:8px;">Princess Slide Bouncy Castle</h1>
@@ -626,15 +700,15 @@ button:active {
     A magical princess-themed castle with an exciting slide. Perfect for birthdays, schools, and special celebrations.
   </p>
   <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
-      <li>âœ… Built-in slide for extra fun</li>
-      <li>âœ… Princess graphics and colours</li>
-      <li>âœ… Mesh sides for visibility and safety</li>
-      <li>âœ… Cleaned & sanitized before every hire</li>
-      <li>âœ… Fully PIPA-tested for safety</li>
+      <li>✅ Built-in slide for extra fun</li>
+      <li>✅ Princess graphics and colours</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
   </ul>
   <div style="display:flex; gap:10px;">
     <button class="btn-cta" onclick="openBooking()">Book Now</button>
-    <button class="ghost-btn" onclick="backToCastles()">â† Back</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
   </div>
 </section>
 
@@ -642,7 +716,7 @@ button:active {
 <section class="route" id="route-castle-rainbowdisco" style="padding:24px;">
   <div style="text-align:center; margin-bottom:1.5rem;">
     <div class="carousel">
-  <button class="carousel-btn prev">â€¹</button>
+  <button class="carousel-btn prev">‹</button>
   <div class="carousel-track">
     <img src="CardDiscoCastle15.png" alt="Rainbow Disco Castle 1">
     <img src="RainbowDisco1.png" alt="Rainbow Disco Castle Image 1">
@@ -650,7 +724,7 @@ button:active {
       <img src="RainbowDisco3.png" alt="Rainbow Disco Castle Image 3">
       <img src="RainbowDisco4.png" alt="Rainbow Disco Castle Image 4">
   </div>
-  <button class="carousel-btn next">â€º</button>
+  <button class="carousel-btn next">›</button>
   </div>
   </div>
   <h1 style="margin-bottom:8px;">Rainbow Disco Bouncy Castle</h1>
@@ -659,15 +733,15 @@ button:active {
     Lights, music, and endless bouncing fun! Great for parties, schools, and all celebrations.
   </p>
   <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
-      <li>âœ… Built-in disco lights</li>
-      <li>âœ… Music system included</li>
-      <li>âœ… Mesh sides for visibility and safety</li>
-      <li>âœ… Cleaned & sanitized before every hire</li>
-      <li>âœ… Fully PIPA-tested for safety</li>
+      <li>✅ Built-in disco lights</li>
+      <li>✅ Music system included</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
   </ul>
   <div style="display:flex; gap:10px;">
     <button class="btn-cta" onclick="openBooking()">Book Now</button>
-    <button class="ghost-btn" onclick="backToCastles()">â† Back</button>
+    <button class="ghost-btn" onclick="backToCastles()">← Back</button>
   </div>
 </section>
 
@@ -676,7 +750,7 @@ button:active {
     <div class="dialog">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <h3>Quick Booking</h3>
-        <button onclick="closeBooking()">âœ•</button>
+        <button onclick="closeBooking()">✕</button>
       </div>
       <form onsubmit="submitBooking(event)" style="margin-top:12px">
         <div class="form-row">
@@ -685,10 +759,10 @@ button:active {
         </div>
         <div class="form-row">
           <select id="bk-item">
-            <option>Blue Disco Castle â€” £100</option>
-            <option>Building Block Castle â€” £100</option>
-            <option>Fun Run â€” £150</option>
-            <option>Ultimate Combo â€” £200</option>
+            <option>Blue Disco Castle £100</option>
+            <option>Building Block Castle £100</option>
+            <option>Fun Run £150</option>
+            <option>Ultimate Combo £200</option>
           </select>
           <input type="date" id="bk-date" required />
         </div>
@@ -701,7 +775,7 @@ button:active {
   </div>
 
   <footer style="text-align:center;padding:20px;color:var(--muted)">
-    Â© <strong>Bouncin' Llanelli</strong> â€¢ Fun, safe, PIPA-tested inflatables. â€¢ Deposits Non-Refundable 
+    © <strong>Bouncin' Llanelli</strong> • Fun, safe, PIPA-tested inflatables. • Deposits Non-Refundable 
   </footer>
 
   <script>
