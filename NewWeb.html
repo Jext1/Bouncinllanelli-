@@ -377,7 +377,7 @@ button:active {
   Book Your Fun Day
 </button>
           </div>
-          <img src="BouncinLlanelliLogo.png" alt="Kids jumping on castle" class="hero-img">
+          <img src="images/Tessy.jpg" alt="Kids jumping on castle" class="hero-img">
         </div>
 
         <div class="poem-card">
@@ -465,21 +465,26 @@ button:active {
       <section id="tab-funfoods" class="tab-content">
         <h2>Fun Foods</h2>
         <div class="grid">
-          <div class="card">
-            <img src="Card20LSlushMachine.png" alt="20L Slush Machine" style="width:100%;border-radius:10px">
-            <h3>20L Slush Machine</h3>
-            <div class="price">£100</div>
-          </div>
-          <div class="card">
-            <img src="Card10LSlushMachine.png" alt="Slush Machine" style="width:100%;border-radius:10px">
-            <h3>10L Slush Machine</h3>
-            <div class="price">£75</div>
-          </div>
-          <div class="card">
-            <img src="CardCandyFloss.png" alt="Candy Floss" style="width:100%;border-radius:10px">
-            <h3>Candy Floss Machine</h3>
-            <div class="price">£60</div>
-          </div>
+          <div class="card" onclick="showFunfoodDetail('20LSlush')">
+           <img src="Card20LSlushMachine.png" alt="Slush Machine" style="width:100%;border-radius:10px">
+           <h3>20L Slush Machine</h3>
+           <div class="price">£100</div>
+         </div>
+        <div class="card" onclick="showFunfoodDetail('10LSlush')">
+           <img src="Card10LSlushMachine.png" alt="Slush Machine" style="width:100%;border-radius:10px">
+           <h3>10L Slush Machine</h3>
+           <div class="price">£75</div>
+         </div>
+          <div class="card" onclick="showFunfoodDetail('CandyFloss')">
+           <img src="CardCandyFloss.png" alt="Candy Floss" style="width:100%;border-radius:10px">
+           <h3>Candy Floss Machine</h3>
+           <div class="price">£60</div>
+         </div>
+         <div class="card" onclick="showFunfoodDetail('HotDog')">
+           <img src="CardHotDog.png" alt="HotDog" style="width:100%;border-radius:10px">
+           <h3>Hot Dog Steamer</h3>
+           <div class="price">£40</div>
+         </div>
         </div>
       </section>
 
@@ -745,6 +750,145 @@ button:active {
   </div>
 </section>
 
+<!-- 10L SLUSH DETAIL -->
+<section class="route" id="route-funfoods-10LSlush" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="Card10LSlushMachine.png" alt="10L Slush Machine">
+    <img src="10LSlush1.png" alt="10L Slush Machine 1">
+      <img src="10LSlush2.png" alt="10L Slush Machine 2">
+  </div>
+  <button class="carousel-btn next">›</button>
+  </div>
+  </div>
+  <h1 style="margin-bottom:8px;">10L Slush</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£75</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Perfect for smaller parties and events. Serve delicious, ice-cold slush in minutes.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+        <li>✅ Comes With 50 Cups</li>
+        <li>✅ Comes with 50 Straws</li>
+        <li>✅ Two 5L Flavours Included</li>
+        <li>✅ Glycerol-Free Syrup</li>
+        <li>✅ Kid-Friendly & Safe</li>
+        <li>✅ Optional extra flavours available</li>
+        <li>✅ Easy to use & clean</li>
+        <li>✅ Perfect for parties & events</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToFunfoods()">← Back</button>
+  </div>
+</section>
+
+<!-- 20L SLUSH DETAIL -->
+<section class="route" id="route-funfoods-20LSlush" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="Card20LSlushMachine.png" alt="20L Slush Machine">
+    <img src="20LSlush1.png" alt="20L Slush Machine 1">
+  </div>
+  <button class="carousel-btn next">›</button>
+  </div>
+  </div>
+  <h1 style="margin-bottom:8px;">20L Slush</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£100</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Perfect for medium-sized parties and events. Serve ice-cold slush for longer events.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+        <li>✅ Comes With 100 Cups</li>
+        <li>✅ Comes with 100 Straws</li>
+        <li>✅ Two 10L Flavours Included</li>
+        <li>✅ Glycerol-Free Syrup</li>
+        <li>✅ Kid-Friendly & Safe</li>
+        <li>✅ Optional extra flavours available</li>
+        <li>✅ Easy to use & clean</li>
+        <li>✅ Perfect for parties & events</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToFunfoods()">← Back</button>
+  </div>
+</section>
+
+<!-- CANDY FLOSS DETAIL -->
+<section class="route" id="route-funfoods-CandyFloss" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="CardCandyFloss.png" alt="Candy Floss">
+    <img src="CandyFloss1.png" alt="Candy Floss 1">
+      <img src="CandyFloss2.png" alt="Candy Floss 2">
+  </div>
+  <button class="carousel-btn next">›</button>
+  </div>
+  </div>
+  <h1 style="margin-bottom:8px;">Candy Floss</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£60</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    A fun treat for parties and events. Comes in two flavours, blue raspberry and strawberry.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+        <li>✅ Sitcks Included</li>
+      <li>✅ Fun for all ages</li>
+      <li>✅ 5★ food hygiene rating</li>
+      <li>✅ Optional extra flavours available</li>
+      <li>✅ Perfect for fairs, birthdays & schools</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToFunfoods()">← Back</button>
+  </div>
+</section>
+
+<!-- HOT DOG MACHINE DETAIL -->
+<section class="route" id="route-funfoods-HotDog" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="CardHotDog.png" alt="Hot Dog Steamer">
+    <img src="HotDog1.png" alt="Hot Dog Steamer 1">
+      <img src="HotDog2.png" alt="Hot Dog Steamer 2">
+      <img src="HotDog3.png" alt="Hot Dog Steamer 3">
+      <img src="HotDog4.png" alt="Hot Dog Steamer 4">
+      <img src="HotDog5.jpg" alt="Hot Dog Steamer 5">
+      <img src="HotDog6.jpg" alt="Hot Dog Steamer 6">
+  </div>
+  <button class="carousel-btn next">›</button>
+  </div>
+  </div>
+  <h1 style="margin-bottom:8px;">Hot Dog Steamer</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£40</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Perfect for parties or events. Quickly serve hot and delicious hot dogs.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+        <li>✅ Fun for all ages</li>
+  <li>✅ 5★ food hygiene rating</li>
+  <li>✅ Perfect for fairs, birthdays & schools</li>
+  <li>✅ A hotdog steamer (so everyone gets theirs hot & tasty!)</li>
+  <li>✅ A toppings bar ready to fill</li>
+  <li>✅ Squeezy ketchup & mustard bottles (because it’s not a hotdog without them!)</li>
+  <li>✅ Handy trays for no-mess eating</li>
+  <li>✅ Fun basket plates</li>
+  <li>✅ A cheerful gingham tablecloth</li>
+  <li>✅ Utensils so you’re all set</li>
+  <li>✅ Diggity dog accessories</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToFunfoods()">← Back</button>
+  </div>
+</section>
+
   <!-- Booking Modal -->
   <div class="modal" id="bookingModal">
     <div class="dialog">
@@ -779,97 +923,112 @@ button:active {
   </footer>
 
   <script>
-  // Helper: activate a tab or route
-  function activateSection(id) {
-    document.querySelectorAll('.tab-content, .route').forEach(sec => sec.classList.remove('active'));
-    const el = document.getElementById(id);
-    if(el) el.classList.add('active');
-
-    // Update tab buttons
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.classList.remove('active');
-      if(btn.dataset.tab === id.replace('tab-', '')) btn.classList.add('active');
-    });
-  }
-
-  // Tab switcher
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.dataset.tab;
-      activateSection('tab-' + tab);
-      history.pushState({page: tab}, '', '/' + (tab === 'home' ? '' : tab));
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
-  });
-
-  // Castle detail
-  function showCastleDetail(id){
-    activateSection('route-castle-' + id);
-    history.pushState({castle: id}, '', '/castles/' + id);
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  function backToCastles(){
-    activateSection('tab-castles');
-    history.pushState({page: 'castles'}, '', '/castles');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  // Handle browser back/forward
-  window.addEventListener('popstate', (event) => {
-    const state = event.state;
-    if(!state) {
-      // default home
-      activateSection('tab-home');
-      history.replaceState({page:'home'}, '', '/');
-    } else if(state.page) {
-      activateSection('tab-' + state.page);
-    } else if(state.castle) {
-      activateSection('route-castle-' + state.castle);
-    }
-  });
-
-  // On page load, read the URL
-  function loadFromURL() {
-  let path = window.location.pathname;
-
-  // If running locally (file://), force home
-  if(path.startsWith("/storage") || path === "/") {
-    activateSection('tab-home');
-    history.replaceState({page:'home'}, '', '/');
-    return;
-  }
-
-  // Remove leading/trailing slash
-  path = path.replace(/^\/|\/$/g,'');
-
-  if(!path || path === '') {
-    activateSection('tab-home');
-    history.replaceState({page:'home'}, '', '/');
-  } else if(path.startsWith('castles/')) {
-    const castle = path.split('/')[1];
-    showCastleDetail(castle);
-    history.replaceState({castle: castle}, '', window.location.pathname);
-  } else if(path === 'castles') {
-    activateSection('tab-castles');
-    history.replaceState({page:'castles'}, '', '/castles');
-  } else {
-    activateSection('tab-' + path);
-    history.replaceState({page:path}, '', '/' + path);
+// === General Visibility Control ===
+function showOnly(selector) {
+  document.querySelectorAll('section.tab-content, section.route')
+    .forEach(sec => sec.classList.remove('active'));
+  const el = document.querySelector(selector);
+  if (el) {
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
-  loadFromURL();
+// === Tab Activation ===
+function activateTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+  if (activeBtn) activeBtn.classList.add('active');
 
-    // Booking modal
-    function openBooking(){document.getElementById('bookingModal').classList.add('open');}
-    function closeBooking(){document.getElementById('bookingModal').classList.remove('open');}
-    function submitBooking(e){
-      e.preventDefault();
-      closeBooking();
-      alert('Thanks! We received your booking request and will contact you shortly.');
-    }
-    
+  showOnly(`#tab-${tab}`);
+  const newUrl = tab === 'home' ? '/' : '/' + tab;
+  history.pushState({ page: tab }, '', newUrl);
+}
+
+// === Setup Tab Clicks ===
+function setupTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      activateTab(tab);
+    });
+  });
+}
+
+// === Show Castle Details ===
+function showCastleDetail(id) {
+  showOnly(`#route-castle-${id}`);
+  history.pushState({ route: `castle-${id}` }, '', `/castles/${id}`);
+}
+
+// === Show Fun Food Details ===
+function showFunfoodDetail(id) {
+  showOnly(`#route-funfoods-${id}`);
+  history.pushState({ route: `funfoods-${id}` }, '', `/funfoods/${id}`);
+}
+
+// === Back Buttons ===
+function backToCastles() {
+  activateTab('castles');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function backToFunfoods() {
+  activateTab('funfoods');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// === Handle Deep Links on Page Load ===
+function loadFromURL() {
+  const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+  if (path.startsWith('castles/')) {
+    const id = path.split('/')[1];
+    showOnly(`#route-castle-${id}`);
+    history.replaceState({ route: `castle-${id}` }, '', `/castles/${id}`);
+  } else if (path.startsWith('funfoods/')) {
+    const id = path.split('/')[1];
+    showOnly(`#route-funfoods-${id}`);
+    history.replaceState({ route: `funfoods-${id}` }, '', `/funfoods/${id}`);
+  } else if (['home', 'castles', 'funfoods', 'extras', 'packages'].includes(path)) {
+    activateTab(path);
+  } else {
+    activateTab('home');
+  }
+}
+
+// === Browser Back/Forward ===
+window.addEventListener('popstate', e => {
+  const route = e.state?.route;
+  const page = e.state?.page;
+  if (route && route.startsWith('castle-')) {
+    const id = route.replace('castle-', '');
+    showOnly(`#route-castle-${id}`);
+  } else if (route && route.startsWith('funfoods-')) {
+    const id = route.replace('funfoods-', '');
+    showOnly(`#route-funfoods-${id}`);
+  } else {
+    activateTab(page || 'home');
+  }
+});
+
+// === Booking Modal ===
+function openBooking() {
+  document.getElementById('bookingModal').classList.add('open');
+}
+function closeBooking() {
+  document.getElementById('bookingModal').classList.remove('open');
+}
+function submitBooking(e) {
+  e.preventDefault();
+  const name = document.getElementById('bk-name').value.trim();
+  const phone = document.getElementById('bk-phone').value.trim();
+  const item = document.getElementById('bk-item').value;
+  const date = document.getElementById('bk-date').value;
+  if (!name || !phone || !date) return alert('Please fill all fields.');
+  alert(`Booking Requested:\n\nName: ${name}\nPhone: ${phone}\nItem: ${item}\nDate: ${date}`);
+  closeBooking();
+}
+
 document.querySelectorAll('.carousel').forEach(carousel => {
   const track = carousel.querySelector('.carousel-track');
   const slides = Array.from(track.children);
@@ -928,6 +1087,12 @@ document.querySelectorAll('.carousel').forEach(carousel => {
   });
 });
 
-  </script>
+// === Initialize Everything ===
+window.addEventListener('DOMContentLoaded', () => {
+  setupTabs();
+  setupCarousels();
+  loadFromURL();
+});
+</script>
 </body>
-    </html>
+  </html>
