@@ -335,6 +335,28 @@
   display: block;
 }
 
+html {
+  overflow-y: scroll;
+}
+
+/* Optional scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
 /* Disable blue highlight + focus ring for all buttons */
 button {
   outline: none !important;
