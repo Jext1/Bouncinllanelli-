@@ -493,17 +493,17 @@ button:active {
       <section id="tab-extras" class="tab-content">
         <h2>Extras</h2>
         <div class="grid">
-          <div class="card">
-            <img src="images/CardSoftPlay.jpg" alt="Soft Play" style="width:100%;border-radius:10px">
-            <h3>Soft Play</h3>
-            <div class="price">£80</div>
-          </div>
-          <div class="card">
+          <div class="card" onclick="showExtrasDetail('SoftPlay')">
+           <img src="images/CardSoftPlay.jpg" alt="Soft Play" style="width:100%;border-radius:10px">
+           <h3>Soft Play</h3>
+           <div class="price">£80</div>
+         </div>
+          <div class="card" onclick="showExtrasDetail('DidiCars')">
             <img src="images/CardDidiCars.png" alt="DidiCars" style="width:100%;border-radius:10px">
             <h3>Didi Cars</h3>
             <div class="price">£30</div>
           </div>
-          <div class="card">
+          <div class="card" onclick="showExtrasDetail('GiantTwister')">
             <img src="images/CardGiantTwister.jpg" alt="GiantTwister" style="width:100%;border-radius:10px">
             <h3>Giant Twister</h3>
             <div class="price">£20</div>
@@ -918,6 +918,137 @@ button:active {
   </div>
 </section>
 
+<!-- SOFT PLAY DETAIL -->
+<section class="route" id="route-extras-softplay" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="images/CardSoftPlay.jpg" alt="Soft Play">
+    <img src="images/SoftPlay1.png" alt="Soft Play 1">
+  </div>
+  <button class="carousel-btn next">›</button>
+  </div>
+  </div>
+  <h1 style="margin-bottom:8px;">Soft Play</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£80</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Our <strong>Soft Play</strong> is perfectly designed for toddlers aged 0-2, our Soft Play set offers a safe, colourful, and stimulating environment for little ones to explore, climb, and crawl. Ideal for birthdays, playgroups, christenings, and indoor gatherings.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+        <li>✅ 17 Soft Play Shapes</li>
+      <li>✅ 500 Ball Pool Balls</li>
+      <li>✅ Modern White & Grey Colour Theme</li>
+      <li>✅ Safe for Crawling, Climbing & Exploring</li>
+      <li>✅ Soft Flooring Provided</li>
+      <li>✅ Perfect for Toddlers' Events</li>
+      <li>✅ Cleaned & Sanitised Before Every Hire</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToExtras()">← Back</button>
+  </div>
+</section>
+
+  <!-- Booking Modal -->
+  <div class="modal" id="bookingModal">
+    <div class="dialog">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Quick Booking</h3>
+        <button onclick="closeBooking()">✕</button>
+      </div>
+      <form onsubmit="submitBooking(event)" style="margin-top:12px">
+        <div class="form-row">
+          <input required placeholder="Your name" id="bk-name" />
+          <input required placeholder="Phone or WhatsApp" id="bk-phone" />
+        </div>
+        <div class="form-row">
+          <select id="bk-item">
+            <option>Blue Disco Castle £100</option>
+            <option>Building Block Castle £100</option>
+            <option>Fun Run £150</option>
+            <option>Ultimate Combo £200</option>
+          </select>
+          <input type="date" id="bk-date" required />
+        </div>
+        <div style="text-align:right">
+          <button type="button" class="ghost-btn" onclick="closeBooking()">Cancel</button>
+          <button type="submit" class="btn-cta">Request Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- DIDI CARS DETAIL -->
+<section class="route" id="route-extras-DidiCars" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="images/CardDidiCars.png" alt="Soft Play">
+    <img src="images/DidiCars1.png">
+      <img src="images/DidiCars2.png">
+  </div>
+  <button class="carousel-btn next">›</button>
+  </div>
+  </div>
+  <h1 style="margin-bottom:8px;">Didi Cars</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£30</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Our <strong>Didi Cars</strong> are a must-have for fun days, playdates, and parties – always attracting kids who love to zoom around! They’re simple to use, just wiggle the wheel to drive, and provide hours of active, giggly fun. Please note: adult supervision is recommended, and they’re meant for indoor or smooth outdoor surfaces.
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+        <li>✅ Fun for all ages</li>
+<li>✅ Perfect for fairs, birthdays & playdates</li>
+<li>✅ Recommended for indoor or smooth outdoor use</li>
+<li>✅ Easy wiggle-to-drive action</li>
+<li>✅ Sturdy wheels for safe zooming</li>
+<li>✅ Bright, colorful design kids love</li>
+<li>✅ Lightweight and easy to move</li>
+<li>✅ Encourages active play and coordination</li>
+<li>✅ Durable construction for hours of fun</li>
+<li>✅ Adult supervision recommended</li>
+<li>✅ Comes With 6 Fun Didi Cars</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToExtras()">← Back</button>
+  </div>
+</section>
+
+<!-- GIANT TWISTER DETAIL -->
+<section class="route" id="route-extras-GiantTwister" style="padding:24px;">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="images/CardGiantTwister.jpg" alt="Soft Play">
+    <img src="images/GiantTwister1.png">
+  </div>
+  <button class="carousel-btn next">›</button>
+  </div>
+  </div>
+  <h1 style="margin-bottom:8px;">Giant Twister</h1>
+  <div class="price" style="font-size:1.2rem; margin-bottom:16px;">£20</div>
+  <p style="color:var(--muted); margin-bottom:20px;">
+    Our <strong>Giant Twister</strong> adds a twist of fun to your event! This oversized version of the classic is perfect for parties, school fun days, or as an add-on to your inflatable hire. Players spin the dice and place hands or feet on colourful spots – the last one standing wins!
+  </p>
+  <ul style="list-style:none; padding:0; margin:0 0 24px 0; line-height:1.8;">
+        <li>✅ Includes Giant Colour Mat</li>
+        <li>✅ Foam Dice Included</li>
+        <li>✅ Encourages Active Play</li>
+        <li>✅ Ideal for Small Spaces</li>
+        <li>✅ Perfect Add-On for Any Party</li>
+        <li>✅ Great for Groups</li>
+        <li>✅ Cleaned & Sanitised Before Every Hire</li>
+        <li>✅ Indoor or Outdoor Use</li>
+  </ul>
+  <div style="display:flex; gap:10px;">
+    <button class="btn-cta" onclick="openBooking()">Book Now</button>
+    <button class="ghost-btn" onclick="backToExtras()">← Back</button>
+  </div>
+</section>
+
   <!-- Booking Modal -->
   <div class="modal" id="bookingModal">
     <div class="dialog">
@@ -996,6 +1127,12 @@ function showFunfoodDetail(id) {
   history.pushState({ route: `funfoods-${id}` }, '', `/funfoods/${id}`);
 }
 
+// === Show Extras Details ===
+function showExtrasDetail(id) {
+  showOnly(`#route-extras-${id}`);
+  history.pushState({ route: `extras-${id}` }, '', `/funfoods/${id}`);
+}
+
 // === Back Buttons ===
 function backToCastles() {
   activateTab('castles');
@@ -1004,6 +1141,11 @@ function backToCastles() {
 
 function backToFunfoods() {
   activateTab('funfoods');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function backToExtras() {
+  activateTab('extras');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
