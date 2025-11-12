@@ -15,6 +15,74 @@
     --accent-alt: #ff6ec7;
     --header-height: 60px;
   }
+  
+  .carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  margin-bottom: 1.5rem;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.carousel img {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 14px;
+  user-select: none;
+  pointer-events: none;
+  height: 230px; /* fixed height for all castle images */
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: rgba(255,255,255,0.9);
+}
+
+@keyframes clickAccent {
+  0% {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 10px var(--accent-2);
+  }
+  60% {
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    box-shadow: 0 0 15px var(--accent-2);
+  }
+  100% {
+    background: rgba(255,255,255,0.9);
+    box-shadow: none;
+  }
+}
+
+.carousel-btn:active {
+  animation: clickAccent 0.5s ease;
+}
+
+.carousel-btn:active {
+  animation: clickAccent 0.5s ease;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
 
   * { box-sizing: border-box; }
   html,body { height:100%; }
@@ -73,6 +141,106 @@
     padding: 16px;
     overflow:auto;
   }
+  
+  /* Floating Google Review Card */
+.google-review-card {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  max-width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  padding: 14px;
+  font-size: 14px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.8s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.google-review-card.closing {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.google-review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.review-initial {
+  width: 36px;
+  height: 36px;
+  background: #2eb3ff;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-logo {
+  width: 40px;        /* keeps it small like in the original */
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 4px;
+  display: inline-block;
+  object-fit: contain;
+}
+
+.stars {
+  color: #fbbc05; /* Google yellow */
+  font-size: 13px;
+}
+
+.google-review-body {
+  color: #333;
+  line-height: 1.4;
+}
+
+.time {
+  color: #777;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.close-review-btn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.close-review-btn:hover {
+  color: #000;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .google-review-card {
+    left: 10px;
+    right: 10px;
+    max-width: unset;
+    bottom: 10px;
+  }
+}
+
   .menu { display:grid; gap:8px }
   .menu a {
     padding:10px 12px;
@@ -554,7 +722,19 @@
 <!-- ===== Building Blocks CASTLE detail ===== -->
 <section class="route" data-route="#/bouncy-castles/BuildingBlocks" id="route-castle-BuildingBlocks">
   <div style="text-align:center; margin-bottom:1rem;">
-    <img src="CardBuildingBlocks.png" alt="Building Block Bouncy Castle" style="max-width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+    <div class="carousel">
+  <button class="carousel-btn prev">‹</button>
+  <div class="carousel-track">
+    <img src="images/CardBuildingBlocks.png" alt="Building Blocks Castle 1">
+    <img src="images/BuildingBlocks1.png" alt="Building Blocks Castle 2">
+    <img src="images/BuildingBlocks2.png" alt="Building Blocks Castle 3">
+    <img src="images/BuildingBlocks3.png" alt="Building Blocks Castle 4">
+    <img src="images/BuildingBlocks4.png" alt="Building Blocks Castle 5">
+    <img src="images/BuildingBlocks5.png" alt="Building Blocks Castle 5">
+    <img src="images/BuildingBlocks6.png" alt="Building Blocks Castle 6">
+  </div>
+  <button class="carousel-btn next">›</button>
+</div>
   </div>
 
   <h1 class="route-title">Building Block Bouncy Castle £100</h1>
@@ -2668,6 +2848,23 @@ Our £20 deposit is non refundable, however this is included when having to rear
       </section>
     </main>
   </div>
+  
+  <!-- ===== Floating Google Review (Dynamic) ===== -->
+<div class="google-review-card" id="googleReviewCard">
+  <button class="close-review-btn" onclick="closeReviewCard()">✕</button>
+  <div class="google-review-header">
+    <div class="review-initial" id="reviewInitial">E</div>
+    <div>
+      <strong id="reviewName">Emily Davies</strong><br>
+      <img src="googleLogo.png" alt="Google Logo" class="google-logo">
+      <span class="stars" id="reviewStars">★★★★★</span>
+      <span class="time" id="reviewTime">4 months ago</span>
+    </div>
+  </div>
+  <div class="google-review-body" id="reviewText">
+    A beautiful set up for our 1 year old's party. We hired the large climbing slide, princess disco...
+  </div>
+</div>
 
   <!-- Router + Menu JS -->
   <script>
@@ -2677,7 +2874,6 @@ Our £20 deposit is non refundable, however this is included when having to rear
   const sidebar = document.getElementById('sidebar');
   const backdrop = document.getElementById('backdrop');
 
-  // Legacy support for old filenames
   const legacyLinkMap = new Map([
     ['BL.html', '#/home'],
     ['index.html', '#/home'],
@@ -2685,6 +2881,8 @@ Our £20 deposit is non refundable, however this is included when having to rear
     ['BouncyCastle.html', '#/bouncy-castles/disco'],
     ['FunFoods.html', '#/fun-foods']
   ]);
+
+  let reviewTimeout; // Track the auto-hide timer
 
   // ===== NAVIGATION FUNCTIONS =====
   function navigateTo(hash){
@@ -2718,23 +2916,51 @@ Our £20 deposit is non refundable, however this is included when having to rear
   }
 
   // ===== RENDER FUNCTION =====
-  function render(){
-    let hash = location.hash || '#/home';
+  function render(optionalHash){
+    let hash = optionalHash || location.hash || '#/home';
 
-    // Handle legacy page query
     const query = new URLSearchParams(location.search);
     const pageParam = query.get('page');
     if(pageParam && legacyLinkMap.has(pageParam)) hash = legacyLinkMap.get(pageParam);
 
     setActiveMenu(hash);
     showRoute(hash);
-
-    // Scroll to top whenever switching tabs
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const reviewCard = document.getElementById('googleReviewCard');
+
+    if(hash === '#/bouncy-castles'){
+      if(reviewCard){
+        // Reset card in case it was previously closed
+        reviewCard.style.display = 'block';
+        reviewCard.classList.remove('closing');
+      }
+
+      displayRandomReview();
+
+      // Clear any previous timeout and set a new one
+      if(reviewTimeout) clearTimeout(reviewTimeout);
+      reviewTimeout = setTimeout(() => {
+        closeReviewCard();
+        reviewTimeout = null;
+      }, 5000);
+
+    } else {
+      // Hide card on other tabs
+      if(reviewCard){
+        reviewCard.style.display = 'none';
+        reviewCard.classList.remove('closing');
+      }
+
+      // Clear any pending timeout if leaving the tab
+      if(reviewTimeout){
+        clearTimeout(reviewTimeout);
+        reviewTimeout = null;
+      }
+    }
   }
 
   // ===== EVENT LISTENERS =====
-  // Handle all anchor clicks (legacy + menu links)
   document.addEventListener('click', e => {
     const a = e.target.closest('a');
     if(!a) return;
@@ -2742,34 +2968,64 @@ Our £20 deposit is non refundable, however this is included when having to rear
     const href = a.getAttribute('href') || '';
     const filename = href.split('?')[0].split('#')[0];
 
-    // Legacy support
     if(legacyLinkMap.has(filename)){
       e.preventDefault();
       navigateTo(legacyLinkMap.get(filename));
     }
 
-    // Close sidebar on mobile after clicking any link
     if(window.innerWidth <= 900){
       sidebar.classList.remove('open');
       backdrop.classList.remove('show');
     }
   });
 
-  // Toggle sidebar (hamburger menu)
   document.getElementById('menu-toggle').addEventListener('click', ()=>{
     sidebar.classList.toggle('open');
     backdrop.classList.toggle('show');
   });
 
-  // Click backdrop to close sidebar on mobile
   backdrop.addEventListener('click', ()=>{
     sidebar.classList.remove('open');
     backdrop.classList.remove('show');
   });
 
-  // Listen for hash changes (route changes)
-  window.addEventListener('hashchange', render);
-  window.addEventListener('DOMContentLoaded', render);
+  window.addEventListener('hashchange', ()=> render());
+  window.addEventListener('DOMContentLoaded', ()=> render());
+
+  // ===== REVIEWS =====
+  const reviews = [
+    { name: "Rebecca and John Williams", stars: 5, time: "", text: "Professional, on time and very clean. Will definitely use them again! Thank you! 🤩 xx" },
+    { name: "S Claire", stars: 5, time: "", text: "Fantastic service and brilliant bouncy castles. The kids absolutely loved it — super professional and friendly!" },
+    { name: "Leon", stars: 5, time: "", text: "Arrived on time for set up and take down, Excellent service, very friendly. Highly recommended. Thank you." },
+    { name: "Emily Edwards", stars: 5, time: "", text: "Amazing service and amazing bouncy castle! We went for the fun run package with slush and candy floss and it went down a treat with the kids. So many said it was the best party they'd ever been to. Very happy will definitely be a returning customer ☺️" }
+  ];
+
+  function displayRandomReview() {
+    const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
+
+    document.getElementById('reviewName').textContent = randomReview.name;
+    document.getElementById('reviewInitial').textContent = randomReview.name.charAt(0);
+    document.getElementById('reviewTime').textContent = randomReview.time;
+    document.getElementById('reviewText').textContent = randomReview.text;
+
+    const starText = '★★★★★'.slice(0, randomReview.stars);
+    document.getElementById('reviewStars').textContent = starText;
+  }
+
+  function closeReviewCard() {
+    const card = document.getElementById('googleReviewCard');
+    if(card && !card.classList.contains('closing')){
+      card.classList.add('closing');
+      setTimeout(()=>{ card.style.display = 'none'; }, 400);
+    }
+  }
+
+  // ===== INIT =====
+  // Hide review card initially
+  const initialCard = document.getElementById('googleReviewCard');
+  if(initialCard){
+    initialCard.style.display = 'none';
+  }
 </script>
 </body>
 </html>
