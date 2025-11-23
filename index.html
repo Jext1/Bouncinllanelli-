@@ -30,6 +30,27 @@
   transition: transform 0.6s ease;
 }
 
+/* Normal button (transparent black) */
+.carousel-btn {
+  background: rgba(0, 0, 0, 0.5) !important; /* 50% transparent black */
+  color: white !important;
+  transition: background 0.2s ease;
+}
+
+/* Hover (slightly darker) */
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Pressed/click */
+.carousel-btn:active {
+  background: #2eb3ff !important; /* Your blue */
+  color: white !important;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .carousel img {
   width: 100%;
   flex-shrink: 0;
@@ -472,6 +493,7 @@
     <a href="#/extras" data-route="#/extras">Extras</a>
     <a href="#/packages" data-route="#/packages">Packages</a>
   </div>
+  
 
   <!-- Hero Section -->
 <section class="hero-section">
@@ -1151,6 +1173,13 @@
       <h4>From £100</h4>
       <button class="btn" onclick="navigateTo('#/fun-foods/20LSlushMachine')">Find out more</button>
     </div>
+    <!-- Pop Corn Machine -->
+    <div class="card">
+      <img src="PopCornMachine.png" alt="PopCornMachine" style="width:100%;border-radius:12px;"/>
+      <h3>Pop Corn Machine</h3>
+      <h4>From £100</h4>
+      <button class="btn" onclick="navigateTo('#/fun-foods/PopCornMachine')">Find out more</button>
+    </div>
     <!-- Candy Floss -->
     <div class="card">
       <img src="CardCandyFloss.png" alt="Candy Floss" style="width:100%;border-radius:12px;"/>
@@ -1297,6 +1326,62 @@
     <div class="carousel">
       <button class="carousel-btn prev" type="button">&#10094;</button>
       <img src="20LSlush1.png" class="carousel-slide active" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
+</section>
+
+<!-- ===== Popcorn Machine Detail ===== -->
+<section class="route" data-route="#/fun-foods/PopCornMachine" id="PopCornMachine">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="PopCornMachine.png" alt="Popcorn Machine" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">Popcorn Machine From £100</h1>
+  <p class="muted">Fresh, hot popcorn served at your event. Perfect for parties, school events, fun days & more!</p>
+
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Option 1: Unlimited Popcorn</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Option 2: 50 Loaded Cups</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+</button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Options</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="PopCornMachine-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Popcorn Machine</strong> is a guaranteed crowd-pleaser! Perfect for birthdays, school events, celebrations, fetes, and fun days. Served hot and freshly popped on-site by one of our staff members. <br>
+    Available in two packages to suit your event size and budget. </br> </p>
+  </div>
+
+  <div id="PopCornMachine-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Package Options</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+        <li>🍿 <strong>Option 1:</strong> Popcorn Machine + Server (2 hours) – <strong>Unlimited Popcorn</strong> <br> ➤ From £100</li><br>
+        <li>🍿 <strong>Option 2:</strong> Loaded Popcorn with Server (2 hours) – <strong>50 Fully Loaded Servings</strong> <br> ➤ From £140</li><br>
+    </ul>
+    <p><em>Additional time and extra servings available upon request.</em></p>
+  </div>
+
+  <div id="PopCornMachine-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="PopCornMachine1.jpg" class="carousel-slide active" />
+      <img src="PopCornMachine2.jpg" class="carousel-slide" />
+      <img src="PopCornMachine3.jpg" class="carousel-slide" />
+      <img src="PopCornMachine4.jpg" class="carousel-slide" />
+      <img src="PopCornMachine5.jpg" class="carousel-slide" />
+      <img src="PopCornMachine6.jpg" class="carousel-slide" />
+      <img src="PopCornMachine7.jpg" class="carousel-slide" />
+      <img src="PopCornMachine8.jpg" class="carousel-slide" />
       <button class="carousel-btn next" type="button">&#10095;</button>
     </div>
   </div>
@@ -1539,6 +1624,14 @@
       <h4>From £30</h4>
       <button class="btn" onclick="navigateTo('#/extras/didi-cars')">Find out more</button>
     </div>
+    <div class="grid cards">
+    <!-- Snow Machine -->
+    <div class="card">
+      <img src="CardSnowMachine.png" alt="Snow Machine" style="width:100%;border-radius:12px;"/>
+      <h3>Snow Machine</h3>
+      <h4>From £40</h4>
+      <button class="btn" onclick="navigateTo('#/extras/snow-machine')">Find out more</button>
+    </div>
     <!-- Giant Twister -->
     <div class="card">
       <img src="CardGiantTwister.jpg" alt="Giant Twister" style="width:100%;border-radius:12px;"/>
@@ -1678,6 +1771,62 @@
       <button class="carousel-btn prev" type="button">&#10094;</button>
       <img src="DidiCars1.png" class="carousel-slide active" />
       <img src="DidiCars2.png" class="carousel-slide" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/extras"><- Back to Extras</a></p>
+</section>
+
+<!-- ===== Snow Machine Details ===== -->
+<section class="route" data-route="#/extras/snow-machine" id="SnowMachine">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardSnowMachine.png" alt="Snow Machine" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+  <h1 class="route-title">Snow Machine £40</h1>
+  <p class="muted">Create a magical winter wonderland at your event with our professional snow machine, producing realistic, fluffy artificial snow for parties, weddings, and festive gatherings.</p>
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Extras</span>
+  </div>
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+    Book Now
+  </button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="SnowMachine-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our snow machine produces safe, foam-based artificial snow that dissolves over time, leaving minimal residue. Perfect for indoor or outdoor events, it creates a fun and magical winter effect for guests of all ages. Easy to set up and operate, it adds a memorable snowy touch to any celebration.</p>
+  </div>
+
+  <div id="SnowMachine-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Powerful 1800 W heating element for dense snow output</li>
+      <li>✅ Produces realistic, fluffy artificial snow</li>
+      <li>✅ Uses safe, foam-based snow fluid</li>
+      <li>✅ Adjustable snow output and coverage</li>
+      <li>✅ Can be controlled manually or via remote</li>
+      <li>✅ Lightweight and portable for easy setup</li>
+      <li>✅ Suitable for indoor and outdoor use</li>
+      <li>✅ Minimal residue, easy cleanup</li>
+      <li>✅ Dimensions: approx. 470 × 255 × 270 mm</li>
+      <li>✅ Weight: ~7 kg</li>
+    </ul>
+  </div>
+
+  <div id="SnowMachine-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="SnowMachine3.jpg" class="carousel-slide active" />
+      <img src="SnowMachine4.jpg" class="carousel-slide" />
+      <img src="SnowMachine5.jpg" class="carousel-slide" />
+      <img src="SnowMachine6.jpg" class="carousel-slide" />
+      <img src="SnowMachine7.jpg" class="carousel-slide" />
       <button class="carousel-btn next" type="button">&#10095;</button>
     </div>
   </div>
