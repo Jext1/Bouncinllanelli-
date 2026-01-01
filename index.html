@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bouncin Llanelli</title>
   <style>
+  	
+  body {
+  overflow: hidden;   /* 🔴 IMPORTANT */
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.app {
+  overflow-x: hidden;
+}
+
+.content {
+  min-height: 100vh; /* allows full page length */
+  height: auto;      /* remove forced viewport height */
+  overflow-y: auto;  /* keeps scrolling working */
+}
+
   :root {
     --bg: #ffefff;        
     --panel: #ffffff;     
@@ -28,6 +48,30 @@
 .carousel-track {
   display: flex;
   transition: transform 0.6s ease;
+}
+
+/* Page swap animation */
+.content {
+  animation-duration: 0.45s;
+  animation-fill-mode: both;
+}
+
+.content.fade-out {
+  animation-name: fadeOut;
+}
+
+.content.fade-in {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.96); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.04); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 /* Normal button (transparent black) */
@@ -126,9 +170,12 @@
     align-items: center;
     justify-content: center;
     padding: 5px 18px;
-    background: #2eb3ff;
+    background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
+    box-shadow: 0 6px 18px rgba(78,169,255,0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     border-bottom: 2px solid var(--line);
     height: var(--header-height);
+    
   }
 
   .logo img {
@@ -223,6 +270,28 @@
 .google-review-body {
   color: #333;
   line-height: 1.4;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* Specs row */
+.card-specs {
+  display: flex;
+  font-size: 0.8rem;   /* smaller text */
+  color: #666;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+/* Optional: tighten spacing on mobile */
+@media (max-width: 600px) {
+  .card-specs {
+    font-size: 0.75rem;
+  }
 }
 
 .time {
@@ -352,6 +421,71 @@
     }
     .sidebar.open{left:0;}
   }
+  
+  #page-transition {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #fff 0%, #ff6ec7 40%, #2eb3ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+#page-transition.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#page-transition img {
+  width: 140px;
+  animation: bounceSpin 0.8s cubic-bezier(.34,1.56,.64,1) infinite;
+}
+
+@keyframes bounceSpin {
+  0% {
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+button,
+.btn,
+.menu a,
+.categories a {
+  position: relative;
+  overflow: hidden;
+}
+
+button::after,
+.btn::after,
+.menu a::after,
+.categories a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 11%);
+  transform: scale(0);
+  transition: transform 0.45s ease;
+}
+
+button:active::after,
+.btn:active::after,
+.menu a:active::after,
+.categories a:active::after {
+  transform: scale(3);
+}
+
 </style>
 </head>
 <body>
@@ -421,10 +555,33 @@
   margin-bottom: 2rem;
 }
     #route-home .cta-buttons a {
-      background:#4ea9ff; color:white; padding:1rem 2rem; border-radius:50px; font-size:1.3rem;
-      text-decoration:none; display:inline-block; margin:0.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    #route-home .cta-buttons a:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 1.2rem 2.6rem;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+
+  color: white;
+  text-decoration: none;
+
+  background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
+  box-shadow: 0 10px 26px rgba(78,169,255,0.45);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+    #route-home .cta-buttons a:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 18px 40px rgba(255,126,185,0.55);
+}
+
+#route-home .cta-buttons a:active {
+  transform: translateY(-2px) scale(0.98);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
 
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
@@ -438,7 +595,22 @@
 
     /* Categories */
     #route-home .categories { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
-    #route-home .categories a { background:#ff7eb9; color:white; padding:1rem 2rem; border-radius:50px; font-size:1.2rem; text-decoration:none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    #route-home .categories a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1.1rem 2.2rem;
+  border-radius: 999px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+
+  background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
+  box-shadow: 0 6px 18px rgba(78,169,255,0.35);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
     #route-home .categories a:hover { transform: translateY(-5px); box-shadow:0 8px 15px rgba(0,0,0,0.2); }
 
     /* Features */
@@ -572,50 +744,106 @@
     <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
   </div>
 
-  <!-- Bouncy Castle cards -->
-  <div class="grid cards">
-    <div class="card">
-      <img src="CardDiscoCastle.png" alt="Disco Bouncy Castle" style="width:100%;border-radius:12px;"/>
-      <h3>Blue Disco Bouncy Castle (15 x 11ft)</h3>
-      <h4>From £100</h4>
-      <button class="btn" onclick="navigateTo('#/bouncy-castles/disco')">Find out more</button>
+<!-- Bouncy Castle cards -->
+<div class="grid cards">
+
+  <div class="card">
+    <img src="CardDiscoCastle.png" alt="Disco Bouncy Castle" />
+    <h3>Blue Disco Bouncy Castle (15 x 11ft)</h3>
+    <h4>From £100</h4>
+
+    <div class="card-specs">
+      <span>H: 9.5ft</span>
+      <span>L: 15ft</span>
+      <span>W: 11ft</span>
     </div>
-    <div class="card">
-      <img src="CardBuildingBlocks.png" alt="Building Block Castle" style="width:100%;border-radius:12px;"/>
-      <h3>Building Block Bouncy Castle (15 x 12ft)</h3>
-      <h4>From £100</h4>
-      <button class="btn" onclick="navigateTo('#/bouncy-castles/BuildingBlocks')">Find out more</button>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/disco')">Find out more</button>
+  </div>
+
+  <div class="card">
+    <img src="CardBuildingBlocks.png" alt="Building Block Castle" />
+    <h3>Building Block Bouncy Castle (15 x 12ft)</h3>
+    <h4>From £100</h4>
+
+    <div class="card-specs">
+      <span>H: 10.5ft</span>
+      <span>L: 15ft</span>
+      <span>W: 12ft</span>
     </div>
-    <div class="card">
-      <img src="CardPrincessSlideCastle.png" alt="Building Block Castle" style="width:100%;border-radius:12px;"/>
-      <h3>Princess Slide Castle (13 x 18ft)</h3>
-      <h4>From £120</h4>
-      <button class="btn" onclick="navigateTo('#/bouncy-castles/PrincessSlide')">Find out more</button>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/BuildingBlocks')">Find out more</button>
+  </div>
+
+  <div class="card">
+    <img src="CardPrincessSlideCastle.png" alt="Princess Slide Castle" />
+    <h3>Princess Slide Castle (13 x 18ft)</h3>
+    <h4>From £120</h4>
+
+    <div class="card-specs">
+      <span>H: 9.7ft</span>
+      <span>L: 13ft</span>
+      <span>W: 18ft</span>
     </div>
-    <div class="card">
-      <img src="CardSlideCastle.png" alt="Slide Castle" style="width:100%;border-radius:12px;"/>
-      <h3>Customizable Slide Castle (15 x 17ft)</h3>
-      <h4>From £120</h4>
-      <button class="btn" onclick="navigateTo('#/bouncy-castles/slide')">Find out more</button>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/PrincessSlide')">Find out more</button>
+  </div>
+
+  <div class="card">
+    <img src="CardSlideCastle.png" alt="Slide Castle" />
+    <h3>Customizable Slide Castle (15 x 17ft)</h3>
+    <h4>From £120</h4>
+
+    <div class="card-specs">
+      <span>H: 9.5ft</span>
+      <span>L: 15ft</span>
+      <span>W: 17ft</span>
     </div>
-    <div class="card">
-      <img src="DinoSlideCastle.jpg" alt="Dino Slide Castle" style="width:100%;border-radius:12px;"/>
-      <h3>Dinosaur Slide Castle (15 x 12ft)</h3>
-      <h4>From £120</h4>
-      <button class="btn" onclick="navigateTo('#/bouncy-castles/dinoslide')">Find out more</button>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/slide')">Find out more</button>
+  </div>
+
+  <div class="card">
+    <img src="DinoSlideCastle.jpg" alt="Dino Slide Castle" />
+    <h3>Dinosaur Slide Castle (15 x 12ft)</h3>
+    <h4>From £120</h4>
+
+    <div class="card-specs">
+      <span>H: 9.5ft</span>
+      <span>L: 15ft</span>
+      <span>W: 12ft</span>
     </div>
-    <div class="card">
-      <img src="CardDiscoCastle15.png" alt="Rainbow Disco Bouncy Castle" style="width:100%;border-radius:12px;"/>
-      <h3>Rainbow Disco Bouncy Castle (15 x 15ft)</h3>
-      <h4>From £130</h4>
-      <button class="btn" onclick="navigateTo('#/bouncy-castles/Rainbowdisco')">Find out more</button>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/dinoslide')">Find out more</button>
+  </div>
+
+  <div class="card">
+    <img src="CardDiscoCastle15.png" alt="Rainbow Disco Castle" />
+    <h3>Rainbow Disco Bouncy Castle (15 x 15ft)</h3>
+    <h4>From £130</h4>
+
+    <div class="card-specs">
+      <span>H: 11.8ft</span>
+      <span>L: 15ft</span>
+      <span>W: 15ft</span>
     </div>
-    <div class="card">
-      <img src="CardFunRun.png" alt="Fun Run Castle" style="width:100%;border-radius:12px;"/>
-      <h3>Fun Run (26.9 x 9.2ft)</h3>
-      <h4>From £150</h4>
-      <button class="btn" onclick="navigateTo('#/bouncy-castles/fun-run')">Find out more</button>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/Rainbowdisco')">Find out more</button>
+  </div>
+
+  <div class="card">
+    <img src="CardFunRun.png" alt="Fun Run Castle" />
+    <h3>Fun Run (26.9 x 9.2ft)</h3>
+    <h4>From £150</h4>
+
+    <div class="card-specs">
+      <span>H: 9.8ft</span>
+      <span>L: 26.9ft</span>
+      <span>W: 9.2ft</span>
     </div>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/fun-run')">Find out more</button>
+  </div>
   </div>
 </section>
 
@@ -675,6 +903,11 @@
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
+  box-shadow: 0 6px 18px rgba(78,169,255,0.35);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 }
 
 .categories a:hover {
@@ -1116,6 +1349,8 @@
           const contentId = `${section.id}-tab-${tab.dataset.tab}`;
           const content = document.getElementById(contentId);
           if(content) content.classList.remove('hidden');
+          const contentWrapper = document.querySelector('.content');
+if (contentWrapper) contentWrapper.scrollTop = 0;
         });
       });
 
@@ -1333,60 +1568,66 @@
   <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
 </section>
 
-<!-- ===== Popcorn Machine Detail ===== -->
-<section class="route" data-route="#/fun-foods/PopCornMachine" id="PopCornMachine">
-  <div style="text-align:center; margin-bottom:1rem;">
-    <img src="PopCornMachine.png" alt="Popcorn Machine" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
-  </div>
-  <h1 class="route-title">Popcorn Machine From £100</h1>
-  <p class="muted">Fresh, hot popcorn served at your event. Perfect for parties, school events, fun days & more!</p>
-
-  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
-    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Option 1: Unlimited Popcorn</span>
-    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Option 2: 50 Loaded Cups</span>
-  </div>
-
-  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
-        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
-  Book Now
-</button>
-
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="desc">Description</button>
-    <button class="tab-btn" data-tab="features">Options</button>
-    <button class="tab-btn" data-tab="images">Images</button>
-  </div>
-
-  <div id="PopCornMachine-tab-desc" class="tab-content" style="padding:1rem 0;">
-    <p>Our <strong>Popcorn Machine</strong> is a guaranteed crowd-pleaser! Perfect for birthdays, school events, celebrations, fetes, and fun days. Served hot and freshly popped on-site by one of our staff members. <br>
-    Available in two packages to suit your event size and budget. </br> </p>
-  </div>
-
-  <div id="PopCornMachine-tab-features" class="tab-content hidden" style="padding:1rem 0;">
-    <h3>Package Options</h3>
-    <ul style="list-style:none; padding:0; margin:0;">
-        <li>🍿 <strong>Option 1:</strong> Popcorn Machine + Server (2 hours) – <strong>Unlimited Popcorn</strong> <br> ➤ From £100</li><br>
-        <li>🍿 <strong>Option 2:</strong> Loaded Popcorn with Server (2 hours) – <strong>50 Fully Loaded Servings</strong> <br> ➤ From £140</li><br>
-    </ul>
-    <p><em>Additional time and extra servings available upon request.</em></p>
-  </div>
-
-  <div id="PopCornMachine-tab-images" class="tab-content hidden" style="padding:1rem 0;">
-    <div class="carousel">
-      <button class="carousel-btn prev" type="button">&#10094;</button>
-      <img src="PopCornMachine1.jpg" class="carousel-slide active" />
-      <img src="PopCornMachine2.jpg" class="carousel-slide" />
-      <img src="PopCornMachine3.jpg" class="carousel-slide" />
-      <img src="PopCornMachine4.jpg" class="carousel-slide" />
-      <img src="PopCornMachine5.jpg" class="carousel-slide" />
-      <img src="PopCornMachine6.jpg" class="carousel-slide" />
-      <img src="PopCornMachine7.jpg" class="carousel-slide" />
-      <img src="PopCornMachine8.jpg" class="carousel-slide" />
-      <button class="carousel-btn next" type="button">&#10095;</button>
-    </div>
-  </div>
-
-  <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
+<!-- ===== Popcorn Machine Detail ===== -->  
+<section class="route" data-route="#/fun-foods/PopCornMachine" id="PopCornMachine">  
+  <div style="text-align:center; margin-bottom:1rem;">  
+    <img src="PopCornMachine.png" alt="Popcorn Machine" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />  
+  </div>  
+  <h1 class="route-title">Popcorn Machine From £100</h1>  
+  <p class="muted">Fresh, hot popcorn made live at your event with classic or fully loaded flavours!</p>  
+  
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">  
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Classic Package</span>  
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Loaded Package</span>  
+  </div>  
+  
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;" onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">  
+    Book Now  
+  </button>  
+  
+  <div class="tabs">  
+    <button class="tab-btn active" data-tab="desc">Description</button>  
+    <button class="tab-btn" data-tab="features">Options</button>  
+    <button class="tab-btn" data-tab="images">Images</button>  
+  </div>  
+  
+  <div id="PopCornMachine-tab-desc" class="tab-content" style="padding:1rem 0;">  
+    <p>Our <strong>Popcorn Machine</strong> brings the cinema experience straight to your event! Freshly popped on-site and served by one of our team members for 2 hours. Choose between our <strong>Classic</strong> sweet/salty popcorn or upgrade to a <strong>Loaded Popcorn</strong> experience with toppings and sauce. Perfect for birthdays, school events, fetes, celebrations and more.</p>  
+  </div>  
+  
+  <div id="PopCornMachine-tab-features" class="tab-content hidden" style="padding:1rem 0;">  
+    <h3>Package Options</h3>  
+    <ul style="list-style:none; padding:0; margin:0;">  
+      <li>🍿 <strong>Classic Package (Includes Server for 2 Hours)</strong>  
+      <br> ➤ Fresh hot popcorn: <strong>Sweet, Salty or Mix</strong>  
+      <br> ➤ <strong>Unlimited popcorn</strong>  
+      <br> ➤ From £100</li><br>  
+      
+      <li>🍿 <strong>Loaded Package (Includes Server for 2 Hours)</strong>  
+      <br> ➤ 3-step loaded experience: Choose base flavour + toppings + sauce drizzle  
+      <br> ➤ <strong>50 Fully Loaded Cups</strong>  
+      <br> ➤ <strong>Unlimited classic popcorn (sweet/salty/mix)</strong>  
+      <br> ➤ From £140</li><br>  
+    </ul>  
+    <p><em>Additional time and extra servings available upon request.</em></p>  
+  </div>  
+  
+  <div id="PopCornMachine-tab-images" class="tab-content hidden" style="padding:1rem 0;">  
+    <div class="carousel">  
+      <button class="carousel-btn prev" type="button">&#10094;</button>  
+      <img src="PopCornMachine1.jpg" class="carousel-slide active" />  
+      <img src="PopCornMachine2.jpg" class="carousel-slide" />  
+      <img src="PopCornMachine3.jpg" class="carousel-slide" />  
+      <img src="PopCornMachine4.jpg" class="carousel-slide" />  
+      <img src="PopCornMachine5.jpg" class="carousel-slide" />  
+      <img src="PopCornMachine6.jpg" class="carousel-slide" />  
+      <img src="PopCornMachine7.jpg" class="carousel-slide" />  
+      <img src="PopCornMachine8.jpg" class="carousel-slide" />  
+      <button class="carousel-btn next" type="button">&#10095;</button>  
+    </div>  
+  </div>  
+  
+  <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>  
 </section>
 
 <!-- ===== Candy Floss detail ===== -->
@@ -1436,6 +1677,7 @@
 
   <p style="margin-top:2rem;"><a class="btn" href="#/fun-foods"><- Back to Fun Foods</a></p>
 </section>
+
 
 <!-- ===== Hot Dog detail ===== -->
 <section class="route" data-route="#/fun-foods/HotDogSteamer" id="HotDogSteamer">
@@ -3215,5 +3457,129 @@ if (carousel) {
   });
 }
 </script>
+
+<script>
+const content = document.querySelector('.content');
+let hasLoaded = false;
+
+// Helper to fade in
+function fadeIn() {
+  content.classList.remove('fade-out');
+  content.classList.add('fade-in');
+}
+
+// Helper to fade out
+function fadeOut(callback) {
+  content.classList.remove('fade-in');
+  content.classList.add('fade-out');
+  if (callback) {
+    // Wait for animation to finish (adjust to match CSS)
+    setTimeout(callback, 300);
+  }
+}
+
+// Fade OUT before hash changes or same-page clicks
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="#"]');
+  if (!link || !hasLoaded) return;
+
+  const targetHash = link.getAttribute('href');
+  if (window.location.hash === targetHash) {
+    // Already on the same hash, do nothing
+    return;
+  } else {
+    // Fade out, then change hash
+    fadeOut(() => {
+      window.location.hash = targetHash;
+    });
+    e.preventDefault(); // prevent instant jump
+  }
+});
+
+// Fade IN after hash changes
+window.addEventListener('hashchange', () => {
+  if (!hasLoaded) return;
+  fadeIn();
+});
+
+// Mark page as loaded (no animation)
+window.addEventListener('load', () => {
+  hasLoaded = true;
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const content = document.querySelector('.content');
+  let isTransitioning = false;
+
+  // Fade OUT
+  function fadeOut(callback) {
+    isTransitioning = true;
+    content.classList.remove('fade-in');
+    content.classList.add('fade-out');
+    setTimeout(callback, 300);
+  }
+
+  // Fade IN
+  function fadeIn() {
+    content.classList.remove('fade-out');
+    content.classList.remove('fade-in');
+    void content.offsetWidth; // 🔥 force reflow
+    content.classList.add('fade-in');
+    isTransitioning = false;
+  }
+
+  // Navigation handler
+  function navigateTo(targetHash) {
+    if (isTransitioning) return;
+    if (window.location.hash === targetHash) return;
+
+    fadeOut(() => {
+      window.location.hash = targetHash;
+    });
+  }
+
+  // Intercept ALL hash links
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const targetHash = link.getAttribute('href');
+    if (window.location.hash === targetHash) return;
+
+    e.preventDefault();
+    navigateTo(targetHash);
+  });
+
+  // Animate AFTER route change
+  window.addEventListener('hashchange', fadeIn);
+
+  // 🔥 Animate on FIRST ENTRY
+  requestAnimationFrame(() => {
+    fadeIn();
+  });
+});
+</script>
+
+<script>
+function scrollContentToTop() {
+  const content = document.querySelector('.content');
+  if (content) {
+    content.scrollTop = 0;
+  }
+}
+
+// Runs when the hash (route) changes
+window.addEventListener('hashchange', () => {
+  scrollContentToTop();
+});
+</script>
+
+<!-- Page Transition Overlay -->
+<div id="page-transition">
+  <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli" />
+</div>
+
 </body>
 </html>
