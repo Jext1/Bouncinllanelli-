@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background:#ffefff;
+      font-family: system-ui;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+    .card {
+      background:white;
+      padding:20px;
+      border-radius:16px;
+      max-width:400px;
+      width:100%;
+      border:2px solid #ffd6f6;
+    }
+    input, textarea {
+      width:100%;
+      padding:12px;
+      margin-top:10px;
+      border-radius:10px;
+      border:2px solid #ffd6f6;
+      font-size:16px;
+    }
+    button {
+      margin-top:15px;
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      background:#2eb3ff;
+      color:white;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+    }
+    .status {
+      margin-top:10px;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Contact Test</h2>
+  <input id="email" type="email" placeholder="Your email">
+  <textarea id="message" rows="5" placeholder="Your message"></textarea>
+  <button onclick="send()">Send</button>
+  <div class="status" id="status"></div>
+</div>
+
+<script>
+async function send() {
+  const status = document.getElementById("status");
+  status.textContent = "Sending...";
+
+  const res = await fetch("/api/send-email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: document.getElementById("email").value,
+      message: document.getElementById("message").value
+    })
+  });
+
+  if (res.ok) {
+    status.textContent = "✅ Message sent!";
+  } else {
+    status.textContent = "❌ Failed to send";
+  }
+}
+</script>
+
+</body>
+</html>
