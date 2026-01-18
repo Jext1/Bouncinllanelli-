@@ -760,6 +760,36 @@ button:active::after,
   </div>
 </section>
 
+<div class="card">
+  <h2>Contact Us</h2>
+  <input id="email" type="email" placeholder="Your email">
+  <textarea id="message" rows="5" placeholder="Your message"></textarea>
+  <button onclick="send()">Send</button>
+  <div class="status" id="status"></div>
+</div>
+
+<script>
+async function send() {
+  const status = document.getElementById("status");
+  status.textContent = "Sending...";
+
+  const res = await fetch("/api/send-email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: document.getElementById("email").value,
+      message: document.getElementById("message").value
+    })
+  });
+
+  if (res.ok) {
+    status.textContent = "✅ Message sent!";
+  } else {
+    status.textContent = "❌ Failed to send";
+  }
+}
+</script>
+
   <!-- Categories Section -->
   <section class="section fade-in">
     <h2>Explore Our Categories</h2>
@@ -789,36 +819,6 @@ button:active::after,
       <p>Let the kids have fun while we handle the rest!</p>
     </div>
   </section>
-  
-  <div class="card">
-  <h2>Contact Us</h2>
-  <input id="email" type="email" placeholder="Your email">
-  <textarea id="message" rows="5" placeholder="Your message"></textarea>
-  <button onclick="send()">Send</button>
-  <div class="status" id="status"></div>
-</div>
-
-<script>
-async function send() {
-  const status = document.getElementById("status");
-  status.textContent = "Sending...";
-
-  const res = await fetch("/api/send-email", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email: document.getElementById("email").value,
-      message: document.getElementById("message").value
-    })
-  });
-
-  if (res.ok) {
-    status.textContent = "✅ Message sent!";
-  } else {
-    status.textContent = "❌ Failed to send";
-  }
-}
-</script>
 
   <footer>© 2025 Bouncin' Llanelli. Deposits Are Non-Refundable</footer>
 
