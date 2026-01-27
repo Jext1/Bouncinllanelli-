@@ -170,7 +170,15 @@ body {
     align-items: center;
     justify-content: center;
     padding: 5px 18px;
-    background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
+    background: linear-gradient(135deg,
+  #ff4f4f,
+  #ff9f43,
+  #ffe66d,
+  #6aff8e,
+  #4ea9ff,
+  #7b6cff,
+  #d36cff
+);
     box-shadow: 0 6px 18px rgba(78,169,255,0.35);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     border-bottom: 2px solid var(--line);
@@ -179,7 +187,8 @@ body {
   }
 
   .logo img {
-    max-height: 50px;
+    padding-top: 25px;
+    max-height: 100px;
     width: auto;
     display: block;
   }
@@ -567,7 +576,15 @@ button:active::after,
   color: white;
   text-decoration: none;
 
-  background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
+  background: linear-gradient(135deg,
+  #ff4f4f,
+  #ff9f43,
+  #ffe66d,
+  #6aff8e,
+  #4ea9ff,
+  #7b6cff,
+  #d36cff
+);
   box-shadow: 0 10px 26px rgba(78,169,255,0.45);
 
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -715,6 +732,12 @@ button:active::after,
       margin-top:10px;
       font-size:14px;
     }
+    
+    .site-logo {
+  max-width:280px;
+  height: auto;
+  display: block;
+}
   </style>
 
   <!-- Side Menu -->
@@ -736,7 +759,7 @@ button:active::after,
   </div>
 
   <div class="hero-overlay fade-in">
-    <h1>Bouncin' Llanelli</h1>
+    <img src="BouncinLlanelliLogo.png" alt="Bouncin' Llanelli" class="site-logo">
     <p>Making Kids Parties Bouncin'</p>
     <div class="cta-buttons">
       <a href="tel:+447496177130">Contact Us</a>
