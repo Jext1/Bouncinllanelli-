@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-TBH3KNT4');</script>
 <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Bouncin Llanelli</title>
   <style>
   	
@@ -57,6 +57,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     --header-height: 60px;
   }
   
+  
   .carousel {
   position: relative;
   overflow: hidden;
@@ -84,6 +85,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .content.fade-in {
   animation-name: fadeIn;
 }
+
+
 
 @keyframes fadeOut {
   from { opacity: 1; transform: scale(1); }
@@ -242,10 +245,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   /* Floating Google Review Card */
 .google-review-card {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  max-width: 320px;
+  max-width: calc(100% - 40px);
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
@@ -948,9 +948,23 @@ async function send() {
   </div>
   
   <div class="card">
+    <img src="CardCandyTwistDome.png" alt="Candy Twist Dome" />
+    <h3>Candy Twist Dome</h3>
+    <h4>From £110</h4>
+
+    <div class="card-specs">
+      <span>H: 10.2ft</span>
+      <span>L: 15.1ft</span>
+      <span>W: 11.8ft</span>
+    </div>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/CandyTwistDome')">Find out more</button>
+  </div>
+  
+  <div class="card">
     <img src="CardKpopSlideCastle.png" alt="Slide Castle" />
     <h3>Kpop Demon Hunters Slide Castle</h3>
-    <h4>From £120 (avaible from 9th of Feburary)</h4>
+    <h4>From £120</h4>
 
     <div class="card-specs">
       <span>H: 9.5ft</span>
@@ -1084,14 +1098,11 @@ async function send() {
   border-radius: 12px;
   font-weight: bold;
   color: #fff; 
-  background: #00cfff; 
+  background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, #ff7eb9, #4ea9ff);
   box-shadow: 0 6px 18px rgba(78,169,255,0.35);
-
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 }
@@ -1211,6 +1222,65 @@ async function send() {
       <img src="BuildingBlocks4.png" alt="Building Block Castle Image 4" class="carousel-slide">
       <img src="BuildingBlocks5.png" alt="Building Block Castle Image 5" class="carousel-slide">
       <img src="BuildingBlocks6.png" alt="Building Block Castle Image 6" class="carousel-slide">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<!-- ===== CandyTwistDome detail ===== -->
+<section class="route" data-route="#/bouncy-castles/CandyTwistDome" id="route-castle-CandyTwistDome">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardCandyTwistDome.png" alt="Mini Candy Twist Dome Disco Ready" style="max-width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Candy Twist Dome £110</h1>
+  <p class="muted">A vibrant candy-themed dome bouncy castle with disco-ready features. Perfect for younger children’s parties and indoor venues!</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Building Block</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">15 × 12ft</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+  Book Now
+  </button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-castle-CandyTwistDome-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>Candy Twist Dome</strong> is a bright, candy-colored dome perfect for younger children. The disco-ready setup adds a fun twist with lights and music, making it ideal for birthday parties and indoor events.</p>
+  </div>
+
+  <div id="route-castle-CandyTwistDome-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p><strong>Size:</strong> 15.1 x 11.8 x 10.2 (L x W x H)<br> <strong>Theme:</strong> Disco</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Bright candy-colored design</li>
+      <li>✅ Fun mini dome shape</li>
+      <li>✅ Disco lights and music ready</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitized before every hire</li>
+      <li>✅ Fully PIPA-tested for safety</li>
+    </ul>
+  </div>
+
+  <div id="route-castle-CandyTwistDome-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="CandyTwistDome1.png" alt="Mini Candy Twist Dome Image 1" class="carousel-slide active">
+      <img src="CandyTwistDome2.png" alt="Mini Candy Twist Dome Image 2" class="carousel-slide">
+      <img src="CandyTwistDome3.png" alt="Mini Candy Twist Dome Image 3" class="carousel-slide">
+      <img src="CandyTwistDome4.png" alt="Mini Candy Twist Dome Image 4" class="carousel-slide">
+      <img src="CandyTwistDome5.png" alt="Mini Candy Twist Dome Image 5" class="carousel-slide">
+  	<img src="CandyTwistDome6.png" alt="Mini Candy Twist Dome Image 6" class="carousel-slide">
       <button class="carousel-btn next">&#10095;</button>
     </div>
   </div>
@@ -2608,13 +2678,159 @@ if (contentWrapper) contentWrapper.scrollTop = 0;
     <section id="pricing">
       <!-- Toggle Buttons -->
       <div class="castle-toggle">
-        <button id="discoBtn" class="active" onclick="showCastle('disco')">Blue Disco Castle</button>
+    	
+        <button id="discoBtn" class="active"  onclick="showCastle('disco')">Blue Disco Castle</button>
         <button id="BuildingBlockBtn" onclick="showCastle('buildingblock')">Building Block Castle</button>
         <button id="slideBtn" onclick="showCastle('pslide')">Purple Slide Castle</button>
+        <button id="KpopBtn" onclick="showCastle('KpopC')">Kpop Demon Hunters Castle</button>
         <button id="dinoSlideBtn" onclick="showCastle('dinoslide')">Dinosaur Castle</button>
         <button id="princessSlideBtn" onclick="showCastle('princessslide')">Princess Slide Castle</button>
         <button id="funRunBtn" onclick="showCastle('funrun')">Fun Run</button>
         <button id="foodsBtn" onclick="showCastle('foods')">Fun Foods</button>
+      </div>
+      
+      <!-- Kpop Demon Hunters Castle Castle Packages -->
+      <div id="KpopC-castle" class="castle-set">
+        <div class="grid">
+          <div class="card">
+            <img src="KpopSlideDeal1.png" alt="Kpop Demon Hunters Castle Package 1">
+            <div class="card-content">
+              <h3>Kpop Demon Hunters Castle Package 1 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>
+  <p>
+    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
+      10L Slush (Approx 50 Servings)
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
+      Kpop Demon Hunters Castle Castle
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
+      Candy Floss
+    </a>
+  </p>
+</li>
+              </ul>
+              <p class="price">£190</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="KpopSlideDeal2.png" alt="Kpop Demon Hunters Castle Package 2">
+            <div class="card-content">
+              <h3>Kpop Demon Hunters Castle Package 2 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>
+  <p>
+    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
+      Kpop Demon Hunters Castle Castle
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
+      Candy Floss
+    </a>
+  </p>
+</li>
+              </ul>
+              <p class="price">£210</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="KpopSlideDeal3.png" alt="Kpop Demon Hunters Castle Package 3">
+            <div class="card-content">
+              <h3>Kpop Demon Hunters Castle Package 3 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>
+  <p>
+    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
+      10L Slush (Approx 50 Servings)
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
+      Kpop Demon Hunters Castle Castle
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
+      Candy Floss
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
+      Soft Play
+    </a>
+  </p>
+</li>
+              </ul>
+              <p class="price">£230</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+          <div class="card">
+            <img src="KpopSlideDeal4.png" alt="Kpop Demon Hunters Castle Package 4">
+            <div class="card-content">
+              <h3>Kpop Demon Hunters Castle Package 4 🎁</h3>
+              <p>Includes:</p>
+              <ul class="package-list">
+                <li>
+  <p>
+    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
+      Kpop Demon Hunters Castle Castle
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
+      Candy Floss
+    </a>
+  </p>
+</li>
+                <li>
+  <p>
+    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
+      Soft Play
+    </a>
+  </p>
+</li>
+              </ul>
+              <p class="price">£250</p>
+              <div class="timestamp">4 Hours</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Purple Slide Castle Packages -->
@@ -3982,4 +4198,4 @@ window.addEventListener('hashchange', () => {
 </div>
 
 </body>
-	  </html>
+		</html>
