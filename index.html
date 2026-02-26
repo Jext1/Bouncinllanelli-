@@ -782,6 +782,41 @@ button:active::after,
   height: auto;
   display: block;
 }
+
+.fun-day-btn img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    transition: transform 0.15s ease;
+    cursor: pointer;
+
+    /* Subtle repeating attention effect */
+    animation: subtlePop 3s ease-in-out infinite;
+}
+
+/* Subtle repeating pop */
+@keyframes subtlePop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* Hover = slight lift */
+.fun-day-btn img:hover {
+    transform: scale(1.06);
+}
+
+/* Press down + bounce */
+.fun-day-btn img:active {
+    animation: pressBounce 0.25s ease;
+}
+
+@keyframes pressBounce {
+    0%   { transform: scale(1.06); }
+    50%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
   </style>
 
   <!-- Side Menu -->
@@ -805,6 +840,9 @@ button:active::after,
   <div class="hero-overlay fade-in">
     <img src="BouncinLlanelliLogo.png" alt="Bouncin' Llanelli" class="site-logo">
     <p>Making Kids Parties Bouncin'</p>
+    <a href="https://buytickets.at/bouncinllanelli/2091833" target="_blank" class="fun-day-btn">
+    <img src="fun-day-btn.png" alt="Fun Day Tickets Book Now">
+</a>
     <div class="cta-buttons">
       <a href="tel:+447496177130">Contact Us</a>
       <a href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now</a>
@@ -4198,4 +4236,4 @@ window.addEventListener('hashchange', () => {
 </div>
 
 </body>
-		</html>
+	  </html>
