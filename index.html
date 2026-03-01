@@ -817,6 +817,20 @@ button:active::after,
     50%  { transform: scale(0.9); }
     100% { transform: scale(1); }
 }
+
+.hero-logo {
+    display: flex;
+    justify-content: center;   /* horizontal center */
+    align-items: center;       /* vertical center (if needed) */
+    width: 100%;
+    padding: 20px 0;
+}
+
+.hero-logo img {
+    max-width: 90%;      /* makes it responsive */
+    height: auto;        /* keeps proportions correct */
+    display: block;
+}
   </style>
 
   <!-- Side Menu -->
@@ -838,7 +852,9 @@ button:active::after,
   </div>
 
   <div class="hero-overlay fade-in">
-    <img src="BouncinLlanelliLogo.png" alt="Bouncin' Llanelli" class="site-logo">
+    <div class="hero-logo">
+    <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli Logo">
+</div>
     <p>Making Kids Parties Bouncin'</p>
     <a href="https://buytickets.at/bouncinllanelli/2091833" target="_blank" class="fun-day-btn">
     <img src="fun-day-btn.png" alt="Fun Day Tickets Book Now">
@@ -4236,4 +4252,4 @@ window.addEventListener('hashchange', () => {
 </div>
 
 </body>
-																											</html>
+	  </html>
