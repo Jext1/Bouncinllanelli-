@@ -975,6 +975,20 @@ async function send() {
 <div class="grid cards">
 
   <div class="card">
+    <img src="CardWhiteCastle.jpg" alt="White Bouncy Castle" />
+    <h3>White Bouncy Caslte</h3>
+    <h4>From £100</h4>
+
+    <div class="card-specs">
+      <span>H: 7.5ft</span>
+      <span>L: 10ft</span>
+      <span>W: 10ft</span>
+    </div>
+
+    <button class="btn" onclick="navigateTo('#/bouncy-castles/white')">Find out more</button>
+  </div>
+
+  <div class="card">
     <img src="CardDiscoCastle.png" alt="Disco Bouncy Castle" />
     <h3>Blue Disco Bouncy Castle</h3>
     <h4>From £100</h4>
@@ -1252,6 +1266,66 @@ async function send() {
   </div>
 
   <p style="margin-top:2rem;"><a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a></p>
+</section>
+
+<!-- ===== White CASTLE detail ===== -->
+	
+<section class="route" data-route="#/bouncy-castles/white" id="route-castle-white">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardWhiteCastle.jpg" alt="White Bouncy Castle" style="max-width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">White Bouncy Castle £100</h1>
+  <p class="muted">A stylish and compact white bouncy castle, perfect for birthdays, garden parties, weddings, and indoor venues.</p>
+
+  <div style="margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">White Theme</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">10 × 10ft</span>
+    <span style="background:#eee; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Low Height</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+        onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+    Book Now
+  </button>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-castle-white-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>Our <strong>White Bouncy Castle</strong> is perfect for smaller spaces while still delivering big fun. Its clean, modern look makes it ideal for weddings, christenings, birthdays, and indoor venues with height restrictions.</p>
+  </div>
+
+  <div id="route-castle-white-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <p>
+      <strong>Size:</strong> 10ft × 10ft<br>
+      <strong>Height:</strong> 7.5ft<br>
+      <strong>Theme:</strong> White
+    </p>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Compact design – ideal for gardens & indoor halls</li>
+      <li>✅ Low height – fits most venues</li>
+      <li>✅ Mesh sides for visibility and safety</li>
+      <li>✅ Cleaned & sanitised before every hire</li>
+    </ul>
+  </div>
+
+  <div id="route-castle-white-tab-images" class="tab-content hidden" style="padding:1rem 0; text-align:center;">
+    <div class="carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <img src="CardWhiteCastle.jpg" alt="White Bouncy Castle Image" class="carousel-slide active">
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;">
+    <a class="btn" href="#/bouncy-castles"><- Back to Bouncy Castles</a>
+  </p>
 </section>
 
 <!-- ===== Building Blocks CASTLE detail ===== -->
@@ -4417,4 +4491,4 @@ window.addEventListener('hashchange', () => {
 </div>
 
 </body>
-	  </html>
+	</html>
