@@ -119,6 +119,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   -webkit-tap-highlight-color: transparent;
 }
 
+.price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #27ae60;
+  margin-bottom: 10px;
+}
+
 .carousel img {
   width: 100%;
   flex-shrink: 0;
@@ -126,6 +133,106 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   user-select: none;
   pointer-events: none;
   height: 230px; /* fixed height for all castle images */
+}
+
+.package-card {
+  max-width: 380px;
+  margin: 40px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  font-family: Arial, sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* Content */
+.package-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.package-content h2 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.includes-title {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.package-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.package-content li {
+  margin: 5px 0;
+}
+
+/* Castle tags */
+.castle-options {
+  margin: 10px 0;
+}
+
+.castle-options span {
+  display: inline-block;
+  background: #f1f1f1;
+  padding: 6px 10px;
+  border-radius: 20px;
+  margin: 3px;
+  font-size: 12px;
+}
+
+/* Upgrade text */
+.upgrade {
+  margin-top: 15px;
+  color: #e67e22;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Button */
+.book-btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.book-btn:hover {
+  transform: scale(1.05);
 }
 
 .carousel-btn {
@@ -888,11 +995,6 @@ button:active::after,
     <a href="#/extras" data-route="#/extras">Extras</a>
     <a href="#/packages" data-route="#/packages">Packages</a>
   </div>
-  
-
-    <a href="https://buytickets.at/bouncinllanelli/2091833" target="_blank" class="fun-day-btn">
-    <img src="fun-day-btn.png" alt="Fun Day Tickets Book Now">
-</a>
 
   <!-- Hero Section -->
 <section class="hero-section">
@@ -2728,6 +2830,13 @@ if (contentWrapper) contentWrapper.scrollTop = 0;
       <h4>From £80</h4>
       <button class="btn" onclick="navigateTo('#/extras/soft-play')">Find out more</button>
     </div>
+    <!-- Soft Play -->
+    <div class="card">
+      <img src="CardMermaidSoftPlay.png" alt="Soft Play" style="width:100%;border-radius:12px;"/>
+      <h3>Mermaid Inflatable Ball Pool</h3>
+      <h4>From £50</h4>
+      <button class="btn" onclick="navigateTo('#/extras/mernaid-soft-play')">Find out more</button>
+    </div>
     <!-- Didi Cars -->
     <div class="card">
       <img src="CardDidiCars.png" alt="Didi Cars" style="width:100%;border-radius:12px;"/>
@@ -2835,6 +2944,78 @@ if (contentWrapper) contentWrapper.scrollTop = 0;
 
   <p style="margin-top:2rem;"><a class="btn" href="#/extras"><- Back to Extras</a></p>
 </section>
+
+<!-- ===== Mermaid SoftPlay Details ===== -->
+<section class="route" data-route="#/extras/mernaid-soft-play" id="MermaidSoftPlay">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <img src="CardMermaidSoftPlay.png" alt="Mermaid Soft Play Ball Pool" style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);" />
+  </div>
+
+  <h1 class="route-title">Mermaid Inflatable Ball Pool £50</h1>
+  <p class="muted">
+    A magical mermaid-themed inflatable ball pool, perfect for toddlers and young children to enjoy safe and colourful play at parties and events.
+  </p>
+
+  <div style="margin: 1rem 0; display:flex; gap:0.5rem; flex-wrap:wrap;">
+    <span style="background:#ffef99; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Extras</span>
+    <span style="background:#d1ecff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:600;">Mermaid Theme</span>
+  </div>
+
+  <button class="btn" style="font-size:1.2rem; padding:0.8rem 1.5rem;"
+    onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1'">
+    Book Now
+  </button>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="MermaidSoftPlay-tab-desc" class="tab-content" style="padding:1rem 0;">
+    <p>
+      Our <strong>Mermaid High Back Inflatable Ball Pool</strong> brings a fun and eye-catching centrepiece to any children's party. 
+      Designed with bright ocean colours and a high-back inflatable surround, it provides a safe and enclosed space for toddlers 
+      to play, crawl, and explore.
+    </p>
+    <p>
+      Ideal for birthdays, christenings, and indoor events, this soft play option creates a magical under-the-sea experience 
+      while keeping little ones entertained.
+    </p>
+  </div>
+
+  <div id="MermaidSoftPlay-tab-features" class="tab-content hidden" style="padding:1rem 0;">
+    <h3>Features & Specifications</h3>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li>✅ Mermaid-Themed Inflatable Ball Pool</li>
+      <li>✅ High Back Walls for Added Safety</li>
+      <li>✅ Includes Ball Pool Balls</li>
+      <li>✅ Bright & Colourful Ocean Design</li>
+      <li>✅ Soft, Air-Filled Structure</li>
+      <li>✅ Suitable for Indoor Use</li>
+      <li>✅ Approx Size: 8ft (L) x 8ft (W) x 4ft (H)</li>
+      <li>✅ Fully Cleaned & Sanitised Before Every Hire</li>
+    </ul>
+  </div>
+
+  <div id="MermaidSoftPlay-tab-images" class="tab-content hidden" style="padding:1rem 0;">
+    <div class="carousel">
+      <button class="carousel-btn prev" type="button">&#10094;</button>
+      <img src="MermaidSoftPlay1.png" class="carousel-slide active" />
+      <img src="MermaidSoftPlay2.png" class="carousel-slide" />
+      <img src="MermaidSoftPlay3.png" class="carousel-slide" />
+      <img src="MermaidSoftPlay4.png" class="carousel-slide" />
+      <img src="MermaidSoftPlay5.png" class="carousel-slide" />
+      <img src="MermaidSoftPlay6.png" class="carousel-slide" />
+      <button class="carousel-btn next" type="button">&#10095;</button>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;">
+    <a class="btn" href="#/extras"><- Back to Extras</a>
+  </p>
+</section>
+
 
 <!-- ===== Didi Cars Details ===== -->
 <section class="route" data-route="#/extras/didi-cars" id="DidiCars">
@@ -3099,116 +3280,6 @@ if (contentWrapper) contentWrapper.scrollTop = 0;
 </script>
 
 <section class="route package-section" data-route="#/packages" id="route-packages">
-  <style>
-    .package-section .castle-toggle {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.package-section .castle-toggle button {
-  padding: 0.7rem 2.2rem;
-  border: none;
-  background: #00bcd4; /* Cyan */
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  position: relative;
-}
-
-.package-section .castle-toggle button:hover {
-  background: #0097a7; /* Darker cyan */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.package-section .castle-toggle button.active {
-  background: #607d8b; /* Grey */
-  color: #fff;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-.package-section .castle-toggle button::after {
-  content: '';
-  display: block;
-  height: 3px;
-  width: 0;
-  background: #fff;
-  border-radius: 2px;
-  transition: width 0.3s;
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.package-section .castle-toggle button.active::after,
-.package-section .castle-toggle button:hover::after {
-  width: 50%;
-}
-
-    .package-section .castle-set {display: none;}
-    .package-section .castle-set.active {display: block;}
-
-    /* CARD STYLING */
-    .package-section .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .package-section .card {
-      background: #fff;
-      border: 2px solid #eee;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease;
-    }
-    .package-section .card:hover {
-      transform: translateY(-4px);
-    }
-    .package-section .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .package-section .card-content {
-      padding: 16px;
-    }
-    .package-section .card-content h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      font-weight: 600;
-      color: #00bcd4;
-    }
-    .package-section .card-content p {margin: 4px 0;}
-    .package-section .package-list {
-      padding-left: 20px;
-      margin: 8px 0;
-    }
-    .package-section .package-list li {
-      margin-bottom: 4px;
-      list-style: disc;
-    }
-    .package-section .price {
-      font-size: 18px;
-      font-weight: bold;
-      color: #607d8b;
-      margin-top: 8px;
-    }
-    .package-section .timestamp {
-      font-size: 14px;
-      color: #777;
-    }
-  </style>
 
   <main class="wrapper">
   	
@@ -3220,1118 +3291,125 @@ if (contentWrapper) contentWrapper.scrollTop = 0;
     <a href="#/fun-foods" data-route="#/fun-foods">Fun Foods</a>
   </div>
   
-    <section id="pricing">
-      <!-- Toggle Buttons -->
-      <div class="castle-toggle">
-    	
-        <button id="discoBtn" class="active"  onclick="showCastle('disco')">Blue Disco Castle</button>
-        <button id="BuildingBlockBtn" onclick="showCastle('buildingblock')">Building Block Castle</button>
-        <button id="slideBtn" onclick="showCastle('pslide')">Purple Slide Castle</button>
-        <button id="KpopBtn" onclick="showCastle('KpopC')">Kpop Demon Hunters Castle</button>
-        <button id="dinoSlideBtn" onclick="showCastle('dinoslide')">Dinosaur Castle</button>
-        <button id="princessSlideBtn" onclick="showCastle('princessslide')">Princess Slide Castle</button>
-        <button id="funRunBtn" onclick="showCastle('funrun')">Fun Run</button>
-        <button id="foodsBtn" onclick="showCastle('foods')">Fun Foods</button>
-      </div>
-      
-      <!-- Kpop Demon Hunters Castle Castle Packages -->
-      <div id="KpopC-castle" class="castle-set">
-        <div class="grid">
-          <div class="card">
-            <img src="KpopSlideDeal1.png" alt="Kpop Demon Hunters Castle Package 1">
-            <div class="card-content">
-              <h3>Kpop Demon Hunters Castle Package 1 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
-      Kpop Demon Hunters Castle Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£190</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="KpopSlideDeal2.png" alt="Kpop Demon Hunters Castle Package 2">
-            <div class="card-content">
-              <h3>Kpop Demon Hunters Castle Package 2 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
-      Kpop Demon Hunters Castle Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£210</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="KpopSlideDeal3.png" alt="Kpop Demon Hunters Castle Package 3">
-            <div class="card-content">
-              <h3>Kpop Demon Hunters Castle Package 3 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
-      Kpop Demon Hunters Castle Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£230</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="KpopSlideDeal4.png" alt="Kpop Demon Hunters Castle Package 4">
-            <div class="card-content">
-              <h3>Kpop Demon Hunters Castle Package 4 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/kpop" style="color: #007bff; text-decoration: underline;">
-      Kpop Demon Hunters Castle Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£250</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="package-card">
 
-      <!-- Purple Slide Castle Packages -->
-      <div id="pslide-castle" class="castle-set">
-        <div class="grid">
-          <div class="card">
-            <img src="PurpleSlideDeal1.png" alt="Purple Slide Package 1">
-            <div class="card-content">
-              <h3>Purple Slide Package 1 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/slide" style="color: #007bff; text-decoration: underline;">
-      Purple Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£190</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="PurpleSlideDeal2.png" alt="Purple Slide Package 2">
-            <div class="card-content">
-              <h3>Purple Slide Package 2 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/slide" style="color: #007bff; text-decoration: underline;">
-      Purple Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£210</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="PurpleSlideDeal3.png" alt="Purple Slide Package 3">
-            <div class="card-content">
-              <h3>Purple Slide Package 3 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/slide" style="color: #007bff; text-decoration: underline;">
-      Purple Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£230</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="PurpleSlideDeal4.png" alt="Purple Slide Package 4">
-            <div class="card-content">
-              <h3>Purple Slide Package 4 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/slide" style="color: #007bff; text-decoration: underline;">
-      Purple Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£250</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Building Block Castle Packages -->
-      <div id="buildingblock-castle" class="castle-set">
-        <div class="grid">
-          <div class="card">
-            <img src="BuildingBrickDeal1.png" alt="Building Block Package 1">
-            <div class="card-content">
-              <h3>Building Block Package 1 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/BuildingBlocks" style="color: #007bff; text-decoration: underline;">
-      Building Block Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£180</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="BuildingBrickDeal2.png" alt="Building Block Package 2">
-            <div class="card-content">
-              <h3>Building Block Package 2 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/BuildingBlocks" style="color: #007bff; text-decoration: underline;">
-      Building Block Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£200</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="BuildingBrickDeal3.png" alt="Building Block Package 3">
-            <div class="card-content">
-              <h3>Building Block Package 3 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/BuildingBlocks" style="color: #007bff; text-decoration: underline;">
-      Building Block Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£220</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="BuildingBrickDeal4.png" alt="Building Block Package 4">
-            <div class="card-content">
-              <h3>Building Block Package 4 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/BuildingBlocks" style="color: #007bff; text-decoration: underline;">
-      Building Block Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£240</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Image Slider -->
+  <div class="slider">
+    <img src="BlueDiscoDeal1.png" class="slide active">
+    <img src="BuildingBrickDeal1.png" class="slide">
+    <img src="DIscoDomeDeal1.png" class="slide">
+  </div>
 
-      <!-- Disco Castle Packages -->
-      <div id="disco-castle" class="castle-set active">
-        <div class="grid">
-          <div class="card">
-            <img src="BlueDiscoDeal1.png" alt="Disco Package 1">
-            <div class="card-content">
-              <h3>Blue Disco Package 1 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/disco" style="color: #007bff; text-decoration: underline;">
-      Blue Disco Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£180</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="BlueDiscoDeal2.png" alt="Disco Package 2">
-            <div class="card-content">
-              <h3>Blue Disco Package 2 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/disco" style="color: #007bff; text-decoration: underline;">
-      Blue Disco Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£200</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="BlueDiscoDeal3.png" alt="Disco Package 3">
-            <div class="card-content">
-              <h3>Blue Disco Package 3 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/disco" style="color: #007bff; text-decoration: underline;">
-      Blue Disco Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£220</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="BlueDiscoDeal4.png" alt="Disco Package 4">
-            <div class="card-content">
-              <h3>Blue Disco Package 4 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/disco" style="color: #007bff; text-decoration: underline;">
-      Blue Disco Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£240</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="package-content">
+    <h2>Standard Package</h2>
+<p class="price">£180</p>
 
-      <!-- Fun Run Packages -->
-      <div id="funrun-castle" class="castle-set">
-        <div class="grid">
-          <div class="card">
-            <img src="FunRunDeal1.png" alt="Fun Run Package 1">
-            <div class="card-content">
-              <h3>Fun Run Package 1 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/fun-run" style="color: #007bff; text-decoration: underline;">
-      Fun Run Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£220</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="FunRunDeal2.png" alt="Fun Run Package 2">
-            <div class="card-content">
-              <h3>Fun Run Package 2 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/fun-run" style="color: #007bff; text-decoration: underline;">
-      Fun Run Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£240</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="FunRunDeal3.png" alt="Fun Run Package 3">
-            <div class="card-content">
-              <h3>Fun Run Package 3 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/fun-run" style="color: #007bff; text-decoration: underline;">
-      Fun Run Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£260</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="FunRunDeal4.png" alt="Fun Run Package 3">
-            <div class="card-content">
-              <h3>Fun Run Package 4 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/fun-run" style="color: #007bff; text-decoration: underline;">
-      Fun Run Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£280</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="FunRunDeal5.png" alt="Fun Run Package 3">
-            <div class="card-content">
-              <h3>Fun Run Package 5 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/bouncy-castles/fun-run" style="color: #007bff; text-decoration: underline;">
-      Fun Run Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/Rainbowdisco" style="color: #007bff; text-decoration: underline;">
-      Rainbow Disco Castle
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£230</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <p class="includes-title">Includes:</p>
+    <ul>
+      <li>🥤 10L Slush Machine</li>
+      <li>🍭 Candyfloss Machine</li>
+      <li>🏰 Choice of Castle:</li>
+    </ul>
 
-      <!-- Princess Slide Castle Packages -->
-      <div id="princessslide-castle" class="castle-set">
-        <div class="grid">
-          <div class="card">
-            <img src="PinkSlideDeal1.png" alt="Princess Slide Package 1">
-            <div class="card-content">
-              <h3>Princess Slide Package 1 👑</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/PrincessSlide" style="color: #007bff; text-decoration: underline;">
-      Princess Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£190</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="PinkSlideDeal2.png" alt="Princess Slide Package 2">
-            <div class="card-content">
-              <h3>Princess Slide Package 2 👑</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/PrincessSlide" style="color: #007bff; text-decoration: underline;">
-      Princess Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£210</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="PinkSlideDeal3.png" alt="Princess Slide Package 3">
-            <div class="card-content">
-              <h3>Princess Slide Package 3 👑</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/PrincessSlide" style="color: #007bff; text-decoration: underline;">
-      Princess Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£230</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="PinkSlideDeal4.png" alt="Princess Slide Package 3">
-            <div class="card-content">
-              <h3>Princess Slide Package 4 👑</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/PrincessSlide" style="color: #007bff; text-decoration: underline;">
-      Princess Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£250</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="castle-options">
+      <span>Blue Disco</span>
+      <span>Disco Dome</span>
+      <span>Building Blocks</span>
+    </div>
 
-      <!-- Fun Foods Packages -->
-      <div id="foods-castle" class="castle-set">
-        <div class="grid">
-          <div class="card">
-            <img src="CardPackageDeal5.jpg" alt="Fun Food Package 1">
-            <div class="card-content">
-              <h3>Fun Food Package 1 🍭</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£120</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="CardPackageDeal6.jpg" alt="Fun Food Package 2">
-            <div class="card-content">
-              <h3>Fun Food Package 2 🍭</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£140</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Dino Slide Castle Packages -->
-      <div id="dinoslide-castle" class="castle-set">
-        <div class="grid">
-          <div class="card">
-            <img src="DinoSlideDeal1.png" alt="Dino Slide Package 1">
-            <div class="card-content">
-              <h3>Dinosaur Slide Package 1 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/dinoslide" style="color: #007bff; text-decoration: underline;">
-      Dinosaur Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£190</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="DinoSlideDeal2.png" alt="Dino Slide Package 2">
-            <div class="card-content">
-              <h3>Dinosaur Slide Package 2 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/dinoslide" style="color: #007bff; text-decoration: underline;">
-      Dinosaur Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£210</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="DinoSlideDeal3.png" alt="Dino Slide Package 3">
-            <div class="card-content">
-              <h3>Dinosaur Slide Package 3 🎁</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/10LSlushMachine" style="color: #007bff; text-decoration: underline;">
-      10L Slush (Approx 50 Servings)
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/dinoslide" style="color: #007bff; text-decoration: underline;">
-      Dinosaur Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£230</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-          <div class="card">
-            <img src="DinoSlideDeal4.png" alt="Dino Slide Package 4">
-            <div class="card-content">
-              <h3>Dinosaur Slide Package 4 ??</h3>
-              <p>Includes:</p>
-              <ul class="package-list">
-                <li>
-  <p>
-    <a href="#/fun-foods/20LSlushMachine" style="color: #007bff; text-decoration: underline;"> 20L Slush (Approx 100 Servings) </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/bouncy-castles/dinoslide" style="color: #007bff; text-decoration: underline;">
-      Dinosaur Slide Castle
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/fun-foods/CandyFloss" style="color: #007bff; text-decoration: underline;">
-      Candy Floss
-    </a>
-  </p>
-</li>
-                <li>
-  <p>
-    <a href="#/extras/soft-play" style="color: #007bff; text-decoration: underline;">
-      Soft Play
-    </a>
-  </p>
-</li>
-              </ul>
-              <p class="price">£250</p>
-              <div class="timestamp">4 Hours</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-    </section>
-  </main>
+    <p class="upgrade">
+      Upgrade to a larger slush machine for <strong>£10 extra</strong>
+    </p>
 
-  <script>
-    function showCastle(type) {
-      document.querySelectorAll('.castle-set').forEach(set => set.classList.remove('active'));
-      document.querySelectorAll('.castle-toggle button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(type + '-castle').classList.add('active');
-      document.getElementById(type + 'Btn').classList.add('active');
-    }
-  </script>
+    <button class="book-btn" onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1';">Book Now</button>
+  </div>
+
+</div>
+
+<div class="package-card">
+
+  <!-- Image Slider -->
+  <div class="slider">
+    <img src="KpopSlideDeal1.png" class="slide active">
+    <img src="PinkSlideDeal1.png" class="slide">
+    <img src="MermaidSlideDeal1.png" class="slide">
+    <img src="DinoSlideDeal1.png" class="slide">
+    <img src="PurpleSlideDeal1.png" class="slide">
+  </div>
+
+  <div class="package-content">
+    <h2>Standard+ Package</h2>
+<p class="price">£190</p>
+
+    <p class="includes-title">Includes:</p>
+    <ul>
+      <li>🥤 10L Slush Machine</li>
+      <li>🍭 Candyfloss Machine</li>
+      <li>🏰 Choice of Castle:</li>
+    </ul>
+
+    <div class="castle-options">
+      <span>Kpop Demon Hunters Slide Castle</span>
+      <span>Princess Slide Castle</span>
+      <span>Mermaid Slide Castle</span>
+      <span>Dinosaur Slide Castle</span>
+      <span>Customizable Slide Castle</span>
+    </div>
+
+    <p class="upgrade">
+      Upgrade to a larger slush machine for <strong>£10 extra</strong>
+    </p>
+
+    <button class="book-btn" onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1';">Book Now</button>
+  </div>
+</div>
+
+<div class="package-card">
+
+  <!-- Image Slider -->
+  <div class="slider">
+    <img src="FunRunDeal5.png" class="slide active">
+  </div>
+
+  <div class="package-content">
+    <h2>Fun Run Package</h2>
+<p class="price">£230</p>
+
+    <p class="includes-title">Includes:</p>
+    <ul>
+      <li>🏰 Fun Run</li>
+      <li>🏰 Rainbow Disco Bouncy Castle</li>
+    </ul>
+
+    <button class="book-btn" onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1';">Book Now</button>
+  </div>
+</div>
+
+<div class="package-card">
+
+<!-- Image Slider -->
+  <div class="slider">
+    <img src="CardPackageDeal5.jpg" class="slide active">
+  </div>
+
+  <div class="package-content">
+    <h2>Fun Food Package</h2>
+<p class="price">£120</p>
+
+    <p class="includes-title">Includes:</p>
+    <ul>
+      <li>🥤 10L Slush Machine</li>
+      <li>🍭 Candyfloss Machine</li>
+    </ul>
+    
+    <p class="upgrade">
+      Upgrade to a larger slush machine for <strong>£20 extra</strong>
+    </p>
+
+    <button class="book-btn" onclick="window.location.href='https://wa.me/message/HQ44EEHYC6E2C1';">Book Now</button>
+  </div>
+</div>
+    
 </section>
 
 <section class="route" data-route="#/more-info" id="route-more-info">
@@ -4758,6 +3836,20 @@ document.querySelectorAll('.card-carousel').forEach(carousel => {
     showSlide(index);
   });
 });
+
+const sliders = document.querySelectorAll(".slider");
+
+sliders.forEach(slider => {
+  const slides = slider.querySelectorAll(".slide");
+  let index = 0;
+
+  setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }, 3000); // change every 3 seconds
+});
+
 </script>
 
 <!-- Page Transition Overlay -->
@@ -4766,4 +3858,4 @@ document.querySelectorAll('.card-carousel').forEach(carousel => {
 </div>
 
 </body>
-		  </html>
+	  </html> 
