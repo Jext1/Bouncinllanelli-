@@ -714,6 +714,7 @@ button:active::after,
         <a href="#/extras" data-route="#/extras">Extras</a>
         <a href="#/packages" data-route="#/packages">Packages</a>
         <a href="#/more-info" data-route="#/more-info">More Info</a>
+        <a href="#/deliveries" data-route="#/deliveries">Deliveries</a>
       </nav>
     </aside>
 
@@ -762,38 +763,36 @@ button:active::after,
     #route-home .cta-buttons a {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
 
-  padding: 1.2rem 2.6rem;
+  padding: 14px 26px;
   border-radius: 999px;
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  font-weight: 700;
 
-  color: black;
+  color: white;
   text-decoration: none;
 
-  background: linear-gradient(135deg,
-  #ff4f4f,
-  #ff9f43,
-  #ffe66d,
-  #6aff8e,
-  #4ea9ff,
-  #7b6cff,
-  #d36cff
-);
-  box-shadow: 0 10px 26px rgba(78,169,255,0.45);
+  /* Cleaner gradient (less rainbow chaos) */
+  background: rgba(123, 108, 255, 0.18); /* purple tint */
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+border: 1px solid rgba(78, 169, 255, 0.35); /* blue edge */
+
+  /* Depth */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+  transition: all 0.25s ease;
 }
     #route-home .cta-buttons a:hover {
-  transform: translateY(-6px) scale(1.04);
-  box-shadow: 0 18px 40px rgba(255,126,185,0.55);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.35);
 }
 
 #route-home .cta-buttons a:active {
-  transform: translateY(-2px) scale(0.98);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  transform: scale(0.96);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
 }
 
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -1002,15 +1001,34 @@ button:active::after,
   <div class="pipa-badge">
     <img src="pipa-badge.png" alt="PIPA Safety Tested" />
   </div>
-
+  
   <div class="hero-overlay fade-in">
     <div class="hero-logo">
     <img src="BouncinLlanelliLogo.png" alt="Bouncin Llanelli Logo">
 </div>
     <div class="cta-buttons">
-    <a href="#/bouncy-castles" data-route="#/bouncy-castles">Castles</a>
-    <a href="#/packages" data-route="#/packages">Packages</a>
-      <a href="https://wa.me/message/HQ44EEHYC6E2C1">Book Now</a>
+  <a href="#/bouncy-castles" data-route="#/bouncy-castles">
+  <span class="icon">🏰</span> Castles
+</a>
+
+<a href="#/packages" data-route="#/packages">
+  <span class="icon">📦</span> Packages
+</a>
+
+<a href="https://wa.me/message/HQ44EEHYC6E2C1">
+  <span class="icon">📅</span> Book Now
+</a>
+
+<style>
+.icon {
+  filter: brightness(0) invert(1); /* makes emoji white */
+  text-shadow:
+    0 0 1px #fff,
+    0 0 1px #fff,
+    0 0 1px #fff,
+    0 0 1px #fff;
+}
+</style>
     </div>
     <div class="social-buttons">
   <a href="https://www.facebook.com/share/1C875JN9h4/"" target="_blank">
@@ -1027,9 +1045,17 @@ button:active::after,
   </a>
 </div>
 <div class="cta-buttons" style="margin-top: 20px;">
-  <a href="tel:+447496177130">Contact Us</a>
+  
+  <a href="tel:+447496177130">
+    <span class="icon">📞</span> Book Now
+  </a>
+  
+  <a href="#/deliveries" data-route="#/deliveries">
+  <span class="icon">🚚</span> Deliveries
+</a>
+
 </div>
-    <div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior:'smooth'});">▼</div>
+<div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior:'smooth'});">▼</div>
   </div>
 </section>
 
@@ -1110,6 +1136,7 @@ async function send() {
     fadeElements.forEach(el => observer.observe(el));
   </script>
 </section>
+
 
 <!-- ===== BOUNCY CASTLES list ===== -->
 <section class="route" data-route="#/bouncy-castles" id="route-bouncy-castles">
@@ -3455,6 +3482,46 @@ if (contentWrapper) contentWrapper.scrollTop = 0;
 Our £20 deposit is non refundable, however this is included when having to rearrange a date.</p>
     </div>
     </div>
+</section>
+
+<section class="route" data-route="#/deliveries" id="route-deliveries">
+  <h1 class="route-title">🚚 Delivery Information</h1>
+
+  <div class="panel" style="text-align:center;">
+
+    <h2 style="color:#27ae60;">✅ FREE DELIVERY</h2>
+    <p style="font-weight:bold;">Llanelli, Swansea & Carmarthen</p>
+
+    <hr style="margin:20px 0;">
+
+    <div style="display:grid; gap:15px;">
+
+      <div style="background:#f9f9f9; padding:15px; border-radius:12px; border:2px solid #ffd6f6;">
+        <h3>Up to 20 Miles</h3>
+        <p style="font-size:22px; font-weight:bold;">£20</p>
+      </div>
+
+      <div style="background:#f9f9f9; padding:15px; border-radius:12px; border:2px solid #ffd6f6;">
+        <h3>Up to 30 Miles</h3>
+        <p style="font-size:22px; font-weight:bold;">£30</p>
+      </div>
+
+      <div style="background:#f9f9f9; padding:15px; border-radius:12px; border:2px solid #ffd6f6;">
+        <h3>30+ Miles</h3>
+        <p style="font-size:18px; font-weight:bold;">Price on Application</p>
+      </div>
+
+    </div>
+
+    <p style="margin-top:20px; color:#666;">
+      Delivery is calculated based on distance from our base.
+    </p>
+
+    <a class="btn" href="https://wa.me/message/HQ44EEHYC6E2C1" style="margin-top:20px;">
+      📅 Book Now
+    </a>
+
+  </div>
 </section>
 
       <!-- ===== 404 ===== -->
