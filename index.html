@@ -275,25 +275,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 .card-carousel {
   position: relative;
-  width: 300px;
-  height: 200px;
-  border-radius: 25px; /* keeps corners rounded */
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: 18px;
   overflow: hidden;
-  background: none; /* removes pink gradient */
+  background: none;
 }
 
 .card-slide {
-  display: none;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* makes image fill the space */
-  border-radius: 25px; /* keeps image corners rounded */
-  overflow: hidden;
-  padding: 0; /* remove extra padding so image fills more space */
+  object-fit: cover;
+  border-radius: 18px;
+  padding: 0;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.card img,
+.card-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .card-slide.active {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+.card-carousel-btn {
+  z-index: 5;
 }
 
 .card-carousel-btn {
@@ -575,9 +593,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     box-shadow:0 2px 6px rgba(255,110,199,.15);
   }
   .card {
-  max-width: 340px;
   width: 100%;
+  max-width: 180px;
 }
+
+@media (min-width: 769px) {
+  .card {
+    max-width: 340px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
   .card h3 { margin:0; font-size:16px; color:var(--accent-alt); }
   .card h4 { margin:0; font-size:16px; color: #2eb3ff; }
   .btn {
@@ -1470,9 +1499,9 @@ async function send() {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  justify-items: center; /* center each card in its grid cell */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  justify-items: center;
 }
 
 /* ===== Card buttons ===== */
@@ -2869,7 +2898,6 @@ if (contentWrapper) contentWrapper.scrollTop = 0;
       <h4>From £30</h4>
       <button class="btn" onclick="navigateTo('#/extras/didi-cars')">Find out more</button>
     </div>
-    <div class="grid cards">
     <!-- Snow Machine -->
     <div class="card">
       <img src="CardSnowMachine.png" alt="Snow Machine" style="width:100%;border-radius:12px;"/>
