@@ -925,6 +925,42 @@ border: 1px solid rgba(78, 169, 255, 0.35); /* blue edge */
   height: 65px;
 }
 
+#route-home .overnight-banner {
+  margin-top: 18px;
+  padding: 14px 22px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+
+  animation: glowFloat 3s ease-in-out infinite;
+}
+
+#route-home .overnight-banner strong {
+  color: #ffe66d;
+}
+
+@keyframes glowFloat {
+  0%,100% {
+    transform: translateY(0);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  50% {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255,255,255,0.25);
+  }
+}
+
 #route-home .card {
       background:white;
       margin-top: 40px;
@@ -1047,6 +1083,10 @@ border: 1px solid rgba(78, 169, 255, 0.35); /* blue edge */
 <a href="https://wa.me/message/HQ44EEHYC6E2C1">
   <span class="icon">📅</span> Book Now
 </a>
+
+<div class="overnight-banner">
+  🌙 Overnight bookings available from just <strong>£20</strong>
+</div>
 
 <style>
 .icon {
