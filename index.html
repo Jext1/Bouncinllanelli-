@@ -1320,6 +1320,18 @@
         <a href="#/fun-foods"  class="cat-pill" onclick="navigateTo('#/fun-foods');return false;"><span class="nav-icon"><i class="fas fa-glass-whiskey"></i></span> Fun Foods</a>
         <a href="#/extras"     class="cat-pill" onclick="navigateTo('#/extras');return false;"><span class="nav-icon"><i class="fas fa-star"></i></i></span> Extras</a>
       </div>
+      
+      <!-- Generator Banner -->
+<div style="background:linear-gradient(135deg,#ffe94e,#ffb347);border:2px solid #f5a623;border-radius:var(--radius);padding:18px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow);">
+  <div style="display:flex;align-items:center;gap:14px;flex:1;min-width:220px;">
+    <span style="font-size:34px;line-height:1;">⚡</span>
+    <div>
+      <h3 style="font-family:var(--font-head);font-size:1.15rem;color:#7a4b00;margin-bottom:2px;">No power at your venue?</h3>
+      <p style="color:#7a4b00;font-size:14px;margin:0;">Hiring a bouncy castle for a park or field with no electricity? Grab a generator so the fun never stops!</p>
+    </div>
+  </div>
+  <button class="btn btn-primary" style="white-space:nowrap;flex-shrink:0;" onclick="navigateTo('#/extras')">View Generators</button>
+</div>
 
       <div class="cards-grid" id="castles-grid">
 
@@ -2929,6 +2941,26 @@
       </div>
       <div class="cards-grid">
 
+      <div class="prod-card">
+          <div class="prod-card-img-wrap"><img src="Card9KvaGene.png" alt="9KvaGene" loading="lazy"/></div>
+          <div class="prod-card-body">
+            <h3>Petrol Generator – 9 kVA</h3>
+            <div class="prod-card-price">From £150</div>
+            <p style="font-size:13px;color:var(--muted);">Capable of powering up to 3 bouncy castles at once.</p>
+            <button class="btn btn-primary" onclick="navigateTo('#/extras/9KvaGene')">View Details</button>
+          </div>
+        </div>
+        
+        <div class="prod-card">
+          <div class="prod-card-img-wrap"><img src="Card3KvaGene.png" alt="3KvaGene" loading="lazy"/></div>
+          <div class="prod-card-body">
+            <h3>Petrol Generator – 3 kVA</h3>
+            <div class="prod-card-price">From £70</div>
+            <p style="font-size:13px;color:var(--muted);">Capable of powering 1 bouncy castles at once.</p>
+            <button class="btn btn-primary" onclick="navigateTo('#/extras/3KvaGene')">View Details</button>
+          </div>
+        </div>
+
         <div class="prod-card">
           <div class="prod-card-img-wrap"><img src="CardSoftPlay.jpg" alt="Soft Play" loading="lazy"/></div>
           <div class="prod-card-body">
@@ -3025,6 +3057,132 @@
         </div>
       </div>
     </section>
+    
+    <!-- 9KvaGene Detail -->
+<section class="route" id="route-extras/9KvaGene" data-route="#/extras/9KvaGene">
+  <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
+
+  <div class="detail-hero">
+    <img src="Card9KvaGene.png" alt="9 kVA Petrol Generator"/>
+  </div>
+
+  <h1 class="detail-title">Petrol Generator – 9 kVA</h1>
+
+  <div class="detail-price">£150</div>
+
+  <div class="detail-tags">
+    <span class="detail-tag tag-blue">Can Power Up To 3 Blowers</span>
+  </div>
+
+  <div class="book-cta-bar">
+    <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn btn-primary btn-lg" target="_blank">💬 Book via WhatsApp</a>
+    <a href="tel:+447496177130" class="btn btn-blue btn-lg">📞 Call to Book</a>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-extras/9KvaGene-tab-desc" class="tab-content">
+    <p>
+      Our <strong>9 kVA Petrol Generator</strong> is the perfect solution for events where mains power isn't available.
+      It can safely power <strong>up to 3 inflatable blowers at the same time</strong>, making it ideal for larger
+      setups in parks, fields, and outdoor venues.
+    </p>
+
+    <p>
+      <strong>Please note:</strong> This generator is only available when hired alongside our inflatables or other
+      hire equipment. It cannot be hired on its own or used to power equipment that is not supplied by us.
+    </p>
+  </div>
+
+  <div id="route-extras/9KvaGene-tab-features" class="tab-content hidden">
+    <div class="feature-list">
+      <div class="feature-item">9 kVA petrol generator</div>
+      <div class="feature-item">Powers up to 3 inflatable blowers</div>
+      <div class="feature-item">Ideal for outdoor venues with no mains electricity</div>
+      <div class="feature-item">Reliable and well-maintained equipment</div>
+      <div class="feature-item">Delivered and collected with your booking</div>
+      <div class="feature-item">Available only with our hire equipment</div>
+    </div>
+  </div>
+
+  <div id="route-extras/9KvaGene-tab-images" class="tab-content hidden">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-slide active">
+          <img src="Card9KvaGene.png" alt="9 kVA Petrol Generator"/>
+        </div>
+      </div>
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- 3KvaGene Detail -->
+<section class="route" id="route-extras/3KvaGene" data-route="#/extras/3KvaGene">
+  <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
+
+  <div class="detail-hero">
+    <img src="Card3KvaGene.png" alt="3 kVA Petrol Generator"/>
+  </div>
+
+  <h1 class="detail-title">Petrol Generator – 3 kVA</h1>
+
+  <div class="detail-price">£70</div>
+
+  <div class="detail-tags">
+    <span class="detail-tag tag-blue">Powers 1 Inflatable Blower</span>
+  </div>
+
+  <div class="book-cta-bar">
+    <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn btn-primary btn-lg" target="_blank">💬 Book via WhatsApp</a>
+    <a href="tel:+447496177130" class="btn btn-blue btn-lg">📞 Call to Book</a>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-extras/3KvaGene-tab-desc" class="tab-content">
+    <p>
+      Our <strong>3 kVA Petrol Generator</strong> is ideal for smaller events where mains power isn't available.
+      It can safely power <strong>1 inflatable blower</strong>, making it perfect for a single bouncy castle or inflatable at parks, fields, and outdoor venues.
+    </p>
+
+    <p>
+      <strong>Please note:</strong> This generator is only available when hired alongside our inflatables or other hire equipment. It cannot be hired on its own or used to power equipment that is not supplied by us.
+    </p>
+  </div>
+
+  <div id="route-extras/3KvaGene-tab-features" class="tab-content hidden">
+    <div class="feature-list">
+      <div class="feature-item">3 kVA petrol generator</div>
+      <div class="feature-item">Powers 1 inflatable blower</div>
+      <div class="feature-item">Ideal for outdoor venues with no mains electricity</div>
+      <div class="feature-item">Reliable and well-maintained equipment</div>
+      <div class="feature-item">Delivered and collected with your booking</div>
+      <div class="feature-item">Available only with our hire equipment</div>
+    </div>
+  </div>
+
+  <div id="route-extras/3KvaGene-tab-images" class="tab-content hidden">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-slide active">
+          <img src="Card3KvaGene.png" alt="3 kVA Petrol Generator"/>
+        </div>
+      </div>
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </div>
+</section>
 
     <!-- Mermaid Ball Pool Detail -->
     <section class="route" id="route-extras/mernaid-soft-play" data-route="#/extras/mernaid-soft-play">
@@ -3212,34 +3370,35 @@
 
 
     <!-- ===================== DELIVERY AREAS ===================== -->
-    <section class="route" id="route-deliveries" data-route="#/deliveries">
-      <h1 class="page-title">🚚 Delivery Areas &amp; Pricing</h1>
-      <p class="page-subtitle">We cover Llanelli and the surrounding areas. Delivery is included in the price for most local areas — see below for any extra charges.</p>
+<section class="route" id="route-deliveries" data-route="#/deliveries">
+  <h1 class="page-title">🚚 Delivery Areas &amp; Pricing</h1>
+  <p class="page-subtitle">We offer free delivery within 10 miles of Llanelli. For locations beyond this, pricing is available on application.</p>
 
-      <div class="info-panel">
-        <h3>📍 Our Base: Llanelli, Wales</h3>
-        <p>We deliver across Llanelli and surrounding areas. For locations outside our standard area, a small fuel surcharge may apply — just ask when booking and we'll always give you an honest, upfront price.</p>
-      </div>
+  <div class="info-panel">
+    <h3>📍 Our Base: Llanelli, Wales</h3>
+    <p>We deliver across Llanelli and the surrounding areas. Delivery is free within a 10-mile radius of our base. If your venue is further away, simply get in touch and we'll provide a competitive delivery quote before you book.</p>
+  </div>
 
-      <div style="background:var(--panel);border:2px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;">
-        <table class="delivery-table">
-          <thead>
-            <tr><th>Area</th><th>Distance</th><th>Delivery</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Llanelli (town centre)</td><td>Local</td><td>Included</td></tr>
-            <tr><td>Burry Port</td><td>~5 miles</td><td>Included</td></tr>
-            <tr><td>Kidwelly</td><td>~7 miles</td><td>Included</td></tr>
-            <tr><td>Carmarthen</td><td>~14 miles</td><td>Included</td></tr>
-            <tr><td>Gorseinon</td><td>~10 miles</td><td>Included</td></tr>
-            <tr><td>Pontarddulais</td><td>~11 miles</td><td>Included</td></tr>
-            <tr><td>Cross Hands</td><td>~13 miles</td><td>Included</td></tr>
-            <tr><td>Swansea</td><td>~14 miles</td><td>Included</td></tr>
-            <tr><td>21–40 miles</td><td>Delivery</td><td>£1 per mile</td></tr>
-            <tr><td>40+ miles</td><td>Delivery</td><td>Contact us for a custom quote</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <div style="background:var(--panel);border:2px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;">
+    <table class="delivery-table">
+      <thead>
+        <tr>
+          <th>Distance from Llanelli</th>
+          <th>Delivery Charge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Up to 10 miles</td>
+          <td>✅ Free</td>
+        </tr>
+        <tr>
+          <td>Over 10 miles</td>
+          <td>Price on Application</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
       <div class="contact-grid">
   <div class="contact-card">
@@ -3436,4 +3595,4 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-				  </html>
+	</html>
