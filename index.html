@@ -323,22 +323,43 @@
 
     /* ===== DETAIL PAGE ===== */
     .detail-hero {
+      position: relative;
       border-radius: var(--radius);
       overflow: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255,255,255,.6);
     }
-    .detail-hero img { width: 100%; height: auto; max-height: 360px; object-fit: cover; }
+    .detail-hero img { width: 100%; height: auto; max-height: 380px; object-fit: cover; display: block; }
+    .detail-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,0) 35%);
+      pointer-events: none;
+    }
+    .detail-head-row {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 4px;
+    }
     .detail-title {
       font-family: var(--font-head);
-      font-size: 1.9rem; font-weight: 800;
+      font-size: 2rem; font-weight: 800;
       color: var(--ink);
+      letter-spacing: .2px;
     }
-    .detail-price { font-size: 1.6rem; font-weight: 800; color: var(--green); }
-    .detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .detail-price {
+      display: inline-flex; align-items: baseline; gap: 4px;
+      font-size: 1.4rem; font-weight: 800; color: white;
+      background: linear-gradient(135deg, var(--green), #23a566);
+      padding: 8px 18px; border-radius: 50px;
+      box-shadow: 0 6px 18px rgba(46,204,113,.35);
+      white-space: nowrap;
+    }
+    .detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
     .detail-tag {
-      padding: 5px 14px; border-radius: 20px;
+      padding: 6px 15px; border-radius: 20px;
       font-size: 13px; font-weight: 700;
+      border: 1px solid rgba(0,0,0,.04);
     }
     .tag-blue   { background: #e0f5ff; color: #0077b6; }
     .tag-pink   { background: #ffe0f5; color: #c73e7a; }
@@ -348,42 +369,67 @@
 
     .book-cta-bar {
       display: flex; gap: 12px; flex-wrap: wrap;
-      align-items: center; margin: 18px 0;
+      align-items: center; margin: 18px 0 22px;
+      padding-bottom: 22px;
+      border-bottom: 2px dashed var(--border);
     }
 
-    /* TABS */
+    /* TABS — segmented pill control */
     .tabs {
-      display: flex; gap: 4px; margin: 20px 0 0;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 0;
+      display: flex; gap: 4px; margin: 0 0 0;
+      background: #f7eef7;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 5px;
     }
     .tab-btn {
+      flex: 1;
       background: none; border: none;
-      padding: 9px 16px 11px;
+      padding: 10px 14px;
       font-weight: 700; font-size: 14px;
       color: var(--muted);
-      border-bottom: 3px solid transparent;
-      margin-bottom: -2px;
-      transition: color .18s;
+      border-radius: 12px;
+      transition: all .18s;
     }
-    .tab-btn.active { color: var(--pink); border-bottom-color: var(--pink); }
-    .tab-btn:hover { color: var(--ink); }
+    .tab-btn.active {
+      color: white;
+      background: linear-gradient(135deg, var(--pink), #ff8e53);
+      box-shadow: 0 4px 14px rgba(255,78,159,.3);
+    }
+    .tab-btn:hover:not(.active) { color: var(--ink); background: rgba(255,255,255,.7); }
 
-    .tab-content { padding: 20px 0; }
+    .tab-content {
+      background: var(--panel);
+      border: 2px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      padding: 26px 24px;
+      margin-top: -2px;
+      box-shadow: var(--shadow);
+    }
     .tab-content.hidden { display: none; }
 
     /* FEATURE LIST */
-    .feature-list { display: grid; gap: 8px; margin-top: 8px; }
+    .feature-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 8px; }
     .feature-item {
       display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px;
+      font-size: 14.5px;
+      background: #fbf5fc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
     }
     .feature-item::before {
-      content: '✅'; flex-shrink: 0; font-size: 14px; margin-top: 2px;
+      content: '✅'; flex-shrink: 0; font-size: 14px; margin-top: 1px;
     }
-    .spec-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    .spec-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 14.5px; }
-    .spec-table td:first-child { font-weight: 700; color: var(--muted); width: 120px; }
+    .spec-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-top: 2px; }
+    .spec-table tr { background: #fbf5fc; }
+    .spec-table td { padding: 10px 14px; font-size: 14.5px; }
+    .spec-table td:first-child {
+      font-weight: 800; color: var(--pink); width: 130px;
+      border-radius: 10px 0 0 10px;
+    }
+    .spec-table td:last-child { border-radius: 0 10px 10px 0; }
 
     /* CAROUSEL (detail page) */
     .carousel {
@@ -393,6 +439,7 @@
       box-shadow: var(--shadow);
       margin-top: 8px;
       background: #f0e8f8;
+      border: 2px solid var(--border);
     }
     .carousel-inner { position: relative; width: 100%; }
     .carousel-slide { display: none; width: 100%; }
@@ -418,6 +465,32 @@
       transition: background .2s;
     }
     .carousel-dot.active { background: var(--pink); }
+
+    /* PACKAGES TAB (on castle detail pages) */
+    .detail-pkg-intro { font-size: 14.5px; color: var(--muted); margin-bottom: 16px; }
+    .detail-pkg-list { display: grid; gap: 12px; }
+    .detail-pkg-card {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      border-radius: 14px; padding: 16px 18px;
+      color: white; text-decoration: none;
+      background: linear-gradient(135deg, var(--pkg-grad-start, var(--pink)), var(--pkg-grad-end, #ff8e53));
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .detail-pkg-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .detail-pkg-head { display: flex; align-items: center; gap: 12px; }
+    .detail-pkg-emoji { font-size: 1.8rem; flex-shrink: 0; }
+    .detail-pkg-card h4 { font-family: var(--font-head); font-size: 16px; font-weight: 800; }
+    .detail-pkg-card p { font-size: 12.5px; opacity: .9; margin-top: 2px; }
+    .detail-pkg-price { font-weight: 800; font-size: 15px; white-space: nowrap; }
+    .detail-pkg-empty {
+      display: flex; align-items: center; gap: 14px;
+      background: #f5f0ff; border: 2px dashed #d8c8f5;
+      border-radius: 14px; padding: 18px 20px;
+      font-size: 14.5px; color: #5a3d8a; line-height: 1.55;
+    }
+    .detail-pkg-empty span { font-size: 1.8rem; flex-shrink: 0; }
+    .detail-pkg-empty a { color: var(--pink); font-weight: 800; text-decoration: underline; }
 
     .back-link {
       display: inline-flex; align-items: center; gap: 6px;
@@ -1016,11 +1089,30 @@
 
 <!-- ===== MAIN CONTENT ===== -->
 <main class="content" id="content">
+	
 
   <!-- ===================== HOME ===================== -->
   <section class="route active" id="route-home" data-route="#/home">
 
+<!-- ===== INFLATABLE FUN DAY EVENT BANNER ===== -->
+    <a href="https://buytickets.at/bouncinllanelli/2256531"
+       target="_blank"
+       class="event-banner"
+       rel="noopener">
+      <div class="event-banner-left">
+        <div class="event-banner-text">
+          <div class="event-banner-tag">📅 Monday 3rd August · Princess Gwenllian Centre</div>
+          <div class="event-banner-title">Inflatable Fun Day!</div>
+          <div class="event-banner-sub">Ocean Castle · Dino Castle · Obstacle Courses & more — spaces are limited!</div>
+        </div>
+      </div>
+      <div class="event-banner-btn">
+        <i class="fas fa-ticket-alt"></i> Buy Tickets
+      </div>
+    </a>
+
     <div class="hero">
+    	
 
       <!-- PIPA Badge -->
       <div class="pipa-badge">
@@ -1121,23 +1213,6 @@
       </div>
 
     </div>
-    
-    <!-- ===== INFLATABLE FUN DAY EVENT BANNER ===== -->
-    <a href="https://buytickets.at/bouncinllanelli/2256531"
-       target="_blank"
-       class="event-banner"
-       rel="noopener">
-      <div class="event-banner-left">
-        <div class="event-banner-text">
-          <div class="event-banner-tag">📅 Monday 3rd August · Princess Gwenllian Centre</div>
-          <div class="event-banner-title">Inflatable Fun Day!</div>
-          <div class="event-banner-sub">Ocean Castle · Dino Castle · Obstacle Courses & more — spaces are limited!</div>
-        </div>
-      </div>
-      <div class="event-banner-btn">
-        <i class="fas fa-ticket-alt"></i> Buy Tickets
-      </div>
-    </a>
 
     <!-- Quick Links -->
     <h2 class="sec-heading">
@@ -1366,6 +1441,30 @@
               <span class="spec-tag">W: 11ft</span>
             </div>
             <button class="btn btn-primary" onclick="navigateTo('#/bouncy-castles/disco')">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Purple and Black Bouncy castle -->
+        <div class="prod-card">
+          <div class="prod-card-img-wrap" id="bb-carousel-wrap">
+            <div class="card-img-slide active"><img src="CardPurpleBlackCastle.png" alt="P+BCastle" loading="lazy"/></div>
+            <div class="card-img-slide"><img src="PBCastle1.png" alt="PBCastle2" loading="lazy"/></div>
+            <div class="card-img-slide"><img src="PBCastle2.png" alt="PBCastle3" loading="lazy"/></div>
+            <div class="card-img-slide"><img src="PBCastle3.png" alt="PBCastle4" loading="lazy"/></div>
+            <div class="card-img-slide"><img src="PBCastle4.png" alt="PBCastle5" loading="lazy"/></div>
+            <div class="card-img-slide"><img src="PBCastle5.png" alt="PBCastle6" loading="lazy"/></div>
+            <button class="card-carousel-btn prev">‹</button>
+            <button class="card-carousel-btn next">›</button>
+          </div>
+          <div class="prod-card-body">
+            <h3>Customisable Purple and Black Bouncy castle</h3>
+            <div class="prod-card-price">From £100</div>
+            <div class="prod-card-specs">
+              <span class="spec-tag">H: 9.5ft</span>
+              <span class="spec-tag">L: 12ft</span>
+              <span class="spec-tag">W: 12ft</span>
+            </div>
+            <button class="btn btn-primary" onclick="navigateTo('#/bouncy-castles/CustomisablePurpleBlackCastle')">View Details</button>
           </div>
         </div>
         
@@ -1726,7 +1825,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardWhiteCastle.jpg" alt="White Bouncy Castle"/></div>
       <h1 class="detail-title">White Bouncy Castle</h1>
-      <div class="detail-price">£100</div>
+      <div class="detail-price">From £100</div>
       <div class="detail-tags">
         <span class="detail-tag tag-grey">White Theme</span>
         <span class="detail-tag tag-grey">10 × 10ft</span>
@@ -1740,6 +1839,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/white-tab-desc" class="tab-content">
         <p>Our <strong>White Bouncy Castle</strong> is perfect for smaller spaces while still delivering big fun. Its clean, modern look makes it ideal for weddings, christenings, birthdays, and indoor venues with height restrictions.</p>
@@ -1767,6 +1867,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/white-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎉</span>
+              <div>
+                <h4>Party Package</h4>
+                <p>Castle + Slush + Candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £180</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Blue Disco Castle Detail -->
@@ -1774,7 +1889,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardDiscoCastle.png" alt="Blue Disco Bouncy Castle"/></div>
       <h1 class="detail-title">Blue Disco Bouncy Castle</h1>
-      <div class="detail-price">£100</div>
+      <div class="detail-price">From £100</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">Disco</span>
         <span class="detail-tag tag-grey">15 × 11ft</span>
@@ -1788,6 +1903,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/disco-tab-desc" class="tab-content">
         <p>Our <strong>Disco Bouncy Castle</strong> comes with built-in disco lights and a music system to keep the party going all day long. Perfect for birthdays, schools, and community events where you want that extra wow factor.</p>
@@ -1815,14 +1931,114 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/disco-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎉</span>
+              <div>
+                <h4>Party Package</h4>
+                <p>Castle + Slush + Candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £180</div>
+          </a>
+        </div>
+      </div>
     </section>
+    
+    <!-- Customisable Purple & Black Castle Detail -->
+<section class="route" id="route-bouncy-castles/CustomisablePurpleBlackCastle" data-route="#/bouncy-castles/CustomisablePurpleBlackCastle">
+  <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
+
+  <div class="detail-hero">
+    <img src="CardPurpleBlackCastle.png" alt="Customisable Purple & Black Bouncy Castle"/>
+  </div>
+
+  <h1 class="detail-title">Customisable Purple & Black Castle</h1>
+
+  <div class="detail-price">From £100</div>
+
+  <div class="detail-tags">
+    <span class="detail-tag tag-yellow">Customisable</span>
+    <span class="detail-tag tag-grey">13 × 13ft</span>
+  </div>
+
+  <div class="book-cta-bar">
+    <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn btn-primary btn-lg" target="_blank">💬 Book via WhatsApp</a>
+    <a href="tel:+447496177130" class="btn btn-blue btn-lg">📞 Call to Book</a>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+    <button class="tab-btn" data-tab="packages">Packages</button>
+  </div>
+
+  <div id="route-bouncy-castles/CustomisablePurpleBlackCastle-tab-desc" class="tab-content">
+    <p>
+      Our <strong>Customisable Purple & Black Bouncy Castle</strong> is perfect for any occasion.
+      Its modern purple and black colour scheme suits birthdays, family celebrations,
+      school events, community fun days, and more.
+    </p>
+  </div>
+
+  <div id="route-bouncy-castles/CustomisablePurpleBlackCastle-tab-features" class="tab-content hidden">
+    <table class="spec-table">
+      <tr><td>Size</td><td>13 × 13ft</td></tr>
+      <tr><td>Height</td><td>10ft</td></tr>
+      <tr><td>Theme</td><td>Purple & Black (Unthemed)</td></tr>
+    </table>
+
+    <div class="feature-list" style="margin-top:16px;">
+      <div class="feature-item">Modern purple & black design</div>
+      <div class="feature-item">Perfect for any occasion</div>
+      <div class="feature-item">Suitable for children and family events</div>
+      <div class="feature-item">PIPA tested for safety</div>
+      <div class="feature-item">Cleaned &amp; sanitised before every hire</div>
+    </div>
+  </div>
+
+  <div id="route-bouncy-castles/CustomisablePurpleBlackCastle-tab-images" class="tab-content hidden">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-slide active"><img src="PBCastle1.png" alt="Purple & Black Castle Image 1"/></div>
+        <div class="carousel-slide"><img src="PBCastle2.png" alt="Purple & Black Castle Image 2"/></div>
+        <div class="carousel-slide"><img src="PBCastle3.png" alt="Purple & Black Castle Image 3"/></div>
+        <div class="carousel-slide"><img src="PBCastle4.png" alt="Purple & Black Castle Image 4"/></div>
+        <div class="carousel-slide"><img src="PBCastle5.png" alt="Purple & Black Castle Image 5"/></div>
+      </div>
+
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </div>
+
+  <div id="route-bouncy-castles/CustomisablePurpleBlackCastle-tab-packages" class="tab-content hidden">
+    <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎉</span>
+              <div>
+                <h4>Party Package</h4>
+                <p>Castle + Slush + Candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £180</div>
+          </a>
+        </div>
+      </div>
+</section>
 
     <!-- Building Blocks Detail -->
     <section class="route" id="route-bouncy-castles/BuildingBlocks" data-route="#/bouncy-castles/BuildingBlocks">
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardBuildingBlocks.png" alt="Building Block Castle"/></div>
       <h1 class="detail-title">Building Block Bouncy Castle</h1>
-      <div class="detail-price">£100</div>
+      <div class="detail-price">From £100</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">Fun &amp; Bright</span>
         <span class="detail-tag tag-grey">15 × 12ft</span>
@@ -1835,6 +2051,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/BuildingBlocks-tab-desc" class="tab-content">
         <p>The <strong>Building Block Bouncy Castle</strong> is bursting with colour and perfect for younger children who love the playful block artwork. A firm favourite at birthday parties and school events alike.</p>
@@ -1864,6 +2081,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/BuildingBlocks-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎉</span>
+              <div>
+                <h4>Party Package</h4>
+                <p>Castle + Slush + Candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £180</div>
+          </a>
+        </div>
+      </div>
     </section>
     
     <!-- Paw Patrol Detail -->
@@ -1879,7 +2111,7 @@
 
   <h1 class="detail-title">Paw Patrol Bouncy Castle</h1>
 
-  <div class="detail-price">£100</div>
+  <div class="detail-price">From £100</div>
 
   <div class="detail-tags">
     <span class="detail-tag tag-yellow">Paw Patrol Theme</span>
@@ -1899,6 +2131,7 @@
     <button class="tab-btn active" data-tab="desc">Description</button>
     <button class="tab-btn" data-tab="features">Features</button>
     <button class="tab-btn" data-tab="images">Images</button>
+    <button class="tab-btn" data-tab="packages">Packages</button>
   </div>
 
   <!-- Description -->
@@ -1971,6 +2204,23 @@
     </div>
   </div>
 
+  <!-- Packages -->
+  <div id="route-bouncy-castles/PawPatrol-tab-packages" class="tab-content hidden">
+    <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎉</span>
+              <div>
+                <h4>Party Package</h4>
+                <p>Castle + Slush + Candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £180</div>
+          </a>
+        </div>
+      </div>
+
 </section>
 
     <!-- Rainbow Twist Dome Detail -->
@@ -1978,7 +2228,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardCandyTwistDome.png" alt="Rainbow Twist Dome"/></div>
       <h1 class="detail-title">Rainbow Twist Dome</h1>
-      <div class="detail-price">£100</div>
+      <div class="detail-price">From £100</div>
       <div class="detail-tags">
         <span class="detail-tag tag-pink">Rainbow Theme</span>
         <span class="detail-tag tag-grey">15.1 × 11.8ft</span>
@@ -1991,6 +2241,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/CandyTwistDome-tab-desc" class="tab-content">
         <p>The <strong>Rainbow Twist Dome</strong> is a stunning and eye-catching inflatable dome featuring a rainbow candy-twist design. Its unique dome shape means it fits into spaces where traditional rectangular castles may struggle.</p>
@@ -2020,6 +2271,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/CandyTwistDome-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎉</span>
+              <div>
+                <h4>Party Package</h4>
+                <p>Castle + Slush + Candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £180</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Mermaid Slide Detail -->
@@ -2027,7 +2293,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardMermaidSlideCastle.png" alt="Mermaid Slide Castle"/></div>
       <h1 class="detail-title">Mermaid Slide Castle</h1>
-      <div class="detail-price">£120</div>
+      <div class="detail-price">From £120</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">Mermaid Theme</span>
         <span class="detail-tag tag-grey">15.4 × 12.1ft</span>
@@ -2041,6 +2307,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/Mermaid-tab-desc" class="tab-content">
         <p>Dive into an enchanting undersea world with our <strong>3D Mermaid Front Slide Combi</strong>. Featuring a stunning mermaid shell 3D front, bright ocean artwork, a spacious bounce area, and an exciting front slide — perfect for mermaid-themed parties!</p>
@@ -2074,6 +2341,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/Mermaid-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎢</span>
+              <div>
+                <h4>Combo Slide Package</h4>
+                <p>Slide castle + slush + candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £200</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Kpop Detail -->
@@ -2081,7 +2363,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardKpopSlideCastle.png" alt="Kpop Demon Hunters"/></div>
       <h1 class="detail-title">Kpop Demon Hunters Slide Castle</h1>
-      <div class="detail-price">£120</div>
+      <div class="detail-price">From £120</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">Slide</span>
         <span class="detail-tag tag-grey">15 × 17ft</span>
@@ -2094,6 +2376,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/kpop-tab-desc" class="tab-content">
         <p>The <strong>Kpop Demon Hunters Slide Castle</strong> features eye-catching bold purple and black artwork with exciting K-pop character designs. Perfect for themed parties, schools, and any event where you want to make a big impression!</p>
@@ -2123,6 +2406,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/kpop-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎢</span>
+              <div>
+                <h4>Combo Slide Package</h4>
+                <p>Slide castle + slush + candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £200</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Princess Slide Detail -->
@@ -2130,7 +2428,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardPrincessSlideCastle.png" alt="Princess Slide Castle"/></div>
       <h1 class="detail-title">Princess Slide Castle</h1>
-      <div class="detail-price">£120</div>
+      <div class="detail-price">From £120</div>
       <div class="detail-tags">
         <span class="detail-tag tag-pink">Princess Theme</span>
         <span class="detail-tag tag-grey">13 × 18ft</span>
@@ -2144,6 +2442,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/PrincessSlide-tab-desc" class="tab-content">
         <p>Every little princess deserves the most magical party! Our <strong>Princess Slide Castle</strong> is adorned with beautiful princess artwork and features a built-in slide for double the excitement. A guaranteed hit at any birthday party!</p>
@@ -2174,6 +2473,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/PrincessSlide-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎢</span>
+              <div>
+                <h4>Combo Slide Package</h4>
+                <p>Slide castle + slush + candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £200</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Dino Slide Detail -->
@@ -2181,7 +2495,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="DinoSlideCastle.png" alt="Dinosaur Slide Castle"/></div>
       <h1 class="detail-title">Dinosaur Slide Castle</h1>
-      <div class="detail-price">£120</div>
+      <div class="detail-price">From £120</div>
       <div class="detail-tags">
         <span class="detail-tag tag-green">Dino Theme</span>
         <span class="detail-tag tag-grey">15 × 12ft</span>
@@ -2195,6 +2509,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/dinoslide-tab-desc" class="tab-content">
         <p>Roar into the party with our <strong>Dinosaur Slide Castle</strong>! Covered in exciting dino artwork and featuring a thrilling built-in slide, this inflatable is a massive hit for boys and girls who love adventure.</p>
@@ -2224,6 +2539,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/dinoslide-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎢</span>
+              <div>
+                <h4>Combo Slide Package</h4>
+                <p>Slide castle + slush + candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £200</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Customisable Slide Castle Detail -->
@@ -2231,7 +2561,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardSlideCastle.png" alt="Customisable Slide Castle"/></div>
       <h1 class="detail-title">Customisable Slide Castle</h1>
-      <div class="detail-price">£120</div>
+      <div class="detail-price">From £120</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">Slide</span>
         <span class="detail-tag tag-grey">15 × 17ft</span>
@@ -2245,6 +2575,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/slide-tab-desc" class="tab-content">
         <p>Our <strong>Customisable Slide Castle</strong> can be adapted with different banner themes to match your party style. Ask us about available themes when booking — perfect if you want something unique!</p>
@@ -2274,6 +2605,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/slide-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎢</span>
+              <div>
+                <h4>Combo Slide Package</h4>
+                <p>Slide castle + slush + candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £200</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Rainbow Disco Detail -->
@@ -2281,7 +2627,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardDiscoCastle15.png" alt="Rainbow Disco Castle"/></div>
       <h1 class="detail-title">Rainbow Disco Bouncy Castle</h1>
-      <div class="detail-price">£130</div>
+      <div class="detail-price">From £130</div>
       <div class="detail-tags">
         <span class="detail-tag tag-pink">Rainbow</span>
         <span class="detail-tag tag-blue">Disco Lights</span>
@@ -2295,6 +2641,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/Rainbowdisco-tab-desc" class="tab-content">
         <p>Bigger and bolder — the <strong>Rainbow Disco Bouncy Castle</strong> combines a stunning rainbow colour scheme with built-in disco lights for a premium party experience. At 15×15ft, it's our largest standard castle, great for bigger groups!</p>
@@ -2325,6 +2672,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/Rainbowdisco-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff7b00;--pkg-grad-end:#ff4d00;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎈</span>
+              <div>
+                <h4>Double Fun Package</h4>
+                <p>Paired with the Fun Run Obstacle Course</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £250</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Ocean Activity Combi Detail -->
@@ -2332,7 +2694,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardOceanActvityCombi.png" alt="Ocean Activity Combi"/></div>
       <h1 class="detail-title">Ocean Activity Combi</h1>
-      <div class="detail-price">£150</div>
+      <div class="detail-price">From £150</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">Ocean Theme</span>
         <span class="detail-tag tag-yellow">Slide + Ball Pool</span>
@@ -2346,6 +2708,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/ocean-activity-combi-tab-desc" class="tab-content">
         <p>Make a splash with the <strong>Ocean Activity Combi</strong>! Featuring a spacious bounce area, climbing section, built-in slide, and an exciting ball pool section — this inflatable delivers non-stop entertainment. Decorated with vibrant ocean artwork including sea creatures and colourful graphics.</p>
@@ -2380,6 +2743,21 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/ocean-activity-combi-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎈</span>
+              <div>
+                <h4>Ultimate Party Package</h4>
+                <p>Castle + slush + candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £250</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Fun Run Detail -->
@@ -2387,7 +2765,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardFunRun.png" alt="Fun Run"/></div>
       <h1 class="detail-title">Fun Run</h1>
-      <div class="detail-price">£150</div>
+      <div class="detail-price">From £150</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">Obstacle Course</span>
         <span class="detail-tag tag-grey">26.9 × 9.2ft</span>
@@ -2400,6 +2778,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/fun-run-tab-desc" class="tab-content">
         <p>The ultimate inflatable adventure! Our <strong>Fun Run</strong> brings together bouncing, climbing, and sliding into one long inflatable challenge course. At nearly 27ft long, it keeps kids entertained for hours — perfect for large parties and school fun days.</p>
@@ -2430,6 +2809,31 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/fun-run-tab-packages" class="tab-content hidden">
+        <p class="detail-pkg-intro">This castle is included in the following packages:</p>
+        <div class="detail-pkg-list">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎈</span>
+              <div>
+                <h4>Ultimate Party Package</h4>
+                <p>Castle + slush + candyfloss</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £250</div>
+          </a>
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff7b00;--pkg-grad-end:#ff4d00;">
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🎈</span>
+              <div>
+                <h4>Double Fun Package</h4>
+                <p>Paired with the Rainbow Disco Bouncy Castle</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £250</div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- PAC2 Detail -->
@@ -2437,7 +2841,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardPartyPowerAssultCorse2prt.jpg" alt="2 Part Assault Course"/></div>
       <h1 class="detail-title">2 Part Assault Course</h1>
-      <div class="detail-price">£250</div>
+      <div class="detail-price">From £250</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">10ft Slide</span>
         <span class="detail-tag tag-grey">41.7 × 11.8ft</span>
@@ -2451,6 +2855,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/PAC2-tab-desc" class="tab-content">
         <p>The ultimate inflatable adventure for larger events! Our <strong>2 Part Assault Course</strong> features a 10ft slide, climbing obstacles, bounce areas, and non-stop action across two connected sections. Perfect for school fairs, community events, and large birthday parties.</p>
@@ -2484,6 +2889,12 @@
           <button class="carousel-btn next">›</button>
         </div>
       </div>
+      <div id="route-bouncy-castles/PAC2-tab-packages" class="tab-content hidden">
+        <div class="detail-pkg-empty">
+          <span>🎈</span>
+          <p>This assault course isn't currently bundled in one of our set packages, but you can still add fun foods and extras to your booking, or <a href="#/packages" onclick="navigateTo('#/packages');return false;">browse our party packages</a> to see other combinations.</p>
+        </div>
+      </div>
     </section>
 
     <!-- PAC3 Detail -->
@@ -2491,7 +2902,7 @@
       <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">← Back to Bouncy Castles</a>
       <div class="detail-hero"><img src="CardPartyPowerAssultCorse3prt.jpg" alt="3 Part Assault Course"/></div>
       <h1 class="detail-title">3 Part Assault Course</h1>
-      <div class="detail-price">£350</div>
+      <div class="detail-price">From £350</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">10ft Slide</span>
         <span class="detail-tag tag-grey">63.7 × 11.8ft</span>
@@ -2505,6 +2916,7 @@
         <button class="tab-btn active" data-tab="desc">Description</button>
         <button class="tab-btn" data-tab="features">Features</button>
         <button class="tab-btn" data-tab="images">Images</button>
+        <button class="tab-btn" data-tab="packages">Packages</button>
       </div>
       <div id="route-bouncy-castles/PAC3-tab-desc" class="tab-content">
         <p>Our biggest inflatable challenge! The <strong>3 Part Assault Course</strong> spans over 63ft and includes three connected sections of climbing, bouncing, and sliding. The ultimate experience for schools, fêtes, corporate events, and large community gatherings.</p>
@@ -2535,6 +2947,12 @@
           </div>
           <button class="carousel-btn prev">‹</button>
           <button class="carousel-btn next">›</button>
+        </div>
+      </div>
+      <div id="route-bouncy-castles/PAC3-tab-packages" class="tab-content hidden">
+        <div class="detail-pkg-empty">
+          <span>🎈</span>
+          <p>This assault course isn't currently bundled in one of our set packages, but you can still add fun foods and extras to your booking, or <a href="#/packages" onclick="navigateTo('#/packages');return false;">browse our party packages</a> to see other combinations.</p>
         </div>
       </div>
     </section>
@@ -2574,6 +2992,9 @@
       <span class="castle-chip">Blue Disco</span>
       <span class="castle-chip">Disco Dome</span>
       <span class="castle-chip">Building Blocks</span>
+      <span class="castle-chip">White Castle</span>
+      <span class="castle-chip">Paw Patrol Castle</span>
+      <span class="castle-chip">Customisable Purple and Black Castle</span>
     </div>
 
     <div class="package-upgrade">
@@ -2781,7 +3202,7 @@
       <a href="#/fun-foods" class="back-link" onclick="navigateTo('#/fun-foods');return false;">← Back to Fun Foods</a>
       <div class="detail-hero"><img src="Card10LSlushMachine.png" alt="10L Slush Machine"/></div>
       <h1 class="detail-title">10L Slush Machine</h1>
-      <div class="detail-price">£75</div>
+      <div class="detail-price">From £75</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">10L Capacity</span>
         <span class="detail-tag tag-grey">50 Cups</span>
@@ -2827,7 +3248,7 @@
       <a href="#/fun-foods" class="back-link" onclick="navigateTo('#/fun-foods');return false;">← Back to Fun Foods</a>
       <div class="detail-hero"><img src="Card20LSlushMachine.png" alt="20L Slush Machine"/></div>
       <h1 class="detail-title">20L Slush Machine</h1>
-      <div class="detail-price">£100</div>
+      <div class="detail-price">From £100</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">20L Capacity</span>
         <span class="detail-tag tag-grey">100 Cups</span>
@@ -2980,6 +3401,16 @@
             <button class="btn btn-primary" onclick="navigateTo('#/extras/mernaid-soft-play')">View Details</button>
           </div>
         </div>
+        
+        <div class="prod-card">
+          <div class="prod-card-img-wrap"><img src="CardDinoBallPool.png" alt="Dino Inflatable Ball Pool" loading="lazy"/></div>
+          <div class="prod-card-body">
+            <h3>Dinosaur Ball Pool</h3>
+            <div class="prod-card-price">From £50</div>
+            <p style="font-size:13px;color:var(--muted);">Inflatable dinosaur-themed ball pool</p>
+            <button class="btn btn-primary" onclick="navigateTo('#/extras/dino-soft-play')">View Details</button>
+          </div>
+        </div>
 
         <div class="prod-card">
           <div class="prod-card-img-wrap"><img src="CardDidiCars.png" alt="Didi Cars" loading="lazy"/></div>
@@ -3019,7 +3450,7 @@
       <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
       <div class="detail-hero"><img src="CardSoftPlay.jpg" alt="Soft Play"/></div>
       <h1 class="detail-title">Soft Play Set</h1>
-      <div class="detail-price">£80</div>
+      <div class="detail-price">From £80</div>
       <div class="detail-tags">
         <span class="detail-tag tag-pink">Ages 0–2</span>
         <span class="detail-tag tag-grey">17 Shapes</span>
@@ -3068,7 +3499,7 @@
 
   <h1 class="detail-title">Petrol Generator – 9 kVA</h1>
 
-  <div class="detail-price">£150</div>
+  <div class="detail-price">From £150</div>
 
   <div class="detail-tags">
     <span class="detail-tag tag-blue">Can Power Up To 3 Blowers</span>
@@ -3132,7 +3563,7 @@
 
   <h1 class="detail-title">Petrol Generator – 3 kVA</h1>
 
-  <div class="detail-price">£70</div>
+  <div class="detail-price">From £70</div>
 
   <div class="detail-tags">
     <span class="detail-tag tag-blue">Powers 1 Inflatable Blower</span>
@@ -3189,7 +3620,7 @@
       <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
       <div class="detail-hero"><img src="CardMermaidSoftPlay.png" alt="Mermaid Ball Pool"/></div>
       <h1 class="detail-title">Mermaid Inflatable Ball Pool</h1>
-      <div class="detail-price">£50</div>
+      <div class="detail-price">From £50</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">Mermaid Theme</span>
         <span class="detail-tag tag-grey">Approx 8 × 8ft</span>
@@ -3230,13 +3661,99 @@
         </div>
       </div>
     </section>
+    
+    <!-- Dino Ball Pool Detail -->
+<section class="route" id="route-extras/dino-soft-play" data-route="#/extras/dino-soft-play">
+  <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
+
+  <div class="detail-hero">
+    <img src="CardDinoBallPool.png" alt="3D Dinosaur Inflatable Ball Pool"/>
+  </div>
+
+  <h1 class="detail-title">3D Dinosaur Inflatable Ball Pool</h1>
+
+  <div class="detail-price">From £50</div>
+
+  <div class="detail-tags">
+    <span class="detail-tag tag-green">3D Dinosaur Theme</span>
+    <span class="detail-tag tag-grey">Approx 8 × 8ft</span>
+    <span class="detail-tag tag-pink">Ball Pool Included</span>
+  </div>
+
+  <div class="book-cta-bar">
+    <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn btn-primary btn-lg" target="_blank">💬 Book via WhatsApp</a>
+    <a href="tel:+447496177130" class="btn btn-blue btn-lg">📞 Call to Book</a>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <!-- Description -->
+  <div id="route-extras/dino-soft-play-tab-desc" class="tab-content">
+    <p>
+      Bring the Jurassic adventure to your party with our
+      <strong>3D Dinosaur Inflatable Ball Pool!</strong>
+      Featuring a giant friendly dinosaur head, vibrant prehistoric artwork,
+      and 500 hundred green balls, this inflatable ball pool is perfect
+      for toddlers and younger children. It's a fantastic addition to birthday
+      parties, christenings, family celebrations and community events, providing
+      hours of safe and exciting fun.
+    </p>
+  </div>
+
+  <!-- Features -->
+  <div id="route-extras/dino-soft-play-tab-features" class="tab-content hidden">
+    <div class="feature-list">
+      <div class="feature-item">Realistic 3D dinosaur entrance</div>
+      <div class="feature-item">Colourful prehistoric dinosaur artwork</div>
+      <div class="feature-item">Filled with 500 hundred green balls </div>
+      <div class="feature-item">Safe inflatable walls for younger children</div>
+      <div class="feature-item">Approx size: 8ft × 8ft × 4ft (H)</div>
+      <div class="feature-item">Ideal for toddlers and younger children</div>
+      <div class="feature-item">Perfect alongside our dinosaur bouncy castle</div>
+      <div class="feature-item">Cleaned and sanitised before every hire</div>
+    </div>
+  </div>
+
+  <!-- Images -->
+  <div id="route-extras/dino-soft-play-tab-images" class="tab-content hidden">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-slide active">
+          <img src="CardDinoBallPool.png" alt="3D Dinosaur Ball Pool"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="DinoBallPool1.png" alt="Dinosaur Ball Pool Front View"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="DinoBallPool2.png" alt="Dinosaur Ball Pool Side View"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="DinoBallPool3.png" alt="Children's Dinosaur Ball Pool"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="DinoBallPool4.png" alt="3D Dinosaur Entrance"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="DinoBallPool5.png" alt="Dinosaur Ball Pool Close Up"/>
+        </div>
+      </div>
+
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </div>
+</section>
 
     <!-- Didi Cars Detail -->
     <section class="route" id="route-extras/didi-cars" data-route="#/extras/didi-cars">
       <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
       <div class="detail-hero"><img src="CardDidiCars.png" alt="Didi Cars"/></div>
       <h1 class="detail-title">Didi Cars</h1>
-      <div class="detail-price">£30</div>
+      <div class="detail-price">From £30</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">Ride-on Cars</span>
         <span class="detail-tag tag-grey">Indoor / Smooth Outdoor</span>
@@ -3282,7 +3799,7 @@
       <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
       <div class="detail-hero"><img src="CardSnowMachine.png" alt="Snow Machine"/></div>
       <h1 class="detail-title">Snow Machine</h1>
-      <div class="detail-price">£40</div>
+      <div class="detail-price">From £40</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">Magical Effect</span>
         <span class="detail-tag tag-grey">Indoor &amp; Outdoor</span>
@@ -3328,7 +3845,7 @@
       <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
       <div class="detail-hero"><img src="CardGiantTwister.jpg" alt="Giant Twister"/></div>
       <h1 class="detail-title">Giant Twister</h1>
-      <div class="detail-price">£20</div>
+      <div class="detail-price">From £20</div>
       <div class="detail-tags">
         <span class="detail-tag tag-yellow">Classic Party Game</span>
         <span class="detail-tag tag-grey">Indoor &amp; Outdoor</span>
@@ -3595,4 +4112,4 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-	</html>
+				</html>
