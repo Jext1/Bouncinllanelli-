@@ -467,37 +467,123 @@
     .carousel-dot.active { background: var(--pink); }
 
     /* PACKAGES TAB (on castle detail pages) */
-    .detail-pkg-intro { font-size: 14.5px; color: var(--muted); margin-bottom: 16px; }
-    .detail-pkg-list { display: grid; gap: 12px; }
-    .detail-pkg-card {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
-      border-radius: 14px; padding: 16px 18px;
-      color: white; text-decoration: none;
-      background: linear-gradient(135deg, var(--pkg-grad-start, var(--pink)), var(--pkg-grad-end, #ff8e53));
-      box-shadow: var(--shadow);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .detail-pkg-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .detail-pkg-head { display: flex; align-items: center; gap: 12px; }
-    .detail-pkg-emoji { font-size: 1.8rem; flex-shrink: 0; }
-    .detail-pkg-card h4 { font-family: var(--font-head); font-size: 16px; font-weight: 800; }
-    .detail-pkg-card p { font-size: 12.5px; opacity: .9; margin-top: 2px; }
-    .detail-pkg-price { font-weight: 800; font-size: 15px; white-space: nowrap; }
-    .detail-pkg-empty {
-      display: flex; align-items: center; gap: 14px;
-      background: #f5f0ff; border: 2px dashed #d8c8f5;
-      border-radius: 14px; padding: 18px 20px;
-      font-size: 14.5px; color: #5a3d8a; line-height: 1.55;
-    }
-    .detail-pkg-empty span { font-size: 1.8rem; flex-shrink: 0; }
-    .detail-pkg-empty a { color: var(--pink); font-weight: 800; text-decoration: underline; }
+.detail-pkg-photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.6);
+}
 
-    .back-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-weight: 700; color: var(--blue);
-      margin-bottom: 18px; font-size: 14.5px;
-    }
-    .back-link:hover { color: var(--pink); }
+.detail-pkg-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-pkg-intro {
+  font-size: 14.5px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.detail-pkg-list {
+  display: grid;
+  gap: 16px;
+}
+
+.detail-pkg-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+
+  border-radius: 14px;
+  padding: 18px;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(135deg,
+      var(--pkg-grad-start, var(--pink)),
+      var(--pkg-grad-end, #ff8e53));
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.detail-pkg-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.detail-pkg-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-pkg-emoji {
+  font-size: 2rem;
+}
+
+.detail-pkg-card h4 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.detail-pkg-card p {
+  font-size: 14px;
+  opacity: .95;
+  margin: 0;
+}
+
+.detail-pkg-price {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.detail-pkg-empty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f5f0ff;
+  border: 2px dashed #d8c8f5;
+  border-radius: 14px;
+  padding: 18px 20px;
+  font-size: 14.5px;
+  color: #5a3d8a;
+  line-height: 1.55;
+}
+
+.detail-pkg-empty span {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.detail-pkg-empty a {
+  color: var(--pink);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 18px;
+  font-size: 14.5px;
+}
+
+.back-link:hover {
+  color: var(--pink);
+}
 
     /* ===== HOME PAGE ===== */
     /* Hero */
@@ -1987,7 +2073,7 @@
 
   <div id="route-bouncy-castles/CustomisablePurpleBlackCastle-tab-features" class="tab-content hidden">
     <table class="spec-table">
-      <tr><td>Size</td><td>13 × 13ft</td></tr>
+      <tr><td>Size</td><td>12 × 12ft</td></tr>
       <tr><td>Height</td><td>10ft</td></tr>
       <tr><td>Theme</td><td>Purple & Black (Unthemed)</td></tr>
     </table>
@@ -2342,7 +2428,7 @@
         </div>
       </div>
       <div id="route-bouncy-castles/Mermaid-tab-packages" class="tab-content hidden">
-        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <p class="detail-pkg-intro">This castle is included in the following packages:</p>
         <div class="detail-pkg-list">
           <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
             <div class="detail-pkg-head">
@@ -2353,6 +2439,17 @@
               </div>
             </div>
             <div class="detail-pkg-price">From £200</div>
+          </a>
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff9ed0;">
+          <div class="detail-pkg-photo"><img src="MermaidAdventuresPackage.png" alt="Mermaid Adventures Package - Castle, Ball Pool and Didi Cars"/></div>
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🏰</span>
+              <div>
+                <h4>Adventures Package</h4>
+                <p>Castle + Ball Pool + 6 Didi Cars</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £160</div>
           </a>
         </div>
       </div>
@@ -2540,7 +2637,7 @@
         </div>
       </div>
       <div id="route-bouncy-castles/dinoslide-tab-packages" class="tab-content hidden">
-        <p class="detail-pkg-intro">This castle is included in the following package:</p>
+        <p class="detail-pkg-intro">This castle is included in the following packages:</p>
         <div class="detail-pkg-list">
           <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
             <div class="detail-pkg-head">
@@ -2551,6 +2648,17 @@
               </div>
             </div>
             <div class="detail-pkg-price">From £200</div>
+          </a>
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#16a34a;--pkg-grad-end:#4ade80;">
+          <div class="detail-pkg-photo"><img src="DinoAdventuresPackage.png" alt="Mermaid Adventures Package - Castle, Ball Pool and Didi Cars"/></div>
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🏰</span>
+              <div>
+                <h4>Adventures Package</h4>
+                <p>Castle + Ball Pool + 6 Didi Cars</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £160</div>
           </a>
         </div>
       </div>
@@ -2968,6 +3076,38 @@
         <a href="#/fun-foods"  class="cat-pill" onclick="navigateTo('#/fun-foods');return false;"><span class="nav-icon"><i class="fas fa-glass-whiskey"></i></span> Fun Foods</a>
         <a href="#/extras"     class="cat-pill" onclick="navigateTo('#/extras');return false;"><span class="nav-icon"><i class="fas fa-star"></i></i></span> Extras</a>
       </div>
+      
+      <!-- Adventures Package -->
+<div class="package-card">
+  <div class="package-header">
+    <h2>Adventures Package</h2>
+    <div class="package-price">From £160</div>
+    <p>Castle + Ball Pool + 6 Didi Cars</p>
+  </div>
+
+  <div class="package-body">
+    <div class="package-includes">
+      <div class="pkg-item">🏰 Choice of Castle</div>
+      <div class="pkg-item">🎈 Matching Ball Pool</div>
+      <div class="pkg-item">🚗 6 Didi Cars</div>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">
+      Available on these themes:
+    </p>
+
+    <div class="package-castles">
+      <span class="castle-chip">🦖 Dinosaur Slide Castle + Dinosaur Ball Pool</span>
+      <span class="castle-chip">🧜 Mermaid Slide Castle + Mermaid Ball Pool</span>
+    </div>
+
+    <a href="https://wa.me/message/HQ44EEHYC6E2C1"
+       class="btn btn-primary btn-block btn-lg"
+       target="_blank">
+      💬 Book This Package
+    </a>
+  </div>
+</div>
 
       <!-- Party Package -->
 <div class="package-card">
@@ -4112,4 +4252,4 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-				</html>
+												 </html>
