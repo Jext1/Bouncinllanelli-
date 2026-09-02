@@ -86,6 +86,79 @@
     }
     .menu-btn:hover { background: rgba(255,255,255,.4); }
 
+    /* Header search button — sits left of the menu button */
+    .search-btn {
+      position: absolute; left: 64px;
+      background: rgba(255,255,255,.25);
+      border: 2px solid rgba(255,255,255,.5);
+      color: white;
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      font-size: 17px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .search-btn:hover { background: rgba(255,255,255,.4); }
+
+    /* ===== SEARCH PANEL ===== */
+    .search-panel {
+      position: fixed;
+      top: var(--header-h);
+      left: 0; right: 0;
+      background: var(--panel);
+      border-bottom: 2px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+      z-index: 199;
+      padding: 14px 16px;
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .search-panel.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .search-input-row {
+      display: flex; align-items: center; gap: 8px;
+      background: #fff5fc;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 8px 12px;
+    }
+    .search-input-row i { color: var(--pink); font-size: 15px; flex-shrink: 0; }
+    .search-input-row input {
+      border: none; outline: none; background: transparent;
+      font-family: var(--font-body); font-size: 15px;
+      flex: 1; color: var(--ink);
+    }
+    .search-clear-btn {
+      background: none; border: none; color: var(--muted);
+      font-size: 15px; display: none; padding: 2px 4px;
+    }
+    .search-clear-btn.show { display: block; }
+    .search-results { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .search-result-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fbf5fc;
+      border: 1px solid var(--border);
+      font-weight: 700; font-size: 14px;
+      transition: background .15s;
+    }
+    .search-result-item:hover { background: #ffe0f5; }
+    .search-result-item .sr-cat {
+      font-weight: 600; font-size: 11px; color: var(--muted);
+      background: #f0e8f8; padding: 3px 9px; border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .search-empty-msg { padding: 12px 6px; color: var(--muted); font-size: 14px; text-align: center; }
+    .search-hint-msg { padding: 8px 6px; color: var(--muted); font-size: 13px; text-align: center; }
+
     /* ===== WHATSAPP FLOATING BUTTON ===== */
     .wa-float {
       position: fixed;
@@ -1034,7 +1107,7 @@
     .event-banner::before {
       content: '';
       position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='20' cy='20' r='3'/%3E%3C/g%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='20' cy='20' r='3'/%3E%3C/svg%3E");
       pointer-events: none;
     }
     @keyframes bannerPulse {
@@ -1083,6 +1156,105 @@
       .event-banner { flex-direction: column; text-align: center; padding: 20px 18px; }
       .event-banner-left { flex-direction: column; gap: 10px; }
       .event-banner-btn { width: 100%; justify-content: center; }
+    }
+
+    /* ===== EVENT BANNER (IMAGE) ===== */
+    .event-banner-img-link {
+      display: block;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.35);
+      animation: bannerPulse 3s ease-in-out infinite;
+      transition: transform .2s;
+    }
+    .event-banner-img-link:hover { transform: translateY(-2px); }
+    .event-banner-img-link img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .event-banner-img-link { position: relative; }
+    .click-me-badge {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: #ffe94e;
+      color: #1a1a2e;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      animation: clickMeBounce 1.4s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes clickMeBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-6px) scale(1.05); }
+    }
+    @media (max-width: 560px) {
+      .click-me-badge { font-size: 12px; padding: 6px 14px; bottom: 10px; right: 10px; }
+    }
+
+    /* ===== EVENTS PAGE ===== */
+    .events-list { display: flex; flex-direction: column; gap: 24px; margin-top: 8px; }
+    .event-card {
+      background: var(--panel);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .event-card-img { width: 100%; height: auto; display: block; }
+    .event-card-body { padding: 22px 24px; }
+    .event-card-date {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff4e9f, #ff8e00);
+      color: white;
+      font-weight: 800;
+      font-size: 12.5px;
+      letter-spacing: .04em;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .event-card-title {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .event-card-loc {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--muted); margin-bottom: 16px;
+    }
+    .event-card-desc { font-size: 14.5px; margin-bottom: 18px; }
+    .session-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .session-chip {
+      background: #fff0f8;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .session-chip-label {
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--pink); margin-bottom: 3px;
+    }
+    .session-chip-time { font-size: 13px; font-weight: 700; color: var(--ink); }
+    .event-card-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .event-card-actions .btn { flex: 1; min-width: 160px; justify-content: center; }
   </style>
 </head>
 <body>
@@ -1093,9 +1265,20 @@
 <!-- ===== HEADER ===== -->
 <header class="header">
   <button class="menu-btn" id="menu-toggle" aria-label="Open menu">☰</button>
+  <button class="search-btn" id="search-toggle" aria-label="Search"><i class="fas fa-search"></i></button>
   <img src="BouncinLlanelliLogo.png" alt="Bouncin' Llanelli" class="header-logo" onerror="this.style.display='none';this.nextSibling.style.display='block'"/>
   <span style="display:none;color:white;font-family:var(--font-head);font-weight:800;font-size:1.2rem;">🎪 Bouncin' Llanelli</span>
 </header>
+
+<!-- ===== SEARCH PANEL ===== -->
+<div class="search-panel" id="search-panel">
+  <div class="search-input-row">
+    <i class="fas fa-search"></i>
+    <input type="text" id="search-input" placeholder="Search castles, packages, fun foods, extras…" autocomplete="off"/>
+    <button class="search-clear-btn" id="search-clear" aria-label="Clear search">✕</button>
+  </div>
+  <div class="search-results" id="search-results"></div>
+</div>
 
 <!-- ===== BACKDROP ===== -->
 <div class="backdrop" id="backdrop"></div>
@@ -1132,6 +1315,10 @@
 
     <a href="#/extras" class="nav-link" data-route="#/extras">
       <span class="nav-icon"><i class="fas fa-star"></i></i></span> Extras
+    </a>
+    
+    <a href="#/events" class="nav-link" data-route="#/events">
+      <span class="nav-icon"><i class="fas fa-calendar-days"></i></span> Events
     </a>
 
     <a href="#/deliveries" class="nav-link" data-route="#/deliveries">
@@ -1180,21 +1367,12 @@
   <!-- ===================== HOME ===================== -->
   <section class="route active" id="route-home" data-route="#/home">
 
-<!-- ===== INFLATABLE FUN DAY EVENT BANNER ===== -->
-    <a href="https://buytickets.at/bouncinllanelli/2345153"
-       target="_blank"
-       class="event-banner"
-       rel="noopener">
-      <div class="event-banner-left">
-        <div class="event-banner-text">
-          <div class="event-banner-tag">📅 Thursday 27th August · Princess Gwenllian Centre</div>
-          <div class="event-banner-title">Bouncin' Llanelli's Summer Inflatable Day - The Encoure</div>
-          <div class="event-banner-sub">Ocean Castle · Dino Castle · Obstacle Courses & more — spaces are limited!</div>
-        </div>
-      </div>
-      <div class="event-banner-btn">
-        <i class="fas fa-ticket-alt"></i> Buy Tickets
-      </div>
+<!-- ===== HALLOWEEN CIRCUS EVENT BANNER ===== -->
+    <a href="#/events"
+       class="event-banner-img-link"
+       onclick="navigateTo('#/events');return false;">
+      <img src="HalloweenCircusBanner.jpg" alt="Bouncin' Llanelli Halloween Circus — Monday 26th October, The Princess Gwenllian Centre, Kidwelly. 4 spooktacular sessions to choose from."/>
+      <span class="click-me-badge">👉 Click Me!</span>
     </a>
 
     <div class="hero">
@@ -1655,7 +1833,7 @@
             <h3>Digger Slide Castle</h3>
             <div class="prod-card-price">From £120</div>
             <div class="prod-card-specs">
-              <span class="spec-tag">H: 10.8Ft</span>
+              <span class="spec-tag">H: 10.8ft</span>
               <span class="spec-tag">L: 16.4ft</span>
               <span class="spec-tag">W: 14.1ft</span>
             </div>
@@ -2968,15 +3146,15 @@
 </div>
 
   </div></section>
-  
-  <!-- Unicorn Slide Detail --><section class="route" id="route-bouncy-castles/FrontSlideDiggerCombi" data-route="#/bouncy-castles/FrontSlideDiggerCombi">  <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">
+
+<section class="route" id="route-bouncy-castles/FrontSlideDiggerCombi" data-route="#/bouncy-castles/FrontSlideDiggerCombi">  <a href="#/bouncy-castles" class="back-link" onclick="navigateTo('#/bouncy-castles');return false;">
     ← Back to Bouncy Castles
   </a>  <div class="detail-hero">
     <img src="CardDiggerFronSlide.png" alt="Digger Front Slide Combi"/>
   </div>  <h1 class="detail-title">Digger Slide Castle</h1>
   <div class="detail-price">From £120</div>  <div class="detail-tags">
     <span class="detail-tag tag-green">Digger Theme</span>
-    <span class="detail-tag tag-grey">15 × 12ft</span>
+    <span class="detail-tag tag-grey">16.4 × 14.1ft</span>
     <span class="detail-tag tag-yellow">Front Slide</span>
   </div>  <div class="book-cta-bar">
     <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn btn-primary btn-lg" target="_blank">
@@ -4432,6 +4610,58 @@
 
 
     <!-- ===================== DELIVERY AREAS ===================== -->
+<section class="route" id="route-events" data-route="#/events">
+  <h1 class="page-title">🎪 Upcoming Events</h1>
+  <p class="page-subtitle">Join us at our next public event — grab your tickets before spaces run out!</p>
+
+  <div class="events-list">
+    <div class="event-card">
+      <img src="HalloweenCircusBanner.jpg" alt="Bouncin' Llanelli Halloween Circus" class="event-card-img"/>
+      <div class="event-card-body">
+        <span class="event-card-date">📅 Monday 26th October</span>
+        <h2 class="event-card-title">Halloween Circus</h2>
+        <div class="event-card-loc">
+          <i class="fas fa-location-dot"></i> The Princess Gwenllian Centre, Kidwelly
+        </div>
+        <p class="event-card-desc">Step right up for our spook-tacular Halloween Circus! Enjoy inflatables, games, treats and more, with 4 sessions to choose from — pick the time that suits you best.</p>
+
+        <div class="session-grid">
+          <div class="session-chip">
+            <div class="session-chip-label">Session 1</div>
+            <div class="session-chip-time">10:00am – 12:00pm</div>
+          </div>
+          <div class="session-chip">
+            <div class="session-chip-label">Session 2</div>
+            <div class="session-chip-time">12:30pm – 2:30pm</div>
+          </div>
+          <div class="session-chip">
+            <div class="session-chip-label">Session 3</div>
+            <div class="session-chip-time">3:00pm – 5:00pm</div>
+          </div>
+          <div class="session-chip">
+            <div class="session-chip-label">Session 4</div>
+            <div class="session-chip-time">5:30pm – 7:30pm</div>
+          </div>
+        </div>
+
+        <div class="event-card-actions">
+          <a href="https://buytickets.at/bouncinllanelli/2393230" target="_blank" rel="noopener" class="btn btn-primary">
+            <i class="fas fa-ticket-alt"></i> Buy Tickets
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Princess+Gwenllian+Centre+Kidwelly" target="_blank" rel="noopener" class="btn btn-outline">
+            <i class="fas fa-map-location-dot"></i> Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-panel" style="margin-top:8px;">
+    <h3>📍 More events coming soon</h3>
+    <p>Keep an eye on this page and our <a href="https://www.facebook.com/share/1C875JN9h4/" target="_blank" style="font-weight:800;color:#005580;">Facebook</a> and <a href="https://www.instagram.com/bouncin_llanelli/" target="_blank" style="font-weight:800;color:#005580;">Instagram</a> for future public events and ticketed sessions.</p>
+  </div>
+</section>
+
 <section class="route" id="route-deliveries" data-route="#/deliveries">
   <h1 class="page-title">🚚 Delivery Areas &amp; Pricing</h1>
   <p class="page-subtitle">We offer free delivery within 10 miles of Llanelli. For locations beyond this, pricing is available on application.</p>
@@ -4521,6 +4751,7 @@ document.querySelectorAll('.route').forEach(el => {
 
 const legacyMap = {
   '#/home': '#/home',
+  '#/events': '#/events',
   '#/bouncy-castles': '#/bouncy-castles',
   '#/packages': '#/packages',
   '#/fun-foods': '#/fun-foods',
@@ -4646,6 +4877,110 @@ document.querySelectorAll('.nav-link').forEach(a => {
   });
 });
 
+// ===== SEARCH =====
+const CATEGORY_LABELS = {
+  'bouncy-castles': 'Castle',
+  'fun-foods': 'Fun Food',
+  'extras': 'Extra'
+};
+
+function buildSearchIndex() {
+  const index = [];
+  document.querySelectorAll('.cards-grid .prod-card').forEach(card => {
+    const grid = card.closest('.cards-grid');
+    const gridId = grid ? grid.id : '';
+    const titleEl = card.querySelector('h3');
+    const btn = card.querySelector('.prod-card-body .btn');
+    if (!titleEl || !btn) return;
+    const onclickAttr = btn.getAttribute('onclick') || '';
+    const match = onclickAttr.match(/navigateTo\('([^']+)'\)/);
+    if (!match) return;
+    const route = match[1];
+    const catKey = route.split('/')[1] || '';
+    index.push({
+      name: titleEl.textContent.trim(),
+      route: route,
+      category: CATEGORY_LABELS[catKey] || 'Item'
+    });
+  });
+  return index;
+}
+
+let SEARCH_INDEX = null;
+
+function renderSearchResults(query) {
+  const resultsEl = document.getElementById('search-results');
+  const clearBtn = document.getElementById('search-clear');
+  resultsEl.innerHTML = '';
+
+  const q = query.trim().toLowerCase();
+  clearBtn.classList.toggle('show', q.length > 0);
+
+  if (!q) {
+    resultsEl.innerHTML = '<div class="search-hint-msg">Start typing to search all castles, packages, fun foods & extras…</div>';
+    return;
+  }
+
+  if (!SEARCH_INDEX) SEARCH_INDEX = buildSearchIndex();
+
+  const matches = SEARCH_INDEX.filter(item => item.name.toLowerCase().includes(q)).slice(0, 10);
+
+  if (!matches.length) {
+    resultsEl.innerHTML = '<div class="search-empty-msg">No matches found. Try a different search term.</div>';
+    return;
+  }
+
+  matches.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'search-result-item';
+    row.innerHTML = `<span>${item.name}</span><span class="sr-cat">${item.category}</span>`;
+    row.addEventListener('click', () => {
+      navigateTo(item.route);
+      closeSearchPanel();
+    });
+    resultsEl.appendChild(row);
+  });
+}
+
+function openSearchPanel() {
+  document.getElementById('search-panel').classList.add('open');
+  document.getElementById('backdrop').classList.add('show');
+  const input = document.getElementById('search-input');
+  renderSearchResults(input.value);
+  setTimeout(() => input.focus(), 50);
+}
+
+function closeSearchPanel() {
+  document.getElementById('search-panel').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('show');
+}
+
+document.getElementById('search-toggle').addEventListener('click', () => {
+  const panel = document.getElementById('search-panel');
+  if (panel.classList.contains('open')) {
+    closeSearchPanel();
+  } else {
+    document.getElementById('sidebar').classList.remove('open');
+    openSearchPanel();
+  }
+});
+
+document.getElementById('search-input').addEventListener('input', e => {
+  renderSearchResults(e.target.value);
+});
+
+document.getElementById('search-clear').addEventListener('click', () => {
+  const input = document.getElementById('search-input');
+  input.value = '';
+  renderSearchResults('');
+  input.focus();
+});
+
+// Extend backdrop click to also close search panel
+document.getElementById('backdrop').addEventListener('click', () => {
+  closeSearchPanel();
+});
+
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => {
   initCardCarousels();
@@ -4657,4 +4992,4 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-	</html>
+</html>
