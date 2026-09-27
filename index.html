@@ -26,7 +26,7 @@
       --pink:    #ff4e9f;
       --pink-lt: #ff9ed0;
       --blue:    #00b4ff;
-      --blue-dk: #007ec0;
+      --blue-dk: #0077b6;
       --yellow:  #ffe94e;
       --green:   #2ecc71;
       --bg:      #fff9fe;
@@ -44,16 +44,46 @@
       --font-body: 'Nunito', sans-serif;
     }
 
+    /* ===== HALLOWEEN THEME (auto-applied 1 Oct – 31 Oct, see script at bottom) ===== */
+    html.theme-halloween {
+      --pink:    #ff6b1a;
+      --pink-lt: #ffb877;
+      --blue:    #8b2fc9;
+      --blue-dk: #5b1a8f;
+      --yellow:  #ffc933;
+      --bg:      #fff3e6;
+      --border:  #ffdcae;
+      --shadow:  0 4px 24px rgba(139,47,201,.18);
+    }
+
     /* ===== RESET ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
     body {
       font-family: var(--font-body);
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--ink);
       overflow-x: hidden;
       font-size: 16px;
       line-height: 1.6;
+    }
+    html.theme-halloween body {
+      position: relative;
+    }
+    html.theme-halloween body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 92% 6%, rgba(139,47,201,.14), transparent 42%),
+        radial-gradient(circle at 4% 90%, rgba(255,107,26,.12), transparent 45%),
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22170%22%20viewBox%3D%220%200%20260%20170%22%3E%3Cg%20transform%3D%22translate%2815%2C10%29%20scale%281.55%29%22%20fill%3D%22rgba%2858%2C33%2C69%2C0.22%29%22%3E%3Cpath%20d%3D%22M19.386%209.585%2026.68%202.2l.046-.052c.091-.105.237-.274.393-.189.232.127.165.372.069.533-.868%201.456-.914%204.876%202.417%205.533.143.033.276.276.055.497-1.05%201.05-2.972%204.475.265%207.071.114.063.246.232-.143.409l-.121.05c-.787.319-3.93%201.59-2.83%206.656l-.192-.192c.622%201.15.71%202.304-.35%203.364l-.044.04-.039.036c-.642.59-1.682%201.547-3.437.699-4.986-1.04-6.244%202.068-6.56%202.85l-.05.12c-.178.39-.347.258-.41.144-2.596-3.237-6.021-1.315-7.07-.265-.221.22-.464.088-.497-.056-.658-3.33-4.078-3.285-5.533-2.416-.162.096-.407.163-.533-.07-.086-.155.083-.301.188-.392.02-.018.039-.033.052-.047l7.384-7.294s.469-.47%201.082.022c2.15%201.724%203.766%201.916%204.762%201.649-.898-.92-2.173-2.175-2.94-2.928l-.585-.578c-.31-.309-.166-.63.553-.552l2.883.232c.416-.592%201.36-1.432%201.779-1.779l-.31-2.806c-.143-.696.188-.829.509-.508l3.552%203.552c.31-.985.168-2.64-1.618-4.868-.491-.612-.022-1.081-.022-1.081Zm-.448%209.274c-.293.293-.32%201.404.127%201.851.154.155.475.298%201.248-.475.774-.773.746-1.088.53-1.304-.336-.337-1.53-.447-1.905-.072Zm-1%20.238a.5.5%200%2010-.707.707.5.5%200%2000.707-.707Zm1.978-1.27a.5.5%200%2010-.708-.708.5.5%200%2000.708.707Z%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28170%2C20%29%20scale%281.4%29%22%20fill%3D%22rgba%2858%2C33%2C69%2C0.22%29%22%3E%3Cpath%20d%3D%22M9.413%2015h2.172c.353%200%20.545-.434.315-.715l-1.113-1.132a.402.402%200%2000-.637.008l-1.06%201.132c-.214.281-.023.707.323.707Zm13.172%200h-2.172c-.346%200-.537-.426-.323-.707l1.06-1.132a.402.402%200%2001.637-.008l1.113%201.132c.23.281.038.715-.315.715ZM24%2017h-2.617c-.347.501-1.001%201.146-2.062%201.146-.872%200-1.566-.645-1.983-1.146h-2.686c-.347.501-1.001%201.146-2.062%201.146-.873%200-1.566-.645-1.983-1.146H8c0%203.321%202.488%206.123%205.869%206.964.337-.501%201-1.19%202.091-1.19.922%200%201.646.716%202.043%201.226%203.45-.806%205.997-3.634%205.997-7Z%22/%3E%3Cpath%20d%3D%22M18%206V4.612c0-.535-.793-.816-1.265-.439L14.433%206H11.91a9.637%209.637%200%2000-9.174%206.952L1.394%2017.58a9.69%209.69%200%20001.564%208.6A9.448%209.448%200%200010.567%2030h10.871a9.45%209.45%200%20007.577-3.772%209.69%209.69%200%20001.621-8.528l-1.283-4.631A9.624%209.624%200%200020.145%206H18Zm-6.089%202h8.234a7.615%207.615%200%20017.28%205.6l1.284%204.633a7.71%207.71%200%2001-1.287%206.782A7.463%207.463%200%200121.438%2028H10.567a7.466%207.466%200%2001-6.01-3.021%207.712%207.712%200%2001-1.243-6.837l1.344-4.628A7.627%207.627%200%200111.911%208Z%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2895%2C110%29%20scale%281.5%29%22%20fill%3D%22rgba%2858%2C33%2C69%2C0.22%29%22%3E%3Cpath%20d%3D%22m19.588%2017.058.177-.885a1.254%201.254%200%2000-.926-1.463%2011.708%2011.708%200%2000-5.679%200%201.254%201.254%200%2000-.926%201.463l.178.885a3.66%203.66%200%20007.176%200Z%22/%3E%3Cpath%20d%3D%22M11%2012s0%201.299.662%202.573c.3-.4.735-.703%201.256-.833a12.708%2012.708%200%20016.164%200c.521.13.956.433%201.256.833C21%2013.299%2021%2012%2021%2012H11Zm8.5-2a1.5%201.5%200%20100-3%201.5%201.5%200%20000%203Zm-7.777-2.947a.5.5%200%2010-.447.894l1.106.553-1.106.553a.5.5%200%2010.447.894l2-1a.5.5%200%20000-.894l-2-1Z%22/%3E%3Cpath%20d%3D%22M4.976%2010.331C5.77%204.964%2010.477%201%2016.006%201c5.527%200%2010.247%203.963%2011.03%209.333l.005.032.185%201.635h2.024c1.535%200%202.294%201.86%201.217%202.937l-2.612%202.613%201.114%209.835c.26%201.832-1.135%203.519-3.01%203.606h-.003a4.487%204.487%200%2001-3.338-1.262%202.518%202.518%200%2000-3.481%200c-1.733%201.687-4.539%201.687-6.272%200a2.518%202.518%200%2000-3.482%200%204.493%204.493%200%2001-3.708%201.235c-1.785-.227-2.88-1.929-2.642-3.562l1.117-9.818-2.647-2.647C.425%2013.86%201.185%2012%202.72%2012h2.065l.186-1.636.005-.033Zm1.98.277-.284%202.505a1%201%200%2001-.994.887H3.394l2.511%202.511a1%201%200%2001.287.82L5.018%2027.646a.978.978%200%2001-.005.038c-.098.64.345%201.224.914%201.296.739.093%201.5-.137%202.061-.684%201.733-1.688%204.539-1.688%206.272%200a2.518%202.518%200%20003.481%200c1.734-1.688%204.54-1.688%206.273%200a2.487%202.487%200%20001.855.697c.706-.034%201.216-.675%201.119-1.334a1.302%201.302%200%2001-.005-.034l-1.17-10.33a1%201%200%2001.287-.819L28.575%2014h-2.243a1%201%200%2001-.994-.887l-.284-2.507C24.415%206.267%2020.575%203%2016.005%203c-4.567%200-8.398%203.265-9.048%207.608Z%22/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+      background-position: 0 0, 0 0, center;
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: auto, auto, 260px 170px;
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -69,6 +99,9 @@
       display: flex; align-items: center; justify-content: center;
       z-index: 200;
       box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    }
+    html.theme-halloween .header {
+      background: linear-gradient(135deg, #0d0713 0%, #3a1259 30%, #8b2fc9 55%, #ff6b1a 80%, #ffc933 100%);
     }
     .header-logo {
       height: 52px; width: auto;
@@ -124,7 +157,7 @@
     }
     .search-input-row {
       display: flex; align-items: center; gap: 8px;
-      background: #fff5fc;
+      background: #fff8f0;
       border: 2px solid var(--border);
       border-radius: 14px;
       padding: 8px 12px;
@@ -145,12 +178,14 @@
       display: flex; align-items: center; justify-content: space-between; gap: 10px;
       padding: 10px 12px;
       border-radius: 12px;
-      background: #fbf5fc;
+      background: #fff5fc;
       border: 1px solid var(--border);
       font-weight: 700; font-size: 14px;
       transition: background .15s;
     }
+    html.theme-halloween .search-result-item { background: #fdf6ee; }
     .search-result-item:hover { background: #ffe0f5; }
+    html.theme-halloween .search-result-item:hover { background: #ffe6cc; }
     .search-result-item .sr-cat {
       font-weight: 600; font-size: 11px; color: var(--muted);
       background: #f0e8f8; padding: 3px 9px; border-radius: 20px;
@@ -212,6 +247,7 @@
     }
     .nav-link .nav-icon { font-size: 18px; }
     .nav-link:hover { background: #fff0f8; color: var(--pink); }
+    html.theme-halloween .nav-link:hover { background: #fff3e6; }
     .nav-link.active {
       background: linear-gradient(90deg, var(--pink), #ff8e53);
       color: white;
@@ -237,6 +273,32 @@
       text-align: center;
       margin-top: 12px;
     }
+    html.theme-halloween .trust-bar { background: #fff8f0; }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: linear-gradient(135deg,#1a1a2e,#16213e);
+      border-top: 3px solid transparent;
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 22px 20px;
+      font-size: 13.5px;
+    }
+    html.theme-halloween .site-footer {
+      background: linear-gradient(135deg,#0d0713,#2a0f3d);
+      border-top: 3px solid #ff6b1a;
+    }
+
+    /* ===== SEASONAL PACKAGE GRADIENT CLASSES ===== */
+    .grad-pink-a { --pkg-grad-start: #ff4e9f; --pkg-grad-end: #ff8e53; }
+    html.theme-halloween .grad-pink-a { --pkg-grad-start: #ff6b1a; --pkg-grad-end: #ff8e53; }
+
+    .grad-pink-b { --pkg-grad-start: #ff4e9f; --pkg-grad-end: #ff9ed0; }
+    html.theme-halloween .grad-pink-b { --pkg-grad-start: #ff6b1a; --pkg-grad-end: #ffb877; }
+
+    .grad-blue { --pkg-grad-start: #00b4ff; --pkg-grad-end: #0077b6; }
+    html.theme-halloween .grad-blue { --pkg-grad-start: #8b2fc9; --pkg-grad-end: #5b1a8f; }
+    .grad-blue.package-header { background: linear-gradient(135deg, var(--pkg-grad-start), var(--pkg-grad-end)); }
     .trust-bar p { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.4; }
     .trust-stars { color: #f5a623; font-size: 16px; letter-spacing: 1px; }
 
@@ -435,7 +497,9 @@
       border: 1px solid rgba(0,0,0,.04);
     }
     .tag-blue   { background: #e0f5ff; color: #0077b6; }
+    html.theme-halloween .tag-blue { background: #ede0fb; color: #5b1a8f; }
     .tag-pink   { background: #ffe0f5; color: #c73e7a; }
+    html.theme-halloween .tag-pink { background: #ffe6cc; color: #cc4d10; }
     .tag-yellow { background: #fff8d6; color: #9a7a00; }
     .tag-green  { background: #d5f5e3; color: #1a7a45; }
     .tag-grey   { background: #f0f0f0; color: #555; }
@@ -455,6 +519,7 @@
       border-radius: 16px;
       padding: 5px;
     }
+    html.theme-halloween .tabs { background: #fbf3ea; }
     .tab-btn {
       flex: 1;
       background: none; border: none;
@@ -492,11 +557,13 @@
       border-radius: 12px;
       padding: 10px 12px;
     }
+    html.theme-halloween .feature-item { background: #fdf6ee; }
     .feature-item::before {
       content: '✅'; flex-shrink: 0; font-size: 14px; margin-top: 1px;
     }
     .spec-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-top: 2px; }
     .spec-table tr { background: #fbf5fc; }
+    html.theme-halloween .spec-table tr { background: #fdf6ee; }
     .spec-table td { padding: 10px 14px; font-size: 14.5px; }
     .spec-table td:first-child {
       font-weight: 800; color: var(--pink); width: 130px;
@@ -942,8 +1009,14 @@
       padding: 20px 22px;
       margin-bottom: 20px;
     }
+    html.theme-halloween .info-panel {
+      background: #f3e8fb;
+      border: 2px solid #d8b8fb;
+    }
     .info-panel h3 { font-family: var(--font-head); font-weight: 700; margin-bottom: 8px; color: #005580; }
     .info-panel p { font-size: 14px; color: #0077a8; line-height: 1.6; }
+    html.theme-halloween .info-panel h3 { color: #3a1259; }
+    html.theme-halloween .info-panel p { color: #4b1a99; }
 
     /* ===== PACKAGES PAGE ===== */
     .package-card {
@@ -1012,7 +1085,7 @@
       border-bottom: 1px solid var(--border);
       font-size: 14.5px;
     }
-    .delivery-table th { font-weight: 800; background: #fff5fc; color: var(--pink); }
+    .delivery-table th { font-weight: 800; background: #fff8f0; color: var(--pink); }
     .delivery-table td:last-child { font-weight: 700; color: var(--green); }
 
     /* ===== RESPONSIVE ===== */
@@ -1093,7 +1166,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      background: linear-gradient(135deg, #ff4e9f 0%, #ff8e00 50%, #ffe94e 100%);
+      background: linear-gradient(135deg, #ff6b1a 0%, #ff8e00 50%, #ffc933 100%);
       border-radius: 20px;
       padding: 22px 28px;
       margin-bottom: 32px;
@@ -1137,7 +1210,7 @@
     .event-banner-btn {
       flex-shrink: 0;
       background: white;
-      color: #ff4e9f;
+      color: #ff6b1a;
       font-family: var(--font-body);
       font-weight: 800; font-size: 14px;
       padding: 12px 22px;
@@ -1179,7 +1252,7 @@
       position: absolute;
       bottom: 14px;
       right: 14px;
-      background: #ffe94e;
+      background: #ffc933;
       color: #1a1a2e;
       font-family: var(--font-head);
       font-weight: 800;
@@ -1214,7 +1287,7 @@
     .event-card-body { padding: 22px 24px; }
     .event-card-date {
       display: inline-block;
-      background: linear-gradient(135deg, #ff4e9f, #ff8e00);
+      background: linear-gradient(135deg, #ff6b1a, #ff8e00);
       color: white;
       font-weight: 800;
       font-size: 12.5px;
@@ -1242,7 +1315,7 @@
       margin-bottom: 20px;
     }
     .session-chip {
-      background: #fff0f8;
+      background: #fff3e6;
       border: 2px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 10px 8px;
@@ -1341,7 +1414,7 @@
 </a>
       <a href="tel:+447496177130"
    class="sidebar-book-btn"
-   style="background:linear-gradient(135deg,#00b4ff,#0077b6);margin-top:8px;">
+   style="background:linear-gradient(135deg,var(--blue),var(--blue-dk));margin-top:8px;">
 
   <span class="nav-icon">
     <i class="fas fa-phone"></i>
@@ -1644,7 +1717,7 @@
       <!-- Info -->
       <div class="info-panel">
         <h3>📍 Serving Llanelli &amp; the Surrounding Areas</h3>
-        <p>We deliver to Llanelli, Burry Port, Kidwelly, Carmarthen, Swansea, Gorseinon, Pontarddulais, Cross Hands, and beyond. Check our <a href="#/deliveries" style="font-weight:800;color:#005580;" onclick="navigateTo('#/deliveries');return false;">Delivery Areas</a> page for pricing.</p>
+        <p>We deliver to Llanelli, Burry Port, Kidwelly, Carmarthen, Swansea, Gorseinon, Pontarddulais, Cross Hands, and beyond. Check our <a href="#/deliveries" style="font-weight:800;color:var(--blue-dk);" onclick="navigateTo('#/deliveries');return false;">Delivery Areas</a> page for pricing.</p>
       </div>
 
     </section>
@@ -1661,7 +1734,7 @@
       </div>
       
       <!-- Generator Banner -->
-<div style="background:linear-gradient(135deg,#ffe94e,#ffb347);border:2px solid #f5a623;border-radius:var(--radius);padding:18px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow);">
+<div style="background:linear-gradient(135deg,var(--yellow),#ffb347);border:2px solid #f5a623;border-radius:var(--radius);padding:18px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow);">
   <div style="display:flex;align-items:center;gap:14px;flex:1;min-width:220px;">
     <span style="font-size:34px;line-height:1;">⚡</span>
     <div>
@@ -2199,7 +2272,7 @@
       <div id="route-bouncy-castles/white-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-pink-a">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎉</span>
               <div>
@@ -2263,7 +2336,7 @@
       <div id="route-bouncy-castles/disco-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-pink-a">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎉</span>
               <div>
@@ -2348,7 +2421,7 @@
   <div id="route-bouncy-castles/CustomisablePurpleBlackCastle-tab-packages" class="tab-content hidden">
     <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-pink-a">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎉</span>
               <div>
@@ -2413,7 +2486,7 @@
       <div id="route-bouncy-castles/BuildingBlocks-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-pink-a">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎉</span>
               <div>
@@ -2537,7 +2610,7 @@
   <div id="route-bouncy-castles/PawPatrol-tab-packages" class="tab-content hidden">
     <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-pink-a">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎉</span>
               <div>
@@ -2603,7 +2676,7 @@
       <div id="route-bouncy-castles/CandyTwistDome-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff8e53;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-pink-a">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎉</span>
               <div>
@@ -2672,7 +2745,7 @@
       <div id="route-bouncy-castles/Mermaid-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following packages:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-blue">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎢</span>
               <div>
@@ -2682,7 +2755,7 @@
             </div>
             <div class="detail-pkg-price">From £200</div>
           </a>
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#ff4e9f;--pkg-grad-end:#ff9ed0;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-pink-b">
           <div class="detail-pkg-photo"><img src="MermaidAdventuresPackage.png" alt="Mermaid Adventures Package - Castle, Ball Pool and Didi Cars"/></div>
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🏰</span>
@@ -2748,7 +2821,7 @@
       <div id="route-bouncy-castles/kpop-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-blue">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎢</span>
               <div>
@@ -2815,7 +2888,7 @@
       <div id="route-bouncy-castles/PrincessSlide-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-blue">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎢</span>
               <div>
@@ -2881,7 +2954,7 @@
       <div id="route-bouncy-castles/dinoslide-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following packages:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-blue">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎢</span>
               <div>
@@ -3007,8 +3080,7 @@
 
   <a href="#/packages"
      onclick="navigateTo('#/packages');return false;"
-     class="detail-pkg-card"
-     style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+     class="detail-pkg-card grad-blue">
 
     <div class="detail-pkg-head">
 
@@ -3127,8 +3199,7 @@
 
   <a href="#/packages"
      onclick="navigateTo('#/packages');return false;"
-     class="detail-pkg-card"
-     style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+     class="detail-pkg-card grad-blue">
 
     <div class="detail-pkg-head">
       <span class="detail-pkg-emoji">🎢</span>
@@ -3224,8 +3295,7 @@
 
   <a href="#/packages"
      onclick="navigateTo('#/packages');return false;"
-     class="detail-pkg-card"
-     style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+     class="detail-pkg-card grad-blue">
 
     <div class="detail-pkg-head">
       <span class="detail-pkg-emoji">🎢</span>
@@ -3239,8 +3309,18 @@
     <div class="detail-pkg-price">From £200</div>
 
   </a>
-
-</div>
+  <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#D4E900;--pkg-grad-end:#B8D600;">
+          <div class="detail-pkg-photo"><img src="DiggerAdventuresPackage.png" alt="Digger Adventures Package - Castle, Ball Pool and Didi Cars"/></div>
+            <div class="detail-pkg-head">
+              <span class="detail-pkg-emoji">🏰</span>
+              <div>
+                <h4>Adventures Package</h4>
+                <p>Castle + Ball Pool + 6 Didi Cars</p>
+              </div>
+            </div>
+            <div class="detail-pkg-price">From £160</div>
+          </a>
+        </div>
 
   </div></section>
 
@@ -3297,7 +3377,7 @@
       <div id="route-bouncy-castles/slide-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-blue">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎢</span>
               <div>
@@ -3434,7 +3514,7 @@
       <div id="route-bouncy-castles/ocean-activity-combi-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following package:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-blue">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎈</span>
               <div>
@@ -3500,7 +3580,7 @@
       <div id="route-bouncy-castles/fun-run-tab-packages" class="tab-content hidden">
         <p class="detail-pkg-intro">This castle is included in the following packages:</p>
         <div class="detail-pkg-list">
-          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card" style="--pkg-grad-start:#00b4ff;--pkg-grad-end:#0077b6;">
+          <a href="#/packages" onclick="navigateTo('#/packages');return false;" class="detail-pkg-card grad-blue">
             <div class="detail-pkg-head">
               <span class="detail-pkg-emoji">🎈</span>
               <div>
@@ -3679,6 +3759,7 @@
     <div class="package-castles">
       <span class="castle-chip">🦖 Dinosaur Slide Castle + Dinosaur Ball Pool</span>
       <span class="castle-chip">🧜 Mermaid Slide Castle + Mermaid Ball Pool</span>
+      <span class="castle-chip">🏗 Digger Slide Castle + Digger Ball Pool</span>
     </div>
 
     <a href="https://wa.me/message/HQ44EEHYC6E2C1"
@@ -3731,7 +3812,7 @@
 
 <!-- Combo Slide Package -->
 <div class="package-card">
-  <div class="package-header" style="background:linear-gradient(135deg,#00b4ff,#0077b6);">
+  <div class="package-header grad-blue">
     <h2>🎢 Combo Slide Package</h2>
     <div class="package-price">From £200</div>
     <p>Slide castle + slush + candyfloss</p>
@@ -3773,7 +3854,7 @@
 
 <!-- Ulitmate Party Package -->
 <div class="package-card">
-  <div class="package-header" style="background:linear-gradient(135deg,#00b4ff,#0077b6);">
+  <div class="package-header grad-blue">
     <h2>🎈 Ulitmate Party Package</h2>
     <div class="package-price">From £250</div>
     <p>Slide castle + slush + candyfloss</p>
@@ -3897,6 +3978,16 @@
             <button class="btn btn-primary" onclick="navigateTo('#/fun-foods/20LSlushMachine')">View Details</button>
           </div>
         </div>
+        
+        <div class="prod-card">
+          <div class="prod-card-img-wrap"><img src="CardIceCreamMachine.png" alt="Ice Cream Machine" loading="lazy"/></div>
+          <div class="prod-card-body">
+            <h3>Ice Cream Machine</h3>
+            <div class="prod-card-price">From £180</div>
+            <p style="font-size:13px;color:var(--muted);">Approx 80 servings </p>
+            <button class="btn btn-primary" onclick="navigateTo('#/fun-foods/IceCreamMachine')">View Details</button>
+          </div>
+        </div>
 
         <div class="prod-card">
           <div class="prod-card-img-wrap"><img src="CardCandyFloss.png" alt="Candy Floss" loading="lazy"/></div>
@@ -3965,6 +4056,64 @@
         </div>
       </div>
     </section>
+    
+    <!-- IceCreamMachineDetail -->
+<section class="route" id="route-fun-foods/IceCreamMachine" data-route="#/fun-foods/IceCreamMachine">
+  <a href="#/fun-foods" class="back-link" onclick="navigateTo('#/fun-foods');return false;">← Back to Fun Foods</a>
+
+  <div class="detail-hero">
+    <img src="CardIceCreamMachine.png" alt="Ice Cream Machine Hire"/>
+  </div>
+
+  <h1 class="detail-title">Ice Cream Machine</h1>
+  <div class="detail-price">£180</div>
+
+  <div class="detail-tags">
+    <span class="detail-tag tag-blue">80 Servings</span>
+    <span class="detail-tag tag-grey">Cones or Cups</span>
+  </div>
+
+  <div class="book-cta-bar">
+    <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn btn-primary btn-lg" target="_blank">💬 Book via WhatsApp</a>
+    <a href="tel:+447496177130" class="btn btn-blue btn-lg">📞 Call to Book</a>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+  </div>
+
+  <div id="route-fun-foods/IceCreamMachine-tab-desc" class="tab-content">
+    <p>
+      Treat your guests to delicious, freshly served ice cream with our
+      <strong>Ice Cream Machine Hire</strong>. Perfect for birthdays, weddings,
+      parties, school events and celebrations!
+    </p>
+
+    <p style="margin-top:12px;">
+      The £180 hire includes enough ice cream mix for approximately
+      <strong>80 servings</strong>, with your choice of cones or cups.
+      We also provide <strong>strawberry sauce and chocolate sauce</strong>
+      so guests can add their favourite toppings.
+    </p>
+
+    <p style="margin-top:12px;">
+      We supply the ice cream mix, machine and serving essentials, making it
+      an easy and convenient addition to your event.
+    </p>
+  </div>
+
+  <div id="route-fun-foods/IceCreamMachine-tab-features" class="tab-content hidden">
+    <div class="feature-list">
+      <div class="feature-item">Approximately 80 servings included</div>
+      <div class="feature-item">Ice cream mix supplied</div>
+      <div class="feature-item">Cones or cups included</div>
+      <div class="feature-item">Strawberry sauce included</div>
+      <div class="feature-item">Chocolate sauce included</div>
+      <div class="feature-item">Ideal for parties, birthdays and events</div>
+    </div>
+  </div>
+</section>
 
     <!-- 20L Slush Detail -->
     <section class="route" id="route-fun-foods/20LSlushMachine" data-route="#/fun-foods/20LSlushMachine">
@@ -4122,6 +4271,16 @@
             <div class="prod-card-price">From £50</div>
             <p style="font-size:13px;color:var(--muted);">Inflatable mermaid-themed ball pool</p>
             <button class="btn btn-primary" onclick="navigateTo('#/extras/mernaid-soft-play')">View Details</button>
+          </div>
+        </div>
+        
+        <div class="prod-card">
+          <div class="prod-card-img-wrap"><img src="CardConsSoftPlay.png" alt="Construction Inflatable Ball Pool" loading="lazy"/></div>
+          <div class="prod-card-body">
+            <h3>Construction Ball Pool</h3>
+            <div class="prod-card-price">From £50</div>
+            <p style="font-size:13px;color:var(--muted);">Inflatable Construction-themed ball pool</p>
+            <button class="btn btn-primary" onclick="navigateTo('#/extras/construction-soft-play')">View Details</button>
           </div>
         </div>
         
@@ -4346,7 +4505,7 @@
       <div class="detail-price">From £50</div>
       <div class="detail-tags">
         <span class="detail-tag tag-blue">Mermaid Theme</span>
-        <span class="detail-tag tag-grey">Approx 8 × 8ft</span>
+        <span class="detail-tag tag-grey">Approx 8 × 6ft</span>
         <span class="detail-tag tag-pink">Ball Pool Included</span>
       </div>
       <div class="book-cta-bar">
@@ -4367,7 +4526,7 @@
           <div class="feature-item">High back walls for added safety</div>
           <div class="feature-item">Ball pool balls included</div>
           <div class="feature-item">Bright &amp; colourful ocean design</div>
-          <div class="feature-item">Approx size: 8ft × 8ft × 4ft (H)</div>
+          <div class="feature-item">Approx size: 8ft × 6ft × 4ft (H)</div>
           <div class="feature-item">Fully cleaned &amp; sanitised before every hire</div>
         </div>
       </div>
@@ -4385,6 +4544,91 @@
       </div>
     </section>
     
+    <!-- Construction Ball Pool Detail -->
+<section class="route" id="route-extras/construction-soft-play" data-route="#/extras/construction-soft-play">
+  <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
+
+  <div class="detail-hero">
+    <img src="CardConsSoftPlay.png" alt="Construction High Back Inflatable Ball Pool"/>
+  </div>
+
+  <h1 class="detail-title">Construction High Back Inflatable Ball Pool</h1>
+  <div class="detail-price">From £50</div>
+
+  <div class="detail-tags">
+    <span class="detail-tag tag-blue">Construction Theme</span>
+    <span class="detail-tag tag-grey">Approx 8 × 6ft</span>
+    <span class="detail-tag tag-pink">Ball Pool Balls Included</span>
+  </div>
+
+  <div class="book-cta-bar">
+    <a href="https://wa.me/message/HQ44EEHYC6E2C1" class="btn btn-primary btn-lg" target="_blank">
+      💬 Book via WhatsApp
+    </a>
+    <a href="tel:+447496177130" class="btn btn-blue btn-lg">
+      📞 Call to Book
+    </a>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="desc">Description</button>
+    <button class="tab-btn" data-tab="features">Features</button>
+    <button class="tab-btn" data-tab="images">Images</button>
+  </div>
+
+  <div id="route-extras/construction-soft-play-tab-desc" class="tab-content">
+    <p>
+      Our <strong>Construction High Back Inflatable Ball Pool</strong> brings
+      imaginative construction-themed fun to children's parties, events and
+      entertainment. Featuring colourful construction vehicle and tool artwork,
+      it's designed to encourage creative and interactive play.
+    </p>
+
+    <p>
+      The inflatable features <strong>6 air jugglers</strong> around the sides,
+      adding an exciting interactive element as balls bounce and move through
+      the air currents. The high-back design provides a dedicated play area for
+      children to enjoy under supervision.
+    </p>
+  </div>
+
+  <div id="route-extras/construction-soft-play-tab-features" class="tab-content hidden">
+    <div class="feature-list">
+      <div class="feature-item">Construction-themed inflatable ball pool</div>
+      <div class="feature-item">High-back inflatable design</div>
+      <div class="feature-item">Construction vehicle and tool artwork</div>
+      <div class="feature-item">6 air jugglers for interactive play</div>
+      <div class="feature-item">Approx size: 8ft × 6ft × 4ft (H)</div>
+      <div class="feature-item">Fully cleaned &amp; sanitised before every hire</div>
+    </div>
+  </div>
+
+  <div id="route-extras/construction-soft-play-tab-images" class="tab-content hidden">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-slide active">
+          <img src="ConstructionSoftPlay1.png" alt="Construction High Back Inflatable Ball Pool 1"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="ConstructionSoftPlay2.png" alt="Construction High Back Inflatable Ball Pool 2"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="ConstructionSoftPlay3.png" alt="Construction High Back Inflatable Ball Pool 3"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="ConstructionSoftPlay4.png" alt="Construction High Back Inflatable Ball Pool 4"/>
+        </div>
+        <div class="carousel-slide">
+          <img src="ConstructionSoftPlay5.png" alt="Construction High Back Inflatable Ball Pool 5"/>
+        </div>
+      </div>
+
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </div>
+</section>
+    
     <!-- Dino Ball Pool Detail -->
 <section class="route" id="route-extras/dino-soft-play" data-route="#/extras/dino-soft-play">
   <a href="#/extras" class="back-link" onclick="navigateTo('#/extras');return false;">← Back to Extras</a>
@@ -4399,7 +4643,7 @@
 
   <div class="detail-tags">
     <span class="detail-tag tag-green">3D Dinosaur Theme</span>
-    <span class="detail-tag tag-grey">Approx 8 × 8ft</span>
+    <span class="detail-tag tag-grey">Approx 8 × 6ft</span>
     <span class="detail-tag tag-pink">Ball Pool Included</span>
   </div>
 
@@ -4434,7 +4678,7 @@
       <div class="feature-item">Colourful prehistoric dinosaur artwork</div>
       <div class="feature-item">Filled with 500 hundred green balls </div>
       <div class="feature-item">Safe inflatable walls for younger children</div>
-      <div class="feature-item">Approx size: 8ft × 8ft × 4ft (H)</div>
+      <div class="feature-item">Approx size: 8ft × 6ft × 4ft (H)</div>
       <div class="feature-item">Ideal for toddlers and younger children</div>
       <div class="feature-item">Perfect alongside our dinosaur bouncy castle</div>
       <div class="feature-item">Cleaned and sanitised before every hire</div>
@@ -4658,7 +4902,7 @@
 
   <div class="info-panel" style="margin-top:8px;">
     <h3>📍 More events coming soon</h3>
-    <p>Keep an eye on this page and our <a href="https://www.facebook.com/share/1C875JN9h4/" target="_blank" style="font-weight:800;color:#005580;">Facebook</a> and <a href="https://www.instagram.com/bouncin_llanelli/" target="_blank" style="font-weight:800;color:#005580;">Instagram</a> for future public events and ticketed sessions.</p>
+    <p>Keep an eye on this page and our <a href="https://www.facebook.com/share/1C875JN9h4/" target="_blank" style="font-weight:800;color:var(--blue-dk);">Facebook</a> and <a href="https://www.instagram.com/bouncin_llanelli/" target="_blank" style="font-weight:800;color:var(--blue-dk);">Instagram</a> for future public events and ticketed sessions.</p>
   </div>
 </section>
 
@@ -4736,7 +4980,7 @@
 </div>
 
 <!-- ===== FOOTER ===== -->
-<footer style="background:linear-gradient(135deg,#1a1a2e,#16213e);color:rgba(255,255,255,.7);text-align:center;padding:22px 20px;font-size:13.5px;">
+<footer class="site-footer">
   <p style="margin-bottom:4px;font-family:var(--font-head);font-size:1rem;font-weight:700;color:white;">🎪 Bouncin' Llanelli</p>
   <p>© 2025 Bouncin' Llanelli. All rights reserved. · <strong style="color:white;">Deposits are non-refundable.</strong></p>
   <p style="margin-top:6px;">PIPA Safety Tested · Fully Insured · Llanelli, Wales</p>
@@ -4989,6 +5233,21 @@ window.addEventListener('DOMContentLoaded', () => {
   if (!window.location.hash) window.location.hash = '#/home';
   else render();
 });
+
+// ===== SEASONAL THEME: Halloween look from 1 Oct through 31 Oct, original theme the rest of the year =====
+(function applySeasonalTheme() {
+  function isHalloweenSeason(date) {
+    const month = date.getMonth(); // 0 = Jan, 9 = Oct
+    return month === 9; // whole of October
+  }
+  function updateTheme() {
+    const halloween = isHalloweenSeason(new Date());
+    document.documentElement.classList.toggle('theme-halloween', halloween);
+  }
+  updateTheme();
+  // Re-check once an hour in case a tab is left open across midnight on the 1st
+  setInterval(updateTheme, 60 * 60 * 1000);
+})();
 </script>
 
 </body>
